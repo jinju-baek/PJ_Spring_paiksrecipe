@@ -1,7 +1,5 @@
 package com.paiksrecipe.domain;
 
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,13 +11,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class ProductDTO {
-	private int pno;
-	private String pname;
-	private String pmemo;
-	private int views;
-	private String p_img;
-	private String href;
-	private Date regdate;
-	
+public class SampleDTO {
+	private String user;
+	private String pass;
+	private String name;
+	private String email;
+	private String phone;
 }

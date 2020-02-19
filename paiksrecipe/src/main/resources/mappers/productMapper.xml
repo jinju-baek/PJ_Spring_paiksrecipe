@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) FROM tbl_pdt;
 		</select>  -->
 	
-	<select id="bestPdtList" resultType="productDTO">
+	<select id="bestPdtList" resultType="ProductDTO">
 		SELECT * 
 		FROM (SELECT rownum rnum, best.* 
 			  FROM ( SELECT * FROM tbl_pdt 
@@ -15,6 +15,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  		 ) best
 			  )
 		WHERE rnum between 1 and 5
-			  
+	</select>
+	
+	<select id="newPdtList" resultType="ProductDTO">
+		SELECT * 
+		FROM (SELECT rownum rnum, best.* 
+			  FROM ( SELECT * FROM tbl_pdt 
+			  		 ORDER BY regdate DESC 
+			  		 ) best
+			  )
+		WHERE rnum between 1 and 5
 	</select>
 </mapper>
+

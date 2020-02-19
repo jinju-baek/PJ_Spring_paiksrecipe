@@ -3,14 +3,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="include.jsp" %>
-	
 <!DOCTYPE html>
 <html>
 <head>
 
 <meta charset="UTF-8">
 <title>PAIKSRECIPE</title>
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
 
 <style type="text/css">
@@ -23,6 +21,9 @@ form {
 }
 
 div.header_wrap {
+	position: fixed;
+	top: 0;
+	z-index: 999;
 	width: 100%;
 	background-color: white;
 	box-shadow: 0 0 1px 1px rgba(20, 23, 28, .1), 0 3px 1px 0
@@ -152,7 +153,7 @@ div.header_content {
 	color: #506763;
 	border: 1px solid transparent;
 	text-align: center;
-	padding: 12px;
+	padding: 15px;
 	line-height: 19px;
 }
 
@@ -423,27 +424,24 @@ div.header_content {
 				</div>
 			</div>
 			<div class="tab_bar">
-				<a href="#" class="tab_cliker_wrap">회원</a> <a href="#"
-					class="tab_cliker_wrap">비회원</a>
+				<a href="#" class="tab_cliker_wrap">회원</a> 
+				<a href="#" class="tab_cliker_wrap">비회원</a>
 			</div>
 			<div class="login_wrap">
 				<div class="form_wrap">
-					<form class="frm_login" name="from_login" action="loginCheck"
-						method="POST">
+					<form class="frm_login" name="from_login" action="loginCheck" method="POST">
 						<div class="label">
 							<div>
 								이메일<br>
 							</div>
-							<input type="emaild" class="login_input" id="login_id"
-								placeholder="이메일 주소를 입력해주세요" required>
+							<input type="emaild" class="login_input" id="login_id" placeholder="이메일 주소를 입력해주세요" required>
 						</div>
 						<div class="label">
 							<div>
 								비밀번호<br>
 							</div>
 							<div class="input_pw">
-								<input type="password" class="login_input" id="login_pw"
-									placeholder="비밀번호" required minlength="6" maxlength="18">
+								<input type="password" class="login_input" id="login_pw" placeholder="비밀번호" required minlength="6" maxlength="18">
 								<span class="pw_eye"><i class="fas fa-eye-slash"></i></span>
 							</div>
 						</div>
@@ -466,17 +464,19 @@ div.header_content {
 						<br>
 					</form>
 					<div class="mem_wrap">
-						<a href="#">아이디 찾기</a>&nbsp;<span>ㅣ</span>&nbsp; <a href="#">비밀번호
-							찾기</a>&nbsp;<span>ㅣ</span>&nbsp; <a href="#">회원가입</a><br>
+						<a href="#">아이디 찾기</a>&nbsp;<span>ㅣ</span>&nbsp; <a href="#">비밀번호 찾기</a>&nbsp;<span>ㅣ</span>&nbsp; <a href="${path}/member/constract">회원가입</a><br>
 					</div>
 				</div>
 			</div>
 			<div class="login_sns_wrap">
 				<div>SNS 계정으로 시작하기</div>
 				<div>
-					<a class="sns_face" href="#"><img
-						src="${path}/resources/img/ic-facebook-new.svg" width="45px"></a> <a
-						href="#"><img src="${path}/resources/img/ic-kakao.svg" width="45px"></a>
+					<a class="sns_face" href="#">
+						<img src="${path}/resources/img/ic-facebook-new.svg" width="45px">
+					</a> 
+					<a href="#"> 
+						<img src="${path}/resources/img/ic-kakao.svg" width="45px">
+					</a>
 				</div>
 			</div>
 		</div>
@@ -574,7 +574,7 @@ div.header_content {
 					<div class="header_content_dropdown_wrqp">
 						<div class="header_content_dropdown_group">
 							<!-- 네비게이션 -->
-							<a href="#"><i class="fas fa-user"></i></a>
+							<a href="#"><i class="fas fa-user"></i><span> MY PAGE</span></a>
 							<!-- dropdown 메뉴 -->
 							<div class="header_dropdown">
 								<div class="arrow"></div>
@@ -600,7 +600,7 @@ div.header_content {
 						<button type="button" class="btn btn-basic login_open">로그인</button>
 					</div>
 					<div>
-						<button type="button" class="btn btn-primary">회원가입</button>
+						<button type="button" id="header_btn_join" class="btn btn-primary">회원가입</button>
 					</div>
 
 				</div>
@@ -632,17 +632,13 @@ div.header_content {
 	});
 
 	// modal창의 x버튼을 클릭하면 modal창 close
-	$(document).on(
-			'click',
-			'.login_close',
-			function() {
+	$(document).on('click', '.login_close', function() {
 				$('.modal_wrap').css('display', 'none');
 				$('.frm_login')[0].reset();
 				// $('.login_input').val('');
 				$('.pw_eye').prev().attr('type', 'password');
 				$('.pw_eye').html('<i class="fas fa-eye-slash"></i>').css(
 						'color', '#666');
-
 			});
 
 	// 값을 가져오는 방법
@@ -685,6 +681,11 @@ div.header_content {
 							'color', '#666');
 				}
 			});
+	
+	/* Header 가입하기 버튼 클릭시 동의 페이지 이동 */
+	$(document).on('click', '#header_btn_join', function(){
+		location.href="${path}/member/constract";
+	});
 
 	// jQuery 문법
 	// $('선택자').옵션();

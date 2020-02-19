@@ -1,14 +1,12 @@
 package com.paiksrecipe.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.paiksrecipe.controller.IndexController;
-import com.paiksrecipe.domain.ProductDTO;
 import com.paiksrecipe.service.index.IndexService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,15 +26,21 @@ public class IndexController {
 	IndexService iService;
 	// iService에 indexServiceImpl Beans가 들어가있는것
 	
-	@GetMapping("/index")
+	@RequestMapping("/")
 	public String indexView(Model model) {
 		log.info(">>>>> INDEX PAGE 출력");
 		
-		// 1. View단에 출력할 데이터		
+		// 2. View단에 출력할 베스트 상품 5건
 		model.addAttribute("BestPdt", iService.bestPdtList()); // 이름표, 담을 데이터
-			
+		
+		// 2. View단에 출력할 신상품 5건
+		// 신상품 5건을 출력하는 비즈니스 로직을 처리하는
+		// 서비스단으로 이동
+		model.addAttribute("NewPdt", iService.newPdtList());
+		
 		// 2. 출력할 화면을 결정
 		// 3. Dispatcher Servlet으로 이동
+		
 		// DispatcherServlet
 		// 1. Model(BestPdt)
 		// 2. View(/WEB-INF/views/index.jsp)
