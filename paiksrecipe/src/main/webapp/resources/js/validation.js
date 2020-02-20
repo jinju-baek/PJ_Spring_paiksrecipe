@@ -137,6 +137,8 @@ var joinValidate = {
 			return this.resultCode.space_length_val;
 		} else if(!id.match(regEmail)){ // 3. 유효성 체크
 			return this.resultCode.invalid_email;
+		} else if(idCheck(id)){
+			return this.resultCode.overlap_id;
 		} else{ // 통과
 			return this.resultCode.success_email;
 		}
@@ -270,4 +272,26 @@ var joinValidate = {
 			return this.resultCode.success_addr;
 		}
 	}
+}
+
+function idCheck(id) {
+	var return_val = true;
+	
+	$.ajax({
+		type: 'POST',
+		url: 'idoverlap?id='+id,
+		asynce: false,
+		success: function(data){
+			console.log(data);
+			if(data >= 1){
+				return_val = true;
+			} else{
+				return_val = false;
+			}
+		},
+		error: function(){
+			alert('System ERROR:(');
+		}
+	});
+	return return_val;
 }

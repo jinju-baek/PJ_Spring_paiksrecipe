@@ -384,7 +384,7 @@
 		</div>
 	</body>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="../../../js/validation.js"></script>
+	<script src="${path}/resources/js/validation.js"></script>
 	<script type="text/javascript">
 		// $(document).ready(function(){
 	
@@ -554,7 +554,7 @@
 			});
 	
 			// 버튼 활성화
-			$('.int').blur(function() {
+			$('.int').keyup(function() {
 				var checkAll = true;
 	
 				for (var i = 0; i < checkArr.length; i++) {

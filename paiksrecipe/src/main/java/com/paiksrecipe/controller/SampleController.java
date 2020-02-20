@@ -3,10 +3,13 @@ package com.paiksrecipe.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.paiksrecipe.domain.SampleDTO;
 
@@ -49,9 +52,6 @@ public class SampleController {
 			log.info("user: " + user);
 			return "result";
 		}
-		
-
-		@PostMapping("/view")
 
 		// Model2에서 쓰던 방식			
 		// public String view(HttpServletRequest request) {
@@ -67,6 +67,7 @@ public class SampleController {
 		// }
 		
 		// @RequestMapping(value="/sample/view", method=RequestMethod.POST)
+		@PostMapping("/view")
 		public String view(SampleDTO sDto) {	
 			// = @RequestParam String user, @RequestParam String pass
 			// defaultValue="" 값이 없을 경우 기본값 설정
@@ -77,6 +78,24 @@ public class SampleController {
 			// log.info(user + ", " + pass);
 			log.info(sDto.toString());
 			return "result";
+		}
+		
+		// 동기방식
+		@GetMapping("/sync")
+		public String sync(String name, Model model) {
+			log.info("동기방식: " + name);
+			model.addAttribute("name", name);
+			return "sample";
+		}
+		
+		// 비동기방식(AJAX)
+		// @ResponseBody : viewresolver가 읽지못하고 더이상 화면단으로 인식x
+		@ResponseBody
+		// produces="application/text;charset=utf-8" -> 한글이 깨지지않게 utf-8로 설정
+		@PostMapping(value="/ajax", produces="application/text;charset=utf-8")
+		public String async(String name) {
+			log.info("비동기방식: " + name);
+			return name;
 		}
 }
 
