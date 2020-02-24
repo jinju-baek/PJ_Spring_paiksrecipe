@@ -7,4 +7,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) FROM tbl_member 
 		WHERE id = #{id}
 	</select>
+	
+	<insert id="memInsert">
+		INSERT INTO tbl_member(id, pw, name, phone, email, postcode, addr1, addr2, useon, primaryon, locon, eventon) 
+		VALUES (#{id}, #{pw}, #{name}, #{phone}, #{email}, #{postcode}, #{addr1}, #{addr2}, #{useon}, #{primaryon}, #{locon}, #{eventon})
+	</insert>
 </mapper>

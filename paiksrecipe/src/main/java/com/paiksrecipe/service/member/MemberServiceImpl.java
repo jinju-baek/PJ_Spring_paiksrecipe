@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.paiksrecipe.domain.MemberDTO;
 import com.paiksrecipe.persistence.MemberDAO;
 
 @Service
@@ -21,4 +22,11 @@ public class MemberServiceImpl implements MemberService{
 	public int idOverlap(String id) {
 		return mDao.idOverLap(id);
 	}
+
+	@Override
+	public int memInsert(MemberDTO mDto) {
+		return mDao.memInsert(mDto);
+	}
+	
+
 }

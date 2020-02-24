@@ -352,7 +352,7 @@
 				<!-- div : 내용물이 없으면 자리확보x -->
 				<div id="header">
 					<h1 class="paiks_logo">
-						<a href="#" class="p_logo"></a>
+						<a href="${path}/" class="p_logo"></a>
 					</h1>
 					<div class="lang">
 						<select class="langselect">
@@ -514,7 +514,8 @@
 				location.href="${path}/member/join?useon="+agree_one
 														  +"&primaryon="+agree_two
 														  +"&locon="+agree_three
-														  +"&eventon="+agree_four;
+														  +"&eventon="+agree_four
+														  +"&flag=1";
 			});
 			
 			/* 취소버튼 클릭시 INDEX페이지로 이동 */

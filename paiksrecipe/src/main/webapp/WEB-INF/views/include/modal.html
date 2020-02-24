@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" integrity="sha384-REHJTs1r2ErKBuJB0fCK99gCYsVjwxHrSU0N7I1zl9vZbggVJXRMsv/sLlOAGb4M" crossorigin="anonymous">
+	<style type="text/css">
+		*{
+			font-family: 'Noto Sans KR', sans-serif;
+		}
+		body{
+			padding: 0; margin: 0;
+		}
+		a{
+			text-decoration: none;
+		}
+
+		/* 모달창 */
+		.modal_wrap{
+			position: fixed;
+			background-color: rgba(0,0,0,0.4);
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 1000;
+		}
+		.modal_content{
+			position: relative;
+			background-color: white;
+			border-radius: 5px 5px;
+			width: 400px;
+			height: 180px;
+		}		
+		.modal_close button{
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			cursor: pointer;
+			border: none;
+			outline: none;
+			background-color: white;
+
+		}
+		.modal_recheck{
+			font-weight: bold;
+			font-size: 20px;
+			display: flex;
+			justify-content: center;
+			margin-top: 40px;
+
+		}
+		.modal_button{
+			display: flex;
+			justify-content: center;
+		}
+		.y_btn, .n_btn{
+			margin: 20px 20px;
+			padding: 10px 35px;
+			background-color: #B22230;
+			color: white;
+			border-radius: 5px 5px;
+			font-weight: bold;
+		}
+
+
+	</style>
+</head>
+<body>
+		<div class="modal_wrap">
+			<div class="modal_content">
+			<div class="modal_close">
+				<button><i class="fas fa-times"></i></button>
+			</div>
+			<div class="modal_content_check">
+				<span class="modal_recheck">정말 탈퇴하시겠습니까?</span>
+				<div class="modal_button">
+					<a href="#" class="n_btn">취소</a>
+					<a href="#" class="y_btn">확인</a>
+				</div>
+			</div>	
+		</div>
+	</div>
+</body>
+</html>

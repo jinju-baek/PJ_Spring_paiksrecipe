@@ -280,12 +280,12 @@ function idCheck(id) {
 	$.ajax({
 		type: 'POST',
 		url: 'idoverlap?id='+id,
-		asynce: false,
+		async: false,
 		success: function(data){
 			console.log(data);
 			if(data >= 1){
 				return_val = true;
-			} else{
+			} else {
 				return_val = false;
 			}
 		},
