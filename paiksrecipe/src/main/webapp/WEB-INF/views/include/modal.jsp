@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,25 +18,29 @@
 		}
 
 		/* 모달창 */
-		.modal_wrap{
+		.basic_modal_wrap{
 			position: fixed;
 			background-color: rgba(0,0,0,0.4);
 			width: 100%;
 			height: 100%;
 			overflow: auto;
-			display: flex;
-			justify-content: center;
-			align-items: center;
 			z-index: 1000;
+			top: 0;
 		}
-		.modal_content{
+		.basic_modal_content_wrap{
+			position: absolute;
+			display: flex;
+			left: 40%;
+			top: 35%
+		}
+		.basic_modal_content{
 			position: relative;
 			background-color: white;
 			border-radius: 5px 5px;
 			width: 400px;
 			height: 180px;
 		}		
-		.modal_close button{
+		.basic_modal_close button{
 			position: absolute;
 			top: 10px;
 			right: 10px;
@@ -42,9 +48,11 @@
 			border: none;
 			outline: none;
 			background-color: white;
-
 		}
-		.modal_recheck{
+		.basic_modal_close button i{
+			font-size: 20px;
+		}
+		.basic_modal_recheck{
 			font-weight: bold;
 			font-size: 20px;
 			display: flex;
@@ -52,7 +60,7 @@
 			margin-top: 40px;
 
 		}
-		.modal_button{
+		.basic_modal_button{
 			display: flex;
 			justify-content: center;
 		}
@@ -69,18 +77,20 @@
 	</style>
 </head>
 <body>
-		<div class="modal_wrap">
-			<div class="modal_content">
-			<div class="modal_close">
-				<button><i class="fas fa-times"></i></button>
-			</div>
-			<div class="modal_content_check">
-				<span class="modal_recheck">정말 탈퇴하시겠습니까?</span>
-				<div class="modal_button">
-					<a href="#" class="n_btn">취소</a>
-					<a href="#" class="y_btn">확인</a>
+	<div class="basic_modal_wrap">
+		<div class="basic_modal_content_wrap">
+			<div class="basic_modal_content">
+				<div class="basic_modal_close">
+					<button><i class="fas fa-times"></i></button>
 				</div>
-			</div>	
+				<div class="basic_modal_content_check">
+					<span class="basic_modal_recheck">내용</span>
+					<div class="basic_modal_button">
+						<a href="#" class="n_btn">취소</a>
+						<a href="#" class="y_btn">확인</a>
+					</div>
+				</div>	
+			</div>
 		</div>
 	</div>
 </body>
