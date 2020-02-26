@@ -105,7 +105,7 @@ public class MemberController {
 	 */
 	
 	@PostMapping("/join")
-	public String join(@ModelAttribute("memberDTO") MemberDTO mDto, SessionStatus sessionStatus, HttpServletRequest request) {
+	public String join(@ModelAttribute("memberDTO") MemberDTO mDto, SessionStatus sessionStatus, HttpServletRequest request, RedirectAttributes rttr) {
 		log.info(">>>>> MEMBER/JOIN PAGE POST 출력");
 		
 		log.info(mDto.toString());
@@ -130,15 +130,31 @@ public class MemberController {
 		// SessionAttributes를 사용할 때 insert, update가 완료되고 
 		// view로 보내기 전 반드시 setComplet()를 실행하여
 		// session에 담긴 값을 clear 해주어야 한다.
+		// sessionStatus : controller에서 공유하던 영역을 제거
 		sessionStatus.setComplete();
-
+		
+		// 회원가입 후 메시지 출력을 위한 값 전달
+		rttr.addFlashAttribute("id", mDto.getId());
+		rttr.addFlashAttribute("email", mDto.getEmail());
+		rttr.addFlashAttribute("key", "join");
+		
+		// 페이지를 띄울 때 forward, sendRedirect
+		// forward(default) : 기존페이지 위에 내용을 덮음(주소 안바뀜)
+		// sendRedirect : 새 페이지로 이동(주소 바뀜), DB작업(등록, 수정, 삭제)시 이용
+		// 회원가입페이지위에 forward 할 경우 새로고침하면 DB에 정보가 저장된 상태에서 한번 더 실행됨 
+		
+		// forward는 해당페이지 위에 덮는 것이므로 디자인만 보냄
+		// 해당 프로젝트내에서 /를 mapping으로 잡는(@ReqeustMapping("/")) 메서드를 실행
 		return "redirect:/";
 	}
 	
 	// 회원가입 후 email 인증
 	@GetMapping("/keyauth")
 	public String keyAuth(String id, String key, RedirectAttributes rttr) {
+		
 		mailService.keyAuth(id, key);
+		
+		// 인증 후 메시지 출력을 위한 값 전달
 		rttr.addFlashAttribute("id", id);
 		rttr.addFlashAttribute("key", "auth");
 		
@@ -160,3 +176,27 @@ public class MemberController {
 		return flag;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

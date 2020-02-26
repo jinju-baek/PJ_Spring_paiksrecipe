@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- header.jsp에 include.jsp가 선언돼있기때문에 header.jsp가 선언된 페이지에는 include.jsp를 선언할 필요가 없음  -->
 <%@ include file="include/header.jsp"%>
-<!-- <%@ include file="include/modal.jsp"%> -->
 
 <!DOCTYPE html>
 <html>
@@ -189,6 +188,7 @@
 		</style>
 	</head>
 	<body>
+		<%@ include file="include/modal.jsp"%>
 		<div class="content_wrap">
 			<div class="content">
 				<div class="new_video">

@@ -19,6 +19,7 @@
 
 		/* 모달창 */
 		.basic_modal_wrap{
+			display: none;
 			position: fixed;
 			background-color: rgba(0,0,0,0.4);
 			width: 100%;
@@ -35,37 +36,51 @@
 		}
 		.basic_modal_content{
 			position: relative;
+			text-align: center;
 			background-color: white;
 			border-radius: 5px 5px;
 			width: 400px;
-			height: 180px;
 		}		
+		.basic_modal_header_wrap{
+			border-top-left-radius: 5px 5px;
+			border-top-right-radius: 5px 5px;
+			padding: 5px;
+			display: flex;
+			justify-content: space-between;
+			background-color: #B22230;
+		}
+		.basic_modal_message{
+			font-weight: bold;
+			font-size: 15px;
+			heigth: 25px;
+			color: white;
+		}
 		.basic_modal_close button{
-			position: absolute;
-			top: 10px;
-			right: 10px;
 			cursor: pointer;
 			border: none;
 			outline: none;
-			background-color: white;
+			background: none;
 		}
 		.basic_modal_close button i{
 			font-size: 20px;
+			color: white;
 		}
-		.basic_modal_recheck{
-			font-weight: bold;
+		.basic_modal_content_check{
+			height: 100%;
+			padding: 15px;
+		}
+		.basic_modal_maintext{
 			font-size: 20px;
-			display: flex;
-			justify-content: center;
-			margin-top: 40px;
-
+		}
+		.basic_modal_subtext{
+			font-size: 13px;
 		}
 		.basic_modal_button{
 			display: flex;
-			justify-content: center;
+			justify-content: space-around;
 		}
 		.y_btn, .n_btn{
-			margin: 20px 20px;
+			margin: 5px 20px;
 			padding: 10px 35px;
 			background-color: #B22230;
 			color: white;
@@ -80,18 +95,57 @@
 	<div class="basic_modal_wrap">
 		<div class="basic_modal_content_wrap">
 			<div class="basic_modal_content">
-				<div class="basic_modal_close">
-					<button><i class="fas fa-times"></i></button>
+				<div class="basic_modal_header">
+					<div class="basic_modal_header_wrap">
+						<div class="basic_modal_message"> PAIKS' RECIPE 알림</div>
+						<div class="basic_modal_close">
+						<button><i class="fas fa-times"></i></button>
+						</div>
+					</div>
 				</div>
 				<div class="basic_modal_content_check">
-					<span class="basic_modal_recheck">내용</span>
+			 		<div class="basic_modal_recheck">
+						<div class="basic_modal_maintext">내용</div>
+						<div class="basic_modal_subtext">내용</div>
+					</div>
 					<div class="basic_modal_button">
-						<a href="#" class="n_btn">취소</a>
-						<a href="#" class="y_btn">확인</a>
+						<a href="#" class="n_btn">취  소</a>
+						<a href="#" class="y_btn">확  인</a>
 					</div>
 				</div>	
 			</div>
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+	$(function(){
+		var id = '${id}';
+		var email = '${email}';
+		var key = '${key}';
+		
+		var join_main_txt = id + '님 회원가입을 축하드립니다.';
+		var join_sub_txt = email + '으로 인증메일을 보냈습니다. 인증하셔야만 사이트 활동이 가능합니다.';
+		var auth_main_txt = id + '님 이메일 인증되셨습니다.';
+		var auth_sub_txt = '지금부터 사이트 활동이 가능합니다. 감사합니다.';
+		
+		if(key == 'join'){
+			$('.basic_modal_maintext').text(join_main_txt); // 메인텍스트
+			$('.basic_modal_subtext').text(join_sub_txt); // 서브텍스트
+			$('.n_btn').css('display', 'none'); // 취소버튼 제거
+			$('.basic_modal_wrap').css('display', 'flex'); // 모달창 출력
+		} else if(key == 'auth'){
+			$('.basic_modal_maintext').text(auth_main_txt);
+			$('.basic_modal_subtext').text(auth_sub_txt);
+			$('.n_btn').css('display', 'none');
+			$('.basic_modal_wrap').css('display', 'flex');
+		}
+		
+		$('.y_btn').on('click', function(){
+			$('.basic_modal_wrap').css('display', 'none');
+		});
+		$('.basic_modal_close').on('click', function(){
+			$('.basic_modal_wrap').css('display', 'none');
+		});
+	})	
+</script>
 </html>
