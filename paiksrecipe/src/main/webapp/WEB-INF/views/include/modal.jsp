@@ -44,16 +44,16 @@
 		.basic_modal_header_wrap{
 			border-top-left-radius: 5px 5px;
 			border-top-right-radius: 5px 5px;
-			padding: 5px;
+			padding: 8px 10px;
 			display: flex;
 			justify-content: space-between;
-			background-color: #B22230;
+			
 		}
 		.basic_modal_message{
 			font-weight: bold;
 			font-size: 15px;
 			heigth: 25px;
-			color: white;
+			color: #B22230;
 		}
 		.basic_modal_close button{
 			cursor: pointer;
@@ -63,7 +63,10 @@
 		}
 		.basic_modal_close button i{
 			font-size: 20px;
-			color: white;
+			color: rgb(142, 142, 142);
+		}
+		.basic_modal_close button>i:hover {
+			color: #B22230;
 		}
 		.basic_modal_content_check{
 			height: 100%;

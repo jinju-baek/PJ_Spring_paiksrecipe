@@ -9,6 +9,7 @@ import com.paiksrecipe.persistence.MemberDAO;
 
 @Service
 public class MemberServiceImpl implements MemberService{
+	
 	@Autowired
 	private SqlSession sqlSession;
 	
@@ -27,6 +28,4 @@ public class MemberServiceImpl implements MemberService{
 	public int memInsert(MemberDTO mDto) {
 		return mDao.memInsert(mDto);
 	}
-	
-
 }

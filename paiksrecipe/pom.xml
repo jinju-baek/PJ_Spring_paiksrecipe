@@ -183,6 +183,7 @@
 		    <artifactId>spring-security-taglibs</artifactId>
 		    <version>${org.springframework-version}</version>
 		</dependency>
+		
 		<!-- 이메일 발송 관련 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
@@ -197,8 +198,13 @@
 		    <version>${org.springframework-version}</version>
 		</dependency>
 		
-		
-		
+		<!-- json 형변환 라이브러리(없을 경우 String만 가능, 보안때문에 높은 버전 사용해야함) -->
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.10.0</version>
+		</dependency>
 	</dependencies>
 	
 	

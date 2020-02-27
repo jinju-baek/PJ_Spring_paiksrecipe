@@ -57,7 +57,7 @@ public class MailServiceImpl implements MailService {
 	private boolean lowerCheck;
 	private int size;
 
-	public String getKey(boolean loverCheck, int size) {
+	public String getKey(boolean lowerCheck, int size) {
 		this.lowerCheck = lowerCheck;
 		this.size = size;
 		return init();
