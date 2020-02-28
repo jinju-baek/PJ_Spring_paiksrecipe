@@ -23,14 +23,21 @@ public class LoginController {
 	
 	@ResponseBody
 	@PostMapping("/in")
-	public int logIn(MemberDTO mDto, HttpSession session) {
-		log.info(">>>>> POST: LOGIN/LOGIN ACTION");
+	public Integer logIn(MemberDTO mDto, HttpSession session) {
+		log.info("★★★★★★★★★★★★★★★ POST: LOGIN/LOGIN ACTION");
 		log.info(mDto.toString());
 		// 로그인
 		int result = lService.login(mDto, session);
 		log.info("★★★★★★★★★★★★★★★★★★★★★★★★★★결과는 " + result);
 		
 		return result;
+	}
+	
+	@ResponseBody
+	@PostMapping("/out")
+	public void logOut(HttpSession session) {
+		log.info("★★★★★★★★★★★★★★★ POST: LOGOUT/LOGOUT ACTION");
+		lService.logout(session);
 	}
 	
 }

@@ -80,8 +80,10 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 	@Override
-	public void logout() {
-
+	public void logout(HttpSession session) {
+		// 비즈니스 로직: 로그아웃
+		// 세션 초기화
+		session.invalidate();
 	}
 
 	

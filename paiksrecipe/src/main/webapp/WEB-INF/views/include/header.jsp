@@ -245,6 +245,13 @@ div.header_content {
 .header_content_nav>div {
 	padding: 10px 0;
 }
+.logout_wrap {
+	display: flex;
+	justify-content: space-between;
+}
+.logout_wrap div {
+	margin: 0 5px;
+}
 
 /* 모달 로그인 창 */
 .modal_wrap {
@@ -592,12 +599,18 @@ div.header_content {
 							c:choose / when / otherwise -> else if문
 						-->
 						<c:choose>
-							<c:when test="${empty sessionScope.userid}">
-								<button type="button" class="btn btn-basic login_open">로그인</button>
+							<c:when test="${empty userid}">
+								<button type="button" id="header_btn_login" class="btn btn-basic login_open">로그인</button>
 								<button type="button" id="header_btn_join" class="btn btn-primary">회원가입</button>
 							</c:when>
 							<c:otherwise>
-								<button type="button" class="btn btn-basic login_open">로그아웃</button>
+								<div class="logout_wrap">
+									<div>
+										<div>${userid}</div>
+										<div>${name}님</div>
+									</div>
+									<div><button type="button" id="header_btn_logout" class="btn btn-basic login_open">로그아웃</button></div>
+								</div>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -737,6 +750,21 @@ div.header_content {
 					});
 				}
 			});
+	
+	/* 로그아웃 기능 */
+	$(document).on('click', '#header_btn_logout', function(){
+		$.ajax({
+			url: '${path}/login/out',
+			type: 'POST',
+			success: function() {
+				console.log('Logout Success:)');
+				location.reload();
+			},
+			error: function() {
+				alert('System Error:/');
+			}
+		});
+	});
 
 	/* Header 가입하기 버튼 클릭시 동의 페이지 이동 */
 	$(document).on('click', '#header_btn_join', function() {

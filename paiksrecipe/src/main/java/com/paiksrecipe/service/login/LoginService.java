@@ -9,5 +9,5 @@ public interface LoginService {
 	public int login(MemberDTO mDto, HttpSession session);
 	
 	// 로그아웃
-	public void logout();
+	public void logout(HttpSession session);
 }
