@@ -28,7 +28,7 @@ public class IndexController {
 	
 	@RequestMapping("/")
 	public String indexView(Model model) {
-		log.info(">>>>> INDEX PAGE 출력");
+		log.info("★★★★★★★★★★★★★★★ INDEX PAGE 출력");
 		
 		// 2. View단에 출력할 베스트 상품 5건
 		model.addAttribute("BestPdt", iService.bestPdtList()); // 이름표, 담을 데이터

@@ -8,12 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/common.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
 <style type="text/css">
 body {
 	background-color: #f1f1f2;
-	font-family: 'Noto Sans KR', sans-serif;
 }
 
 div.content_wrap {

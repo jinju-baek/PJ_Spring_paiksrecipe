@@ -48,8 +48,8 @@ public class SampleController {
 		// @RequestMapping(value="/sample/view", method=RequestMethod.GET)
 		@GetMapping("/view")
 		public String view(String user) {
-			log.info("GET 방식 호출");
-			log.info("user: " + user);
+			log.info("★★★★★★★★★★★★★★★ GET 방식 호출");
+			log.info("★★★★★★★★★★★★★★★ user: " + user);
 			return "result";
 		}
 
@@ -74,16 +74,16 @@ public class SampleController {
 			// (defaultValue 쓸 때는 @RequestParam 생략 x)
 			
 			// input 2개의 값을 전달(name 속성값으로)
-			log.info("POST 방식 호출");
+			log.info("★★★★★★★★★★★★★★★ POST 방식 호출");
 			// log.info(user + ", " + pass);
-			log.info(sDto.toString());
+			log.info("★★★★★★★★★★★★★★★ " + sDto.toString());
 			return "result";
 		}
 		
 		// 동기방식
 		@GetMapping("/sync")
 		public String sync(String name, Model model) {
-			log.info("동기방식: " + name);
+			log.info("★★★★★★★★★★★★★★★ 동기방식: " + name);
 			model.addAttribute("name", name);
 			return "sample";
 		}

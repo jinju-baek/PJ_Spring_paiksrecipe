@@ -35,7 +35,7 @@ public class LoginServiceImpl implements LoginService{
 		// 비즈니스 로직 처리
 		// 1. DB에 가서 회원인지 아닌지 유무체크
 		MemberDTO loginDto = lDao.loginUser(mDto);
-		log.info("★★★★★★★★★★★★★★★★★★★★★★ 로그인 결과");
+		log.info("★★★★★★★★★★★★★★★ 로그인 결과");
 		
 		// 로그인 결과값
 		int result = 0;

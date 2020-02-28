@@ -7,14 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>PAIKSRECIPE : 회원가입</title>
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/common.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
 <style type="text/css">
-* {
-	font-family: 'Noto Sans KR', sans-serif;
-	box-sizing: border-box;
-}
-
 body, h1, h2, h3, h4, h5, h6, ul, p {
 	margin: 0;
 	padding: 0;
@@ -23,16 +17,6 @@ body, h1, h2, h3, h4, h5, h6, ul, p {
 body {
 	background-color: #f5f6f7;
 	font-size: 12px;
-}
-
-ul {
-	list-style: none;
-}
-
-a {
-	text-decoration: none;
-	/* inherit : 상속받은 색을 사용 */
-	color: inherit;
 }
 
 .wrap {
@@ -48,9 +32,9 @@ a {
 .p_logo {
 	display: block;
 	/* 
-					display: block으로 설정한 후 가로를 다 차지하여 
-					남는 가로를 margin: auto로 가운데 정렬 함 
-				*/
+		display: block으로 설정한 후 가로를 다 차지하여 
+		남는 가로를 margin: auto로 가운데 정렬 함 
+	*/
 	margin: auto;
 	width: 280px;
 	height: 64px;
@@ -252,7 +236,7 @@ to {
 									<label for="id">아이디</label>
 								</h3>
 								<div class="ps_box int_id">
-									<input type="text" id="uid" name="id" class="int" placeholder="아이디 입력">
+									<input type="text" id="uid" name="id" class="int" placeholder="아이디 입력" value=${user.id}>
 								</div>
 								<div class="error_next_box">필수 정보입니다.</div>
 							</div>
@@ -263,7 +247,7 @@ to {
 								</h3>
 								<div class="pw_wrap">
 									<div class="ps_box int_pass">
-										<input type="text" id="upw" name="pw" class="int" placeholder="비밀번호 입력"> 
+										<input type="text" id="upw" name="pw" class="int" placeholder="비밀번호 입력" > 
 										<span class="step_url"><span class="pw_lock"></span></span> 
 										<span class="step_url"><span class="repw_lock1"></span></span>
 									</div>
@@ -282,7 +266,7 @@ to {
 									<label for="name">이름</label>
 								</h3>
 								<div class="ps_box">
-									<input type="text" id="uname" name="name" class="int" placeholder="이름 입력">
+									<input type="text" id="uname" name="name" class="int" placeholder="이름 입력" value=${user.name}>
 								</div>
 								<div class="error_next_box">필수 정보입니다.</div>
 							</div>
@@ -292,7 +276,7 @@ to {
 									<label for="email_id">본인 확인 이메일</label>
 								</h3>
 								<div class="ps_box">
-									<input type="text" id="uemail" class="int" name="email" placeholder="이메일 ID 입력">
+									<input type="text" id="uemail" class="int" name="email" placeholder="이메일 ID 입력" value=${user.email}>
 								</div>
 								<div class="error_next_box">필수 정보입니다.</div>
 							</div>
@@ -302,7 +286,7 @@ to {
 									<label for="phone">휴대전화</label>
 								</h3>
 								<div class="ps_box">
-									<input type="tel" id="phone" class="int" name="phone" placeholder="-없이 입력 예)01012345678">
+									<input type="tel" id="phone" class="int" name="phone" placeholder="-없이 입력 예)01012345678" value=${user.phone}>
 								</div>
 								<div class="error_next_box">필수 정보입니다.</div>
 							</div>
@@ -312,14 +296,14 @@ to {
 									<label for="">주소</label>
 								</h3>
 								<span class="ps_box"> 
-									<input type="text" id="sample6_postcode" class="int addr_only" name="postcode" placeholder="우편번호" readonly> 
+									<input type="text" id="sample6_postcode" class="int addr_only" name="postcode" placeholder="우편번호"  value="${user.postcode}" readonly> 
 									<input type="button" class="find_address" id="btn_post" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 								</span> 
 								<span class="ps_box"> 
-									<input type="text" id="sample6_address" class="int addr_only" name="addr1" placeholder="주소" readonly>
+									<input type="text" id="sample6_address" class="int addr_only" name="addr1" placeholder="주소"  value="${user.addr1}" readonly>
 								</span> 
 								<span class="ps_box"> 
-									<input type="text" id="sample6_detailAddress" class="int" name="addr2" placeholder="상세주소">
+									<input type="text" id="sample6_detailAddress" class="int" name="addr2"  value="${user.addr2}" placeholder="상세주소">
 								</span> 
 								<span class="error_next_box">필수 정보입니다.</span>
 							</div>
@@ -338,8 +322,7 @@ to {
 		</section>
 	</div>
 </body>
-<script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="${path}/resources/js/validation.js"></script>
 <script type="text/javascript">
 	// $(document).ready(function(){
@@ -347,10 +330,19 @@ to {
 	// });
 	$(function() {
 		// EL태그 사용시 ""로 감싸주는 것을 추천, 값이 안들어올 경우 문법오류발생
-		var flag = '${flag}';
-		if (flag == 0) {
-			location.href = "${path}/member/constract";
+		
+		if('${user}' != ''){
+			// 회원정보수정 디자인 변경
+			// 버튼 텍스트 수정하기
+			$('#btn_join').text('수정하기');
+			// 비밀번호, 비밀번호 재설정 제거
+			$('.join_row:eq(1)').css('display', 'none');
+			// id에 readonly효과를 줘서 입력이 불가능
+			// id=#id를 제거해서 우리가 입력한 유효성체크 동작 불가능
+			$('#uid').attr('readonly', 'true')
+					 .removeAttr('id');
 		}
+
 		//비밀번호가 유효한 값인지 체크해주는 Flag값
 		var pwFlag = false;
 

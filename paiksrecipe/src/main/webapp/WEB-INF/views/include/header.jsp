@@ -570,13 +570,17 @@ div.header_content {
 					<div class="header_content_dropdown_wrqp">
 						<div class="header_content_dropdown_group">
 							<!-- 네비게이션 -->
-							<a href="#"><i class="fas fa-user"></i><span> MY PAGE</span></a>
+							<a href="#"><i class="fas fa-user"></i><span>MY PAGE</span></a>
 							<!-- dropdown 메뉴 -->
 							<div class="header_dropdown">
 								<div class="arrow"></div>
 								<ul class="header_dropdown_menu">
-									<li><a href="#">회원정보수정</a></li>
-									<li><a href="#">레시피 보관함</a></li>
+									<c:if test="${not empty userid}">
+										<li><a href="#">레시피 보관함</a></li>
+										<li><a href="${path}/member/update">회원정보수정</a></li>
+										<li><a href="${path}/member/pwupdate">비밀번호재설정</a></li>
+									</c:if>	
+								
 									<li><a href="#">고객센터</a></li>
 								</ul>
 							</div>

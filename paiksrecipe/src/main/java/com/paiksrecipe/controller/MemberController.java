@@ -1,6 +1,7 @@
 package com.paiksrecipe.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -80,11 +81,14 @@ public class MemberController {
 	 */
 	
 	@GetMapping("/join")
-	public String join(@ModelAttribute("memberDTO") MemberDTO mDto, 
-			@RequestParam(value="flag", defaultValue="0") String flag, Model model) {
-		log.info(">>>>> MEMBER/JOIN PAGE GET 출력");
-		log.info(mDto.toString());
-		model.addAttribute("flag", flag);
+	public String join(@ModelAttribute("memberDTO") MemberDTO mDto, @RequestParam(value="flag", defaultValue="0") String flag, Model model) {
+		log.info("★★★★★★★★★★★★★★★ MEMBER/JOIN PAGE GET 출력");
+		log.info("★★★★★★★★★★★★★★★ " + mDto.toString());
+		
+		//비정상적인 접근일 경우 약관 동의페이지로 이동
+		if(!flag.equals("1")) {
+			return "member/constract";
+		}
 		return "member/join";
 	}
 	
@@ -106,7 +110,7 @@ public class MemberController {
 	
 	@PostMapping("/join")
 	public String join(@ModelAttribute("memberDTO") MemberDTO mDto, SessionStatus sessionStatus, HttpServletRequest request, RedirectAttributes rttr) {
-		log.info(">>>>> MEMBER/JOIN PAGE POST 출력");
+		log.info("★★★★★★★★★★★★★★★ MEMBER/JOIN PAGE POST 출력");
 		
 		log.info(mDto.toString());
 		
@@ -121,7 +125,7 @@ public class MemberController {
 		
 		// 3. 회원 등록 결과
 		if(result > 0) {
-			log.info(">>>>" + mDto.getId() + "님 회원가입되셨습니다.");
+			log.info("★★★★★★★★★★★★★★★ " + mDto.getId() + "님 회원가입되셨습니다.");
 		}
 		
 		// 4. 회원가입 인증 메일 보내기
@@ -165,7 +169,7 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping("/idoverlap")
 	public String idOverlap(String id) {
-		log.info(">>>>> ID OVERLAP CHECK");
+		log.info("★★★★★★★★★★★★★★★ ID OVERLAP CHECK");
 		log.info("아이디 : " + id);
 		int cnt = mService.idOverlap(id);
 		
@@ -174,6 +178,27 @@ public class MemberController {
 			flag = "0";
 		}
 		return flag;
+	}
+	
+	// 회원정보수정
+	@GetMapping("/update")
+	public String memUpdate(HttpSession session, Model model) {
+		log.info("★★★★★★★★★★★★★★★ GET : Member Update Page");
+		
+		// 현재 로그인 상태를 확인
+		// session영역에 담을경우 제일 최상의 타입인 object로 변환하여 담음
+		// 담기 전 형변환 해야함
+		String id = (String)session.getAttribute("userid");
+		
+		// 로그인이 안돼있으면 비정상적인 접근으로 간주하여
+		// 인덱스페이지로 이동!
+		if(id == null) {
+			return "redirect:/";
+		}
+		
+		// 로그인 된 유저의 정보를 GET
+		model.addAttribute("user", mService.userView(id));
+		return "member/join";
 	}
 }
 
