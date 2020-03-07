@@ -314,7 +314,8 @@ h3.article_title {
 				<form class="join_content" name="" action="" method="">
 					<div class="terms">
 						<p class="terms_p">
-							<span class="terms_span"> <input type="checkbox" id="cbox">
+							<span class="terms_span"> 
+							<input type="checkbox" id="cbox">
 								<label for=cbox> 이용약관, 개인정보 수집 및 이용, 위치정보 이용약 <br>관(선택), 프로모션 안내 메인 수신(선택)에 모두 동<br>의합니다.</label>
 							</span>
 						</p>
@@ -323,7 +324,7 @@ h3.article_title {
 								<span class="ul_li_span"> 
 									<input type="checkbox" id="cons_box1" class="ckboxs"> 
 									<label for="cons_box1" class="label1"> PAIK'S RECIPE 이용악관 동의<span class="span_only">(필수)</span></label>
-							</span>
+								</span>
 								<div class="terms_box">
 									<div class="article">
 										<h3 class="article_title">여러분을 환영합니다.</h3>
@@ -333,12 +334,13 @@ h3.article_title {
 											서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 PAIK'S RECIPE 서비스
 											이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.</p>
 									</div>
-								</div></li>
+								</div>
+							</li>
 							<li class="terms_ul_li2">
 								<span class="ul_li_span">
 									<input type="checkbox" id="cons_box2" class="ckboxs"> 
 									<label for="cons_box2" class="label1"> 개인정보 수집 및 이용에 대한 안내<span class="span_only">(필수)</span></label>
-							</span>
+								</span>
 								<div class="terms_box">
 									<div class="article">
 										<p>정보통신망법 규정에 따라 PAIK'S RECIPE에 회원가입 신청하시는 분께 수집하는 개인정보의
@@ -355,8 +357,7 @@ h3.article_title {
 							<li class="terms_ul_li3">
 								<span class="ul_li_span"> 
 									<input type="checkbox" id="cons_box3" class="ckboxs"> 
-									<label for="cons_box3" class="label1"> 개인정보 수집 및 이용에 대한 안내<span class="span_select">(선택)</span>
-									</label>
+									<label for="cons_box3" class="label1"> 개인정보 수집 및 이용에 대한 안내<span class="span_select">(선택)</span></label>
 								</span>
 								<div class="terms_box">
 									<div class="article">
@@ -372,8 +373,7 @@ h3.article_title {
 							<li class="terms_ul_li4">
 								<span class="ul_li_span"> 
 									<input type="checkbox" id="cons_box4" class="ckboxs"> 
-									<label for="cons_box4" class="label1"> 이벤트 등 프로모션 알림 메일 수신<span class="span_select">(선택)</span>
-								</label>
+									<label for="cons_box4" class="label1"> 이벤트 등 프로모션 알림 메일 수신<span class="span_select">(선택)</span></label>
 								</span>
 							</li>
 						</ul>
@@ -395,66 +395,60 @@ h3.article_title {
 				</div>
 			</div>
 		</section>
-
 	</div>
 </body>
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				/* 전체선택 체크시 전체 체크 or 전체 체크 해제 */
-				$('#cbox').on('click', function() {
-					var flag = $(this).is(':checked');
-					if (flag == true) {
-						$('.ckboxs').prop('checked', true);
-					} else {
-						$('.ckboxs').prop('checked', false);
-					}
-				});
+	$(document).ready(function() {
+		/* 전체선택 체크시 전체 체크 or 전체 체크 해제 */
+		$('#cbox').on('click', function() {
+			var flag = $(this).is(':checked');
+			if (flag == true) {
+				$('.ckboxs').prop('checked', true);
+			} else {
+				$('.ckboxs').prop('checked', false);
+			}
+		});
 
-				/* 선택체크가 모두 체크되면 전체체크버튼 true
-					선택체크가 하나라도 체크해제되면 전체체크버튼 false */
+		/* 
+			선택체크가 모두 체크되면 전체체크버튼 true
+			선택체크가 하나라도 체크해제되면 전체체크버튼 false 
+		*/
 
-				$('.ckboxs').on('click', function() {
-					var ckLen = $('.ckboxs:checkbox:checked').length;
-					if (ckLen != 4) {
-						$('#cbox').prop('checked', false);
-					} else {
-						$('#cbox').prop('checked', true);
-					}
-				});
+		$('.ckboxs').on('click', function() {
+			var ckLen = $('.ckboxs:checkbox:checked').length;
+			if (ckLen != 4) {
+				$('#cbox').prop('checked', false);
+			} else {
+				$('#cbox').prop('checked', true);
+			}
+		});
 
-				/* 확인버튼 클릭시 필수체크(2개) 체크유무 유효성 체크 */
-				$('#cons_btn_agree').on(
-						'click',
-						function() {
-							var agree_one = $('#cons_box1').is(':checked');
-							var agree_two = $('#cons_box2').is(':checked');
-							var agree_three = $('#cons_box3').is(':checked');
-							var agree_four = $('#cons_box4').is(':checked');
+		/* 확인버튼 클릭시 필수체크(2개) 체크유무 유효성 체크 */
+		$('#cons_btn_agree').on('click', function() {
+			var agree_one = $('#cons_box1').is(':checked');
+			var agree_two = $('#cons_box2').is(':checked');
+			var agree_three = $('#cons_box3').is(':checked');
+			var agree_four = $('#cons_box4').is(':checked');
 
-							/*
-							console.log('동의1: ' + agree_one);
-							console.log('동의2: ' + agree_two);
-							console.log('동의3: ' + agree_three);
-							console.log('동의4: ' + agree_four);
-							 */
+			if (agree_one == false || agree_two == false) {
+				$('.err_check').css('visibility', 'visible');
+				return false;
+			}
+			
+			// 유효성체크 통과시 회원가입 페이지로 이동
+			location.href = "${path}/member/join?useon=" + agree_one 
+										 + "&primaryon=" + agree_two
+											 + "&locon=" + agree_three 
+										   + "&eventon=" + agree_four 
+														 + "&flag=1";
+			
+		});
 
-							if (agree_one == false || agree_two == false) {
-								$('.err_check').css('visibility', 'visible');
-								return false;
-							}
-							// 유효성체크 통과시 회원가입 페이지로 이동
-							location.href = "${path}/member/join?useon="+ agree_one 
-																		+ "&primaryon=" + agree_two
-																		+ "&locon=" + agree_three 
-																		+ "&eventon=" + agree_four 
-																		+ "&flag=1";
-						});
-
-				/* 취소버튼 클릭시 INDEX페이지로 이동 */
-				$('#cons_btn_cancel').on('click', function() {
-					location.href = '${path}/';
-				});
-			});
+		
+		/* 취소버튼 클릭시 INDEX페이지로 이동 */
+		$('#cons_btn_cancel').on('click', function() {
+			location.href = '${path}/';
+		});
+	});
 </script>
 </html>

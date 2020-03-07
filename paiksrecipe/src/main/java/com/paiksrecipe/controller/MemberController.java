@@ -81,7 +81,8 @@ public class MemberController {
 	 */
 	
 	@GetMapping("/join")
-	public String join(@ModelAttribute("memberDTO") MemberDTO mDto, @RequestParam(value="flag", defaultValue="0") String flag, Model model) {
+	public String join(@ModelAttribute("memberDTO") MemberDTO mDto, 
+			@RequestParam(value="flag", defaultValue="0") String flag, Model model) {
 		log.info("★★★★★★★★★★★★★★★ MEMBER/JOIN PAGE GET 출력");
 		log.info("★★★★★★★★★★★★★★★ " + mDto.toString());
 		
@@ -109,9 +110,9 @@ public class MemberController {
 	 */
 	
 	@PostMapping("/join")
-	public String join(@ModelAttribute("memberDTO") MemberDTO mDto, SessionStatus sessionStatus, HttpServletRequest request, RedirectAttributes rttr) {
-		log.info("★★★★★★★★★★★★★★★ MEMBER/JOIN PAGE POST 출력");
-		
+	public String join(@ModelAttribute("memberDTO") MemberDTO mDto, SessionStatus sessionStatus, 
+			HttpServletRequest request, RedirectAttributes rttr) {
+		log.info("★★★★★★★★★★★★★★★ MEMBER/JOIN PAGE POST 출력");		
 		log.info(mDto.toString());
 		
 		log.info("Password: " + mDto.getPw());

@@ -8,8 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>PAIKSRECIPE</title>
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/common.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
 
 <style type="text/css">
 * {
@@ -489,7 +488,7 @@ div.header_content {
 						<span>ㅣ</span>&nbsp; 
 						<a href="#">비밀번호 찾기</a>&nbsp;
 						<span>ㅣ</span>&nbsp; 
-						<a href="${path}/member/constract">회원가입</a>
+						<a href="#">회원가입</a>
 						<br>
 					</div>
 				</div>
@@ -613,7 +612,7 @@ div.header_content {
 										<div>${userid}</div>
 										<div>${name}님</div>
 									</div>
-									<div><button type="button" id="header_btn_logout" class="btn btn-basic login_open">로그아웃</button></div>
+									<div><button type="button" id="header_btn_logout" class="btn btn-basic">로그아웃</button></div>
 								</div>
 							</c:otherwise>
 						</c:choose>
@@ -624,41 +623,38 @@ div.header_content {
 	</header>
 </body>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						// find('') = ''내용을 찾음,
-						// each() = 앞에서 찾은 갯수(bar_fill의 갯수)만큼 반복 돌음 
-						$('.bar_wrap').find('.bar_fill').each(function() {
-							// this = 나 자신(bar_fill)
-							// .text = 텍스트(70%)를 가져옴
-							// Javascript는 타입을 정하지 x(스크립트가 자동으로 읽음)
-							var widthVal = $(this).text();
-							// 1000m/s = 1초
-							$(this).animate({ 
-								width : widthVal
-							}, 1000);
-						});
-						// Scroll Top버튼 생성 및 TOP로 이동
-						$(window)
-								.scroll(
-										function() { // 스크롤이 움직이면
-											// scrollTop : scrollTop기준(윈도우 상단바 끝부분)으로 scroll이 맨 위에 있을 경우 0
-											if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-												// fadeIn : 잔상효과처럼 나타남
-												// fadeIn은 기본적으로 display : block으로 나타나기때문에 flex로 바꿔줌
-												$('.top_btn').fadeIn().css("display", "flex");
-											} else {
-												$('.top_btn').fadeOut();
-											}
-										});
-						$('.top_btn').click(function() {
-							$('html, body').animate({
-								scrollTop : 0
-							}, 800);
-						});
+	$(document).ready(function() {
+		// find('') = ''내용을 찾음,
+		// each() = 앞에서 찾은 갯수(bar_fill의 갯수)만큼 반복 돌음 
+		$('.bar_wrap').find('.bar_fill').each(function() {
+		// this = 나 자신(bar_fill)
+		// .text = 텍스트(70%)를 가져옴
+		// Javascript는 타입을 정하지 x(스크립트가 자동으로 읽음)
+		var widthVal = $(this).text();
+		// 1000m/s = 1초
+		$(this).animate({ 
+			width : widthVal
+		}, 1000);
+	});
+	// Scroll Top버튼 생성 및 TOP로 이동
+		$(window).scroll(
+			function() { // 스크롤이 움직이면
+				// scrollTop : scrollTop기준(윈도우 상단바 끝부분)으로 scroll이 맨 위에 있을 경우 0
+				if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+					// fadeIn : 잔상효과처럼 나타남
+					// fadeIn은 기본적으로 display : block으로 나타나기때문에 flex로 바꿔줌
+					$('.top_btn').fadeIn().css("display", "flex");
+				} else {
+					$('.top_btn').fadeOut();
+				}
+			});
+		$('.top_btn').click(function() {
+			$('html, body').animate({
+				scrollTop : 0
+			}, 800);
+		});
 
-					});
+	});
 
 	$(document).on('click', '.login_open', function() {
 		// 로그인 버튼 클릭시 modal창 open
@@ -676,14 +672,14 @@ div.header_content {
 
 	// modal창의 x버튼을 클릭하면 modal창 close
 	$(document).on('click', '.login_close', function() {
-				$('.modal_wrap').css('display', 'none');
-				$('.frm_login')[0].reset();
-				// $('.login_input').val('');
-				$('.pw_eye').prev().attr('type', 'password');
-				$('.pw_eye').html('<i class="fas fa-eye-slash"></i>')
-							.css('color', '#666');
-				$('.error_next_box').css('visibility', 'hidden');
-			});
+		$('.modal_wrap').css('display', 'none');
+		$('.frm_login')[0].reset();
+		// $('.login_input').val('');
+		$('.pw_eye').prev().attr('type', 'password');
+		$('.pw_eye').html('<i class="fas fa-eye-slash"></i>')
+					.css('color', '#666');
+		$('.error_next_box').css('visibility', 'hidden');
+	});
 
 	// 값을 가져오는 방법
 	// <span class="aaa">동토리</span>
@@ -709,51 +705,51 @@ div.header_content {
 
 	// login modal창 암호 보이기 or 숨기기
 	$(document).on('click', '.pw_eye', function() {
-				var code = $(this).prev().attr('type');
-				if (code == 'password') {
-					$(this).prev().attr('type', 'text');
-					// 체이닝 기법 : .찍고 옵션쓰고 .찍고 옵션쓰는 것
-					$(this).html('<i class="fas fa-eye"></i>')
-						   .css('color', '#666');
-				} else {
-					$(this).prev().attr('type', 'password');
-					$(this).html('<i class="fas fa-eye-slash"></i>')
-						   .css('color', '#666');
-				}
-			});
+		var code = $(this).prev().attr('type');
+		if (code == 'password') {
+			$(this).prev().attr('type', 'text');
+			// 체이닝 기법 : .찍고 옵션쓰고 .찍고 옵션쓰는 것
+			$(this).html('<i class="fas fa-eye"></i>')
+				   .css('color', '#666');
+		} else {
+			$(this).prev().attr('type', 'password');
+			$(this).html('<i class="fas fa-eye-slash"></i>')
+				   .css('color', '#666');
+		}
+	});
 
 	// LOGIN 버튼 클릭시 AJAX 동작
 	$(document).on('click', '#btn_login', function() {
 
-				// id와 pw 값 받아와서 null이면 작동X
-				var id = $('#login_id').val();
-				var pw = $('#login_pw').val();
+		// id와 pw 값 받아와서 null이면 작동X
+		var id = $('#login_id').val();
+		var pw = $('#login_pw').val();
 
-				// 유효성체크 (id, pw) null 체크
-				if (id != '' && pw != '' && id.length != 0 && pw.length != 0) {
-					$.ajax({
-						url : '${path}/login/in',
-						type : 'POST',
-						data : 'id=' + id + '&pw=' + pw,
-						success : function(data) {
-							console.log(data);
-							if (data == 0 || data == 3) {
-								$('.error_next_box').css('visibility', 'visible')
-													.text('아이디 또는 비밀번호를 확인해주세요.');
-							} else if (data == 1) {
-								console.log('로그인 성공');
-								location.reload(); // 새로고침
-							} else if (data == 2) {
-								$('.error_next_box').css('visibility', 'visible')
-													.text('이메일 인증 후에 이용하실 수 있습니다.');
-							}
-						},
-						error : function() {
-							alert('System Error:/');
-						}
-					});
+		// 유효성체크 (id, pw) null 체크
+		if (id != '' && pw != '' && id.length != 0 && pw.length != 0) {
+			$.ajax({
+				url : '${path}/login/in',
+				type : 'POST',
+				data : 'id=' + id + '&pw=' + pw,
+				success : function(data) {
+					console.log(data);
+					if (data == 0 || data == 3) {
+						$('.error_next_box').css('visibility', 'visible')
+											.text('아이디 또는 비밀번호를 확인해주세요.');
+					} else if (data == 1) {
+						console.log('로그인 성공');
+						location.reload(); // 새로고침
+					} else if (data == 2) {
+						$('.error_next_box').css('visibility', 'visible')
+											.text('이메일 인증 후에 이용하실 수 있습니다.');
+					}
+				},
+				error : function() {
+					alert('System Error:/');
 				}
 			});
+		}
+	});
 	
 	/* 로그아웃 기능 */
 	$(document).on('click', '#header_btn_logout', function(){

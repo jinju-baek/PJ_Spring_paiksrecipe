@@ -100,7 +100,7 @@
 			<div class="basic_modal_content">
 				<div class="basic_modal_header">
 					<div class="basic_modal_header_wrap">
-						<div class="basic_modal_message"> PAIKS' RECIPE 알림</div>
+						<div class="basic_modal_message"> PAIK'S RECIPE 알림</div>
 						<div class="basic_modal_close">
 						<button><i class="fas fa-times"></i></button>
 						</div>
@@ -149,6 +149,6 @@
 		$('.basic_modal_close').on('click', function(){
 			$('.basic_modal_wrap').css('display', 'none');
 		});
-	})	
+	});
 </script>
 </html>

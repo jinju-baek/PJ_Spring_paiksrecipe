@@ -14,6 +14,7 @@ public class MemberServiceImpl implements MemberService{
 	private SqlSession sqlSession;
 	
 	private MemberDAO mDao;
+	
 	@Autowired
 	public void newMemberDAO() {
 		mDao = sqlSession.getMapper(MemberDAO.class);

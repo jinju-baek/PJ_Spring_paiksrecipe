@@ -47,6 +47,7 @@ public class MailServiceImpl implements MailService {
 				continue;
 			}
 		} while (sb.length() < size);
+		
 		if (lowerCheck) {
 			return sb.toString().toLowerCase();
 		}
@@ -73,9 +74,9 @@ public class MailServiceImpl implements MailService {
 		MimeMessage mail = mailSender.createMimeMessage();
 		// model1 방식과 비슷
 		String htmlTxt = "<h2>안녕하세요 PAIKS RECIPE입니다:)</h2><br><br>"
-				+"<h3>" + id + "님</h3>" + "<p>인증하기 버튼을 누르시면 PAIKS RECIPE사이트 활동이 가능합니다."
+				+"<h3>" + id + "님</h3>" + "<p>인증하기 버튼을 누르시면 PAIK'S RECIPE사이트 활동이 가능합니다."
 				+ "<a href='http://localhost:8081" + request.getContextPath() + "/member/keyauth?id=" + id + "&key=" + key + "'>인증하기</a></p>"
-				+ "( PAIKS RECIPE에 가입하신적이 없다면 무시하셔도 됩니다 )";
+				+ "( PAIK'S RECIPE에 가입하신적이 없다면 무시하셔도 됩니다 )";
 		try {
 			mail.setSubject("[본인인증] PAIKS RECIPE님의 인증메일입니다.", "utf-8"); // 메일 제목
 			mail.setText(htmlTxt,"utf-8", "html"); // 메일 내용(html형식, 한글출력을 위한 utf-8)
@@ -92,13 +93,3 @@ public class MailServiceImpl implements MailService {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-

@@ -331,8 +331,7 @@ div.content {
 		</form>
 	</div>
 </body>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	// 카테고리 선택시 하위 목록 나타남
 	$('.meterial_category ul li').click(function() {

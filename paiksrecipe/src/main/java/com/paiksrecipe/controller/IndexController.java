@@ -11,7 +11,6 @@ import com.paiksrecipe.service.index.IndexService;
 
 import lombok.extern.slf4j.Slf4j;
 
-
 @Controller
 @Slf4j
 public class IndexController {
@@ -47,5 +46,4 @@ public class IndexController {
 		// >>> index.jsp 화면단으로 Model(BestPdt) 전송
 		return "index";
 	}
-	
 }

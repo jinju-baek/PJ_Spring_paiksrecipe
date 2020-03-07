@@ -131,9 +131,7 @@ var joinValidate = {
 		var regEtc = /[~`!#$%^&*()+=\|\\\{\}\[\]:";'<>,?//]/g; // 특수문자
 		var regid = /[^a-z0-9-_.@]+/g; // 올바른 아이디 형식}
 
-		// 1. 값이 있는지 없는지 체크(spacebar이 들어올 경우를 대비해 length(spacebar는 length=0)도
-		// 비교)
-		if (id == '' || id.length == 0) {
+		if (id == '' || id.length == 0) { // 1. 값이 있는지 없는지 체크(spacebar이 들어올 경우를 대비해 length(spacebar는 length=0)도 비교)
 			return this.resultCode.empty_val;
 		} else if (id.match(regEmpty)) { // 2. 값 사이에 공백이 있는지 체크
 			return this.resultCode.space_length_val;
@@ -141,12 +139,12 @@ var joinValidate = {
 			return this.resultCode.specialStr_id;
 		} else if (id.match(regid)) { // 4. 아이디 정규식 체크
 			return this.resultCode.invalid_id;
-		} else if (id.charAt(0) == '-' || id.charAt(0) == '_'
-				|| id.charAt(0) == '@' || id.charAt(0) == '.') { // 5. 첫글자로
-																	// 특수문자 사용불가
+		} else if (id.charAt(0) == '-' || id.charAt(0) == '_' || id.charAt(0) == '@' || id.charAt(0) == '.') { // 5. 첫글자로 특수문자 사용불가							
 			return this.resultCode.first_special_id;
 		} else if (id.length < 5 || id.length > 20) { // 6. 길이(5~20자 이내)
 			return this.resultCode.length_id;
+		} else if(idCheck(id)){ // 7. 아이디 중복 체크
+			return this.resultCode.overlap_id;
 		} else {
 			return this.resultCode.success_id;
 		}
@@ -261,11 +259,10 @@ var joinValidate = {
 
 function idCheck(id) {
 	var return_val = true;
-
 	$.ajax({
 		type : 'POST',
 		url : 'idoverlap?id=' + id,
-		async : false,
+		async : false, // retrun 사용하기 위해서, ajax(비동기방식)는 차례대로 실행x 다 먼저 실행하므로 return 사용불가능
 		success : function(data) {
 			console.log(data);
 			if (data >= 1) {
