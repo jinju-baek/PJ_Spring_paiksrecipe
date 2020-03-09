@@ -312,18 +312,6 @@ to {
 	$(function() {
 		// EL태그 사용시 ""로 감싸주는 것을 추천, 값이 안들어올 경우 문법오류발생
 		
-		if('${user}' != ''){
-			// 회원정보수정 디자인 변경
-			// 버튼 텍스트 수정하기
-			$('#btn_join').text('수정하기');
-			// 비밀번호, 비밀번호 재설정 제거
-			$('.join_row:eq(1)').css('display', 'none');
-			// id에 readonly효과를 줘서 입력이 불가능
-			// id=#id를 제거해서 우리가 입력한 유효성체크 동작 불가능
-			$('#uid').attr('readonly', 'true')
-					 .removeAttr('id');
-		}
-
 		//비밀번호가 유효한 값인지 체크해주는 Flag값
 		var pwFlag = false;
 
@@ -333,6 +321,49 @@ to {
 
 		// 유효성 체크 모두 통과 or 불통 여부
 		var checkAll = true;
+		
+		if('${user}' != ''){
+			// 회원정보수정 디자인 변경
+			// 버튼 텍스트 수정하기
+			$('#btn_join').text('수정하기');
+			// 비밀번호, 비밀번호 재설정 제거
+			$('.join_row:eq(1)').css('visibility', 'hidden')
+								.css('height', '0px');
+			// id에 readonly효과를 줘서 입력이 불가능
+			// id=#id를 제거해서 우리가 입력한 유효성체크 동작 불가능
+			$('#uid').attr('readonly', 'true')
+					 .removeAttr('id');
+			
+			var name = '${user.name}';
+			var phone = '${user.phone}';
+			var email = '${user.email}';
+			var postcode = '${user.postcode}';
+			var addr1 = '${user.addr1}';
+			var addr2 = '${user.addr2}';
+			ckName(name);
+			ckPhone(phone);
+			ckEmail(email);
+			ckAddress(postcode, addr2);
+			checkArr[0] = true;
+			checkArr[1] = true;
+			ckColorBtn();
+			printCheckArr(checkArr);
+			
+		}
+
+		function ckDesign(code, desc, line, msg) {
+			if (code == 0 || code == 10) { // 통과 o
+				$('.ps_box:eq(' + line + ')').css('border', '2px solid #3885CA');
+				$('.error_next_box:eq(' + msg + ')').css('visibility', 'visible')
+													.text(desc).css('color', '#3885CA');
+				return true;
+			} else { // 통과 x
+				$('.ps_box:eq(' + line + ')').css('border', '2px solid #d95339');
+				$('.error_next_box:eq(' + msg + ')').css('visibility', 'visible')
+													.text(desc).css('color', '#d95339');
+				return false;
+			}
+		}
 
 		// id 유효성체크
 		// >> #uid인 input태그의 값을 가져와서 체크
@@ -398,40 +429,53 @@ to {
 		// 이름 유효성 체크
 		$('#uname').keyup(function() {
 			var name = $.trim($(this).val());
+			ckName(name);
+		});
+		
+		function ckName(name){
 			var result = joinValidate.checkName(name);
+			ckDesign(result.code, result.desc, 3, 2);
+			
 			if (result.code == 0) {
 				checkArr[2] = true;
 			} else {
 				checkArr[2] = false;
 			}
-
-			ckDesign(result.code, result.desc, 3, 2);
-		});
+		}
 
 		// 이메일 유효성 체크
 		$('#uemail').keyup(function() {
 			var email = $.trim($(this).val());
+			ckEmail(email);
+		});
+		
+		function ckEmail(email){
 			var result = joinValidate.checkEmail(email);
+			ckDesign(result.code, result.desc, 4, 3);
+			
 			if (result.code == 0) {
 				checkArr[3] = true;
 			} else {
 				checkArr[3] = false;
 			}
-
-			ckDesign(result.code, result.desc, 4, 3);
-		});
+		}
 
 		// 휴대폰 유효성 체크
 		$('#phone').keyup(function() {
 			var phone = $.trim($(this).val());
+			ckPhone(phone);
+		});
+		
+		function ckPhone(phone){
 			var result = joinValidate.checkPhone(phone);
+			ckDesign(result.code, result.desc, 5, 4);
+			
 			if (result.code == 0) {
 				checkArr[4] = true;
 			} else {
 				checkArr[4] = false;
 			}
-			ckDesign(result.code, result.desc, 5, 4);
-		});
+		}
 
 		// 사용자가 우편번호 또는 주소 input을 클릭했을 때
 		$('.addr_only').click(function() {
@@ -448,11 +492,15 @@ to {
 
 		// 주소 유효성 체크
 		$('#sample6_detailAddress').keyup(function() {
-			var addrDetail = $.trim($(this).val());
-			var addrPost = $('#sample6_postcode').val();
+			var postcode = $('#sample6_postcode').val();
+			var addr2 = $.trim($(this).val());
 			// console.log('우편번호=' + addrPost + ', 상세주소' + addrDetail);
-
-			var result = joinValidate.checkAddr(addrDetail, addrPost);
+			
+			ckAddress(postcode, addr2);
+		});
+		
+		function ckAddress(postcode, addr2){
+			var result = joinValidate.checkAddr(postcode, addr2);
 
 			if (result.code == 3) { // 우편번호 & 주소 x
 				checkArr[5] = false;
@@ -467,10 +515,14 @@ to {
 				checkArr[5] = false;
 				ckDesign(result.code, result.desc, 8, 5);
 			}
-		});
+		}
 
 		// 버튼 활성화
 		$('.int').keyup(function() {
+			ckColorBtn();
+		});
+		
+		function ckColorBtn(){
 			var checkAll = true;
 			for (var i = 0; i < checkArr.length; i++) {
 				if (!checkArr[i]) {
@@ -486,7 +538,7 @@ to {
 				// $('#btn_join').prop('disabled', true);
 				$('#btn_join').css('cursor', 'no-drop');
 			}
-		});
+		}
 
 		// 회원가입 버튼 클릭
 		$('#btn_join').click(function() {
@@ -511,20 +563,6 @@ to {
 			}
 		});
 	});
-
-	function ckDesign(code, desc, line, msg) {
-		if (code == 0 || code == 10) { // 통과 o
-			$('.ps_box:eq(' + line + ')').css('border', '2px solid #3885CA');
-			$('.error_next_box:eq(' + msg + ')').css('visibility', 'visible')
-												.text(desc).css('color', '#3885CA');
-			return true;
-		} else { // 통과 x
-			$('.ps_box:eq(' + line + ')').css('border', '2px solid #d95339');
-			$('.error_next_box:eq(' + msg + ')').css('visibility', 'visible')
-												.text(desc).css('color', '#d95339');
-			return false;
-		}
-	}
 
 	// 로딩바 출력
 	function FunLoadingBarStart() {
