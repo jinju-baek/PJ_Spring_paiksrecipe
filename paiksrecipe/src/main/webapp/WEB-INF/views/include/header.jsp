@@ -569,7 +569,7 @@ div.header_content {
 					<div class="header_content_dropdown_wrqp">
 						<div class="header_content_dropdown_group">
 							<!-- 네비게이션 -->
-							<a href="#"><i class="fas fa-user"></i><span>MY PAGE</span></a>
+							<a href="#"><i class="fas fa-user"></i><span> MY PAGE</span></a>
 							<!-- dropdown 메뉴 -->
 							<div class="header_dropdown">
 								<div class="arrow"></div>

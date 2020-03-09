@@ -67,7 +67,7 @@ public class MemberController {
 	
 	@GetMapping("/constract")
 	public String viewConstract() {
-		log.info(">>>>> MEMBER/CONSTRACT PAGE 출력");
+		log.info("★★★★★★★★★★★★★★★ MEMBER/CONSTRACT PAGE 출력");
 		return "member/constract";
 	}
 	
@@ -200,6 +200,16 @@ public class MemberController {
 		// 로그인 된 유저의 정보를 GET
 		model.addAttribute("user", mService.userView(id));
 		return "member/join";
+	}
+	
+	@PostMapping("/update")
+	public String memUpdate(MemberDTO mDto, HttpSession session) {
+		log.info("★★★★★★★★★★★★★★★ POST: Member Update Action");
+		log.info(mDto.toString());
+		
+		mService.memUpdate(mDto, session);
+
+		return "redirect:/";
 	}
 }
 

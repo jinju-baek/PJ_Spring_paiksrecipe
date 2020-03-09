@@ -1,5 +1,7 @@
 package com.paiksrecipe.service.member;
 
+import javax.servlet.http.HttpSession;
+
 import com.paiksrecipe.domain.MemberDTO;
 
 public interface MemberService {
@@ -9,6 +11,10 @@ public interface MemberService {
 	// 회원가입(DB에 등록)
 	public int memInsert(MemberDTO mDto);
 	
+	// 회원수정(DB에 수정)
+	public void memUpdate(MemberDTO mDto, HttpSession session);
+
 	// 1명의 회원정보 
 	public MemberDTO userView(String id);
+	
 }

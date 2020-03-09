@@ -13,6 +13,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (#{id}, #{pw}, #{name}, #{phone}, #{email}, #{postcode}, #{addr1}, #{addr2}, #{useon}, #{primaryon}, #{locon}, #{eventon})
 	</insert>
 	
+	<update id="memUpdate">
+		UPDATE tbl_member SET
+			name = #{name},
+			phone = #{phone},
+			email = #{email},
+			postcode = #{postcode},
+			addr1 = #{addr1},
+			addr2 = #{addr2}
+		WHERE id = #{id}
+	</update>
+	
 	<update id="getKey">
 		UPDATE tbl_member 
 		SET useyn = #{param2} 

@@ -1,5 +1,7 @@
 package com.paiksrecipe.service.member;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +35,17 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberDTO userView(String id) {
 		return mDao.userView(id);
+	}
+
+	@Override
+	public void memUpdate(MemberDTO mDto, HttpSession session) {
+		int result = mDao.memUpdate(mDto);
+		
+		if(result > 0) { // 수정 성공
+			// 세션에 로그인유저 정보를 저장
+			// .removeAttribute()써주는걸 권장
+			session.removeAttribute("name");
+			session.setAttribute("name", mDto.getName());
+		}
 	}
 }
