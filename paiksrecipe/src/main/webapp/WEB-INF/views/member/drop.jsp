@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원탈퇴</title>
+<title>PAIKSRECIPE : 회원탈퇴</title>
 <style type="text/css">
 
 /* 모달창 */

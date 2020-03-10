@@ -355,12 +355,14 @@ to {
 			if (code == 0 || code == 10) { // 통과 o
 				$('.ps_box:eq(' + line + ')').css('border', '2px solid #3885CA');
 				$('.error_next_box:eq(' + msg + ')').css('visibility', 'visible')
-													.text(desc).css('color', '#3885CA');
+													.text(desc)
+													.css('color', '#3885CA');
 				return true;
 			} else { // 통과 x
 				$('.ps_box:eq(' + line + ')').css('border', '2px solid #d95339');
 				$('.error_next_box:eq(' + msg + ')').css('visibility', 'visible')
-													.text(desc).css('color', '#d95339');
+													.text(desc)
+													.css('color', '#d95339');
 				return false;
 			}
 		}
@@ -370,18 +372,20 @@ to {
 		$('#uid').keyup(function() {
 			// 사용자가 입력한 값의 좌우여백을 제거하고 id에 입력
 			var id = $.trim($(this).val()); // 사용자가 입력한 값
+			
 			// validation.js의 checkId로 유효성체크를 실행 후
 			// 결과를 result에 담음(code, desc)
 			var result = joinValidate.checkId(id);
+
+			// 유효성체크 결과로 테두리색과 err메세지를 출력하는 
+			// 함수 실행
+			ckDesign(result.code, result.desc, 0, 0);
+			
 			if (result.code == 0) {
 				checkArr[0] = true;
 			} else {
 				checkArr[0] = false;
 			}
-
-			// 유효성체크 결과로 테두리색과 err메세지를 출력하는 
-			// 함수 실행
-			ckDesign(result.code, result.desc, 0, 0);
 		});
 
 		// pw 유효성체크
@@ -391,12 +395,16 @@ to {
 			var rpw = $.trim($('#urpw').val());
 
 			// 2. 유효성 체크하기
-			var result = joinValidate.checkPw(pw, rpw);
+			var result = joinValidate.checkPw("", pw, rpw);
 			if (result.code == 0 || result.code == 10 || result.code == 6) {
 				pwFlag = true;
 			} else {
 				pwFlag = false;
 			}
+
+			// 3. 체크 결과에 따라 디자인하기
+			ckDesign(result.code, result.desc, 1, 1);
+			
 			if (result.code == 10) {
 				checkArr[1] = true;
 				$('.ps_box:eq(1)').css('border', '2px solid #3885CA');
@@ -407,15 +415,16 @@ to {
 			} else {
 				checkArr[1] = false;
 			}
-			// 3. 체크 결과에 따라 디자인하기
-			ckDesign(result.code, result.desc, 1, 1);
 		});
 
 		// 비밀번호 재확인 유효성체크
 		$('#urpw').keyup(function() {
 			var pw = $.trim($('#upw').val());
 			var rpw = $.trim($(this).val());
+
 			var result = joinValidate.checkRpw(pw, rpw, pwFlag);
+			ckDesign(result.code, result.desc, 2, 1);
+			
 			if (result.code == 10) {
 				checkArr[1] = true;
 			} else if (result.code == 6) {
@@ -423,7 +432,6 @@ to {
 			} else {
 				checkArr[1] = false;
 			}
-			ckDesign(result.code, result.desc, 2, 1);
 		});
 
 		// 이름 유효성 체크
@@ -553,7 +561,6 @@ to {
 			}
 			if (invalidAll) {
 				FunLoadingBarStart(); // 로딩바 생성
-				alert('회원가입 성공!');
 				// submit : form태그 안에 있는 데이터들을 서버단으로 전송
 				// action : 목적지(MemberController '/join')
 				// method : 방법(POST : 숨겨서)

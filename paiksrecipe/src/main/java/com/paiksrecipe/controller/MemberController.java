@@ -117,7 +117,7 @@ public class MemberController {
 		
 		log.info("Password: " + mDto.getPw());
 		// 1. 사용자 암호 hash 변환
-		String encPw=passwordEncoder.encode(mDto.getPw());
+		String encPw = passwordEncoder.encode(mDto.getPw());
 		mDto.setPw(encPw);
 		log.info("Password(+Hash): " + mDto.getPw());
 		
@@ -211,6 +211,47 @@ public class MemberController {
 
 		return "redirect:/";
 	}
+	
+	// 비밀번호수정
+	@GetMapping("/pwupdate")
+	public String pwUpdate(HttpSession session) {
+		log.info("★★★★★★★★★★★★★★★ GET: Password Update Action");
+		
+		String id = (String)session.getAttribute("userid");
+		if(id==null) {
+			return "redirect:/";
+		}
+		
+		return "member/pwupdate";
+	}
+	
+	@PostMapping("/pwupdate")
+	public String pwUpdate(HttpSession session, MemberDTO mDto) {
+		log.info("★★★★★★★★★★★★★★★ POST: Password Update Action");
+		log.info("수정 비밀번호 : " + mDto.getPw());
+		
+		String encPw = passwordEncoder.encode(mDto.getPw());
+		mDto.setPw(encPw);
+		
+		String id = (String)session.getAttribute("userid");
+		mDto.setId(id);
+		log.info(mDto.toString());
+		
+		mService.pwUpdate(mDto);
+		
+		return "redirect:/";
+	}
+	
+	@ResponseBody
+	@PostMapping("/pwcheck")
+	public Integer pwCheck(String pw, HttpSession session) {
+		log.info("★★★★★★★★★★★★★★★ POST: Password Check(AJAX)");
+		
+		String id = (String)session.getAttribute("userid");
+		
+		return mService.pwCheck(id, pw);
+	}
+	
 }
 
 

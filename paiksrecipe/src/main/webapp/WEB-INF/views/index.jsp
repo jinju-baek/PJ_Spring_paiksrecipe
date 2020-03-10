@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>PAIKSRECIPE</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
 <style type="text/css">
 body {

@@ -1,6 +1,8 @@
 package com.paiksrecipe.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +28,7 @@ public class IndexController {
 	// iService에 indexServiceImpl Beans가 들어가있는것
 	
 	@RequestMapping("/")
-	public String indexView(Model model) {
+	public String indexView(Model model, HttpSession session) {
 		log.info("★★★★★★★★★★★★★★★ INDEX PAGE 출력");
 		
 		// 2. View단에 출력할 베스트 상품 5건
@@ -44,6 +46,13 @@ public class IndexController {
 		// 1. Model(BestPdt)
 		// 2. View(/WEB-INF/views/index.jsp)
 		// >>> index.jsp 화면단으로 Model(BestPdt) 전송
+		
+		// 개발 종료시 삭제할 것(강제 로그인)
+		session.removeAttribute("userid");
+		session.removeAttribute("name");
+		session.setAttribute("userid", "logintest");
+		session.setAttribute("name", "테스트");
+		
 		return "index";
 	}
 }

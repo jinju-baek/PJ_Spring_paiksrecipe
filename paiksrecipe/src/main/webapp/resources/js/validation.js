@@ -46,6 +46,10 @@ var joinValidate = {
 			code : 10,
 			desc : '사용가능한 비밀번호입니다.'
 		},
+		success_nowpw : {
+			code: 100,
+			desc : '확인되었습니다.'
+		},
 		invalid_pw : {
 			code : 3,
 			desc : '비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.'
@@ -151,7 +155,7 @@ var joinValidate = {
 	},
 
 	// 패스워드 유효성 체크
-	checkPw : function(pw, rpw) {
+	checkPw : function(nowpw, pw, rpw) {
 		var regEmpty = /\s/g; // 공백문자
 		var regPw = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&_*-]).{8,}$/; 
 		var regHangle = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
@@ -167,6 +171,8 @@ var joinValidate = {
 		} else if (!pw.match(regPw)) { // 5. 유효성 체크
 			// ^가 있으면 !를 쓴다.
 			return this.resultCode.invalid_pw;
+		} else if (pw == nowpw) {
+			return this.resultCode.equal_pw;
 		} else if (rpw != '' || rpw.length != 0) { // 6. 비밀번호 재확인 값이 있으면
 			if (pw == rpw) {
 				return this.resultCode.equal_success_pw;
@@ -245,6 +251,7 @@ var joinValidate = {
 	checkAddr : function(addrDetail, addrPost) {
 		// 영어대문자, 영어소문자, 한글, -, 공백외에 전부 체크
 		var regAddr = /^[a-zA-Z0-9가-힣-\s]+$/;
+		
 		if (addrPost == '' || addrPost.length == 0) { // 1. 공백 유무
 			return this.resultCode.empty_post;
 		} else if (addrDetail == '' || addrDetail.length == 0) { // 2. 값 유무
@@ -254,24 +261,58 @@ var joinValidate = {
 		} else { // 통과
 			return this.resultCode.success_addr;
 		}
+	},
+	
+	checkNowpw : function(pw) {
+		var regEmpty = /\s/g; // 공백문자
+		
+		if (pw == '' || pw.length == 0) { // 1. 값이 있는지 체크
+			return this.resultCode.empty_val;
+		} else if (pw.match(regEmpty)) { // 2. 공백값이 있는지 체크
+			return this.resultCode.space_length_val;
+		} else if (pwCheck(pw)) { // 3. 현재 비밀번호와 동일한지 체크
+			return this.resultCode.other_pw;
+		} else { // 4. 유효성 체크 통과
+			return this.resultCode.success_nowpw;
+		}
 	}
 }
 
 function idCheck(id) {
 	var return_val = true;
 	$.ajax({
-		type : 'POST',
-		url : 'idoverlap?id=' + id,
-		async : false, // retrun 사용하기 위해서, ajax(비동기방식)는 차례대로 실행x 다 먼저 실행하므로 return 사용불가능
-		success : function(data) {
-			console.log(data);
+		type: 'POST',
+		url: 'idoverlap?id=' + id,
+		async: false, // retrun 사용하기 위해서, ajax(비동기방식)는 차례대로 실행x 다 먼저 실행하므로 return 사용불가능
+		success: function(data) {
 			if (data >= 1) {
 				return_val = true;
 			} else {
 				return_val = false;
 			}
 		},
-		error : function() {
+		error: function() {
+			alert('System ERROR:(');
+		}
+	});
+	return return_val;
+}
+
+function pwCheck(pw) {
+	var return_val = true;
+	$.ajax({
+		type: 'POST', 
+		url: 'pwcheck?pw='+pw, 
+		async: false, 
+		success: function(data){
+			console.log(data);
+			if(data == 1) {
+				return_val = false;
+			} else if(data == 0) {
+				return_val = true;
+			}
+		},
+		error: function(){
 			alert('System ERROR:(');
 		}
 	});
