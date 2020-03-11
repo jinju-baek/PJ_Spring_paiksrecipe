@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/include.jsp"%>
+<%@ include file="../include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +13,6 @@
 	box-sizing: border-box;
 	/* font-family에 폰트 여러개 쓰면 해당 폰트가 없을 경우 다른 폰트로 대체 */
 	font-family: 'Noto Sans KR', sans-serif;
-}
-
-body, ul, h1, h2, h3, h4, h5, h6 {
-	margin: 0;
-	padding: 0;
 }
 
 body {
@@ -35,7 +30,7 @@ a {
 
 .wrap {
 	width: 768px;
-	margin: 0 auto;
+	margin: 80px auto 0;
 }
 
 /* Header */
@@ -278,17 +273,6 @@ h3.article_title {
 	background-color: #B22230;
 }
 
-.group_join {
-	margin: 20px 0px 65px;
-	text-align: center;
-	color: #666;
-	font-size: 12px;
-}
-
-.group_join>a {
-	text-decoration: underline;
-	color: #333;
-}
 </style>
 </head>
 <body>
@@ -390,9 +374,6 @@ h3.article_title {
 						</span>
 					</div>
 				</form>
-				<div class="group_join">
-					회사, 동아리 등 단체에서 사용할 ID가 필요하세요? <a href="#">단체 회원 가입</a>
-				</div>
 			</div>
 		</section>
 	</div>

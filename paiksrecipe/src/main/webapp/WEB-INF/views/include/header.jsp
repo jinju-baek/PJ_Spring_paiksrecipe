@@ -252,6 +252,10 @@ div.header_content {
 	margin: 0 5px;
 }
 
+.username {
+	line-height: 44px;
+}
+
 /* 모달 로그인 창 */
 .modal_wrap {
 	top: 0;
@@ -348,7 +352,7 @@ div.header_content {
 	text-align: center;
 }
 
-.error_next_box {
+.modal_error_next_box {
 	visibility: hidden;
 	color: rgb(217, 83, 57);
 	font-size: 13px;
@@ -464,7 +468,7 @@ div.header_content {
 								<span class="pw_eye"><i class="fas fa-eye-slash"></i></span>
 							</div>
 						</div>
-						<div class="error_next_box">입력정보를 확인해 주세요.</div>
+						<div class="modal_error_next_box">입력정보를 확인해 주세요.</div>
 						<div class="login_check">
 							<input type="checkbox" id="loginck" class="login_check_btn">
 							<label for="loginck" class="label1">&nbsp;로그인 상태 유지</label>
@@ -575,11 +579,9 @@ div.header_content {
 								<div class="arrow"></div>
 								<ul class="header_dropdown_menu">
 									<c:if test="${not empty userid}">
+										<li><a href="${path}/member/mypage">내 정보</a></li>
 										<li><a href="#">레시피 보관함</a></li>
-										<li><a href="${path}/member/update">회원정보수정</a></li>
-										<li><a href="${path}/member/pwupdate">비밀번호재설정</a></li>
 									</c:if>	
-								
 									<li><a href="#">고객센터</a></li>
 								</ul>
 							</div>
@@ -608,10 +610,7 @@ div.header_content {
 							</c:when>
 							<c:otherwise>
 								<div class="logout_wrap">
-									<div>
-										<div>${userid}</div>
-										<div>${name}님</div>
-									</div>
+									<div class="username">${name}님</div>
 									<div><button type="button" id="header_btn_logout" class="btn btn-basic">로그아웃</button></div>
 								</div>
 							</c:otherwise>
@@ -678,7 +677,7 @@ div.header_content {
 		$('.pw_eye').prev().attr('type', 'password');
 		$('.pw_eye').html('<i class="fas fa-eye-slash"></i>')
 					.css('color', '#666');
-		$('.error_next_box').css('visibility', 'hidden');
+		$('.modal_error_next_box').css('visibility', 'hidden');
 	});
 
 	// 값을 가져오는 방법
@@ -734,13 +733,13 @@ div.header_content {
 				success : function(data) {
 					console.log(data);
 					if (data == 0 || data == 3) {
-						$('.error_next_box').css('visibility', 'visible')
+						$('.modal_error_next_box').css('visibility', 'visible')
 											.text('아이디 또는 비밀번호를 확인해주세요.');
 					} else if (data == 1) {
 						console.log('로그인 성공');
 						location.reload(); // 새로고침
 					} else if (data == 2) {
-						$('.error_next_box').css('visibility', 'visible')
+						$('.modal_error_next_box').css('visibility', 'visible')
 											.text('이메일 인증 후에 이용하실 수 있습니다.');
 					}
 				},

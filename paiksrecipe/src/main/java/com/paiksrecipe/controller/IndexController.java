@@ -48,10 +48,11 @@ public class IndexController {
 		// >>> index.jsp 화면단으로 Model(BestPdt) 전송
 		
 		// 개발 종료시 삭제할 것(강제 로그인)
-		session.removeAttribute("userid");
-		session.removeAttribute("name");
-		session.setAttribute("userid", "logintest");
-		session.setAttribute("name", "테스트");
+		/*
+		 * session.removeAttribute("userid"); session.removeAttribute("name");
+		 * session.setAttribute("userid", "logintest"); session.setAttribute("name",
+		 * "테스트");
+		 */
 		
 		return "index";
 	}

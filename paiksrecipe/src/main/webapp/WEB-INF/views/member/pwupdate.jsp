@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ include file="../include/include.jsp"%>
+<%@ include file="../include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,7 @@
 <style>
 .wrap {
 	width: 768px;
-	margin: 0 auto;
+	margin: 80px auto 0;
 }
 
 /* 헤더 */
@@ -332,6 +332,7 @@
 												.css('color', '#3885CA');
 			return true;
 		} else { // 통과 x
+			console.log("line" + line + ", msg" + msg);
 			$('.input_wrap:eq(' + line + ')').css('border', '2px solid #d95339');
 			$('.error_next_box:eq(' + msg + ')').css('visibility', 'visible')
 												.text(desc)

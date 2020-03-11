@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/include.jsp"%>
+<%@ include file="../include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>PAIKSRECIPE : 회원탈퇴</title>
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
 <style type="text/css">
-
 /* 모달창 */
 .modal_wrap {
 	position: fixed;
@@ -64,7 +64,7 @@
 
 .wrap {
 	width: 768px;
-	margin: 0 auto;
+	margin: 80px auto 0;
 }
 
 .header {
@@ -276,8 +276,7 @@
 				<div class="intro">
 					<span class="intro_logo"></span> <span class="intro_content">
 						<h3 class="content_logo">
-							회원탈퇴에 앞서 <span style="color: #B22230">유의사항 및 안내</span>를 반드시 읽고
-							진행해 주세요!
+							회원탈퇴에 앞서 <span style="color: #B22230">유의사항 및 안내</span>를 반드시 읽고 진행해 주세요!
 						</h3>
 					</span>
 				</div>
@@ -333,7 +332,7 @@
 								<table class="user_info_table">
 									<tr>
 										<th>아이디</th>
-										<td><strong>pjj0647</strong></td>
+										<td><strong>${id}</strong></td>
 									</tr>
 									<tr>
 										<th>비밀번호</th>

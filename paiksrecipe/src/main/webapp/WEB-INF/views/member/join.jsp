@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ include file="../include/include.jsp"%>
+<%@ include file="../include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,19 +9,13 @@
 <title>PAIKSRECIPE : 회원가입</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
 <style type="text/css">
-body, h1, h2, h3, h4, h5, h6, ul, p {
-	margin: 0;
-	padding: 0;
-}
-
 body {
 	background-color: #f5f6f7;
-	font-size: 12px;
 }
 
 .wrap {
 	width: 768px;
-	margin: 0 auto;
+	margin: 80px auto 0;
 }
 
 .header {
@@ -232,7 +226,7 @@ to {
 					<div class="join_content">
 						<div class="row_group">
 							<div class="join_row">
-								<h3 class="join_title"><label for="id">아이디</label></h3>
+								<h3 class="join_title"><label for="uid">아이디</label></h3>
 								<div class="ps_box int_id">
 									<input type="text" id="uid" name="id" class="int" placeholder="아이디 입력" value=${user.id}>
 								</div>
@@ -240,7 +234,7 @@ to {
 							</div>
 
 							<div class="join_row">
-								<h3 class="join_title"><label for="pwsd1">비밀번호</label></h3>
+								<h3 class="join_title"><label for="upw">비밀번호</label></h3>
 								<div class="pw_wrap">
 									<div class="ps_box int_pass">
 										<input type="text" id="upw" name="pw" class="int" placeholder="비밀번호 입력" > 
@@ -257,14 +251,14 @@ to {
 						</div>
 						<div class="row_group">
 							<div class="join_row">
-								<h3 class="join_title"><label for="name">이름</label></h3>
+								<h3 class="join_title"><label for="uname">이름</label></h3>
 								<div class="ps_box">
 									<input type="text" id="uname" name="name" class="int" placeholder="이름 입력" value=${user.name}>
 								</div>
 								<div class="error_next_box">필수 정보입니다.</div>
 							</div>
 							<div class="join_row">
-								<h3 class="join_title"><label for="email_id">본인 확인 이메일</label></h3>
+								<h3 class="join_title"><label for="uemail">본인 확인 이메일</label></h3>
 								<div class="ps_box">
 									<input type="text" id="uemail" class="int" name="email" placeholder="이메일 ID 입력" value=${user.email}>
 								</div>
@@ -279,7 +273,7 @@ to {
 							</div>
 
 							<div class="join_row">
-								<h3 class="join_title"><label for="">주소</label></h3>
+								<h3 class="join_title"><label for="sample6_postcode">주소</label></h3>
 								<span class="ps_box"> 
 									<input type="text" id="sample6_postcode" class="int addr_only" name="postcode" placeholder="우편번호"  value="${user.postcode}" readonly> 
 									<input type="button" class="find_address" id="btn_post" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">

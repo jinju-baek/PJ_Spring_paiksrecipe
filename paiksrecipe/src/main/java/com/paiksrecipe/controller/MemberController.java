@@ -218,7 +218,7 @@ public class MemberController {
 		log.info("★★★★★★★★★★★★★★★ GET: Password Update Action");
 		
 		String id = (String)session.getAttribute("userid");
-		if(id==null) {
+		if(id == null) {
 			return "redirect:/";
 		}
 		
@@ -250,6 +250,25 @@ public class MemberController {
 		String id = (String)session.getAttribute("userid");
 		
 		return mService.pwCheck(id, pw);
+	}
+	
+	@GetMapping("/drop")
+	public String memdrop(HttpSession session, Model model) {
+		log.info("★★★★★★★★★★★★★★★ GET: Member Drop Action");
+		
+		String id = (String)session.getAttribute("userid");
+		log.info("userid = " + id);
+		model.addAttribute("id", id);
+		
+		return "member/drop";
+	}
+	
+	@GetMapping("/mypage")
+	public String mypage(HttpSession session, Model model) {
+		log.info("★★★★★★★★★★★★★★★ GET: Member Drop Action");
+		
+
+		return "member/mypage";
 	}
 	
 }
