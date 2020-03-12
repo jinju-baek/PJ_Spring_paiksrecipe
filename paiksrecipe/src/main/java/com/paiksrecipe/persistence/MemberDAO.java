@@ -26,4 +26,7 @@ public interface MemberDAO {
 	
 	// 비밀번호 수정 : DB에 수정
 	public void pwUpdate(MemberDTO mDto);
+	
+	// 회원탈퇴 : useyn = n
+	public int memDrop(String id);
 }

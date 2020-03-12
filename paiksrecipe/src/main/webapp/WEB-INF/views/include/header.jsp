@@ -184,7 +184,7 @@ div.header_content {
 }
 
 .header_content_logo_img {
-	max-width: 178px;
+	max-width: 200px;
 	vertical-align: middle;
 }
 
@@ -579,10 +579,10 @@ div.header_content {
 								<div class="arrow"></div>
 								<ul class="header_dropdown_menu">
 									<c:if test="${not empty userid}">
-										<li><a href="${path}/member/mypage">내 정보</a></li>
 										<li><a href="#">레시피 보관함</a></li>
 									</c:if>	
 									<li><a href="#">고객센터</a></li>
+									<li><a href="${path}/member/mypage">내 정보</a></li>
 								</ul>
 							</div>
 						</div>

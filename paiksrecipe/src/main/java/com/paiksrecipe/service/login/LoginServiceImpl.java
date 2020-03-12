@@ -52,6 +52,12 @@ public class LoginServiceImpl implements LoginService{
 			return result;
 		}
 		
+		// 탈퇴한 경우
+		if((loginDto.getUseyn().equals("d"))) {
+			result = 0;
+			return result;
+		}
+		
 		// 인증 안했을경우
 		if(!(loginDto.getUseyn().equals("y"))) {
 			result = 2;

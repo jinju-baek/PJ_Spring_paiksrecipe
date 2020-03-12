@@ -496,13 +496,13 @@ to {
 		$('#sample6_detailAddress').keyup(function() {
 			var postcode = $('#sample6_postcode').val();
 			var addr2 = $.trim($(this).val());
-			// console.log('우편번호=' + addrPost + ', 상세주소' + addrDetail);
+			console.log('우편번호=' + postcode + ', 상세주소=' + addr2);
 			
 			ckAddress(postcode, addr2);
 		});
 		
 		function ckAddress(postcode, addr2){
-			var result = joinValidate.checkAddr(postcode, addr2);
+			var result = joinValidate.checkAddr(addr2, postcode);
 
 			if (result.code == 3) { // 우편번호 & 주소 x
 				checkArr[5] = false;
