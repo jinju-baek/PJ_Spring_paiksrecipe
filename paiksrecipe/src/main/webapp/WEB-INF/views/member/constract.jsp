@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
 <title>PAIKSRECIPE : 이용약관</title>
 <style type="text/css">
 /* Common */
@@ -13,10 +14,6 @@
 	box-sizing: border-box;
 	/* font-family에 폰트 여러개 쓰면 해당 폰트가 없을 경우 다른 폰트로 대체 */
 	font-family: 'Noto Sans KR', sans-serif;
-}
-
-body {
-	background-color: #f5f6f7;
 }
 
 ul {
@@ -28,26 +25,12 @@ a {
 	color: inherit;
 }
 
-.wrap {
-	width: 768px;
-	margin: 80px auto 0;
+.constract_wrap {
+	margin: 130px auto 0;
 }
 
-/* Header */
-#header {
-	height: 169px;
-	padding-top: 62px;
+.container {
 	position: relative;
-}
-
-#container {
-	position: relative;
-}
-
-#footer {
-	height: 81px;
-	text-align: center;
-	padding: 30px 0px 15px 0px;
 }
 
 .paiks_logo {
@@ -56,54 +39,23 @@ a {
 
 .p_logo {
 	display: block;
-	width: 300px;
-	height: 64px;
+	width: 212px;
+	height: 40px;
 	background: url('${path}/resources/img/logo.png') no-repeat;
+	background-size: contain;
 	margin: 0 auto;
-}
-
-.lang {
-	position: absolute;
-	top: 14px;
-	right: 0px;
-}
-
-.langselect {
-	font-size: 12px;
-	font-weight: 400;
-	height: 30px;
-	padding: 6px 8px 5px 7px;
-	min-width: 98px;
-	color: #333;
-	border: 1px solid #ccc;
-}
-
-.lang>select {
-	/* 셀렉트 태그의 화살표 제거 */
-	-webkit-appearance: none;
-	background: url('${path}/resources/img/sel_arr.gif') 100% 50% no-repeat;
-	background-color: white;
 }
 
 /* Container */
-.join_content {
-	width: 460px;
-	margin: 0 auto;
-}
-
-.terms {
-	margin-bottom: 20px;
-	background-color: white;
+.constract_content {
+	width: 520px;
+	margin: 40px auto 40px;
+	padding : 58px 69px 40px;
 	border: 1px solid #dadada;
 }
 
-.terms_span>input {
-	position: absolute;
-	right: 1px;
-	top: 50%;
-	width: 22px;
-	margin-top: -11px;
-	visibility: hidden;
+.constract_step {
+	padding-bottom: 25px;
 }
 
 .terms_p {
@@ -113,27 +65,24 @@ a {
 	position: relative;
 }
 
-.terms_span>label {
-	background: url('${path}/resources/img/check_off.png') 100% 50% no-repeat;
-	background-size: 25px;
-	display: block;
-	line-height: 20px;
-	height: 58px;
-	top: -1px;
-	font-style: 14px;
-	font-weight: 700;
-}
 
 .terms_span {
 	position: relative;
 	display: block;
-	height: 58px;
 }
 
-.terms_span>input:checked+label {
-	background: url('${path}/resources/img/check_on.png') 100% 50% no-repeat;
-	background-size: 25px;
+#cbox+label {
+	font-size: 19px;
+	font-weight: 900;
 }
+
+.terms_p>p{
+    width: 324px;
+    font-size: 12px;
+    color: #959595;
+    padding: 10px 0 0 25px;
+    
+   }
 
 .terms_ul {
 	padding-bottom: 7px;
@@ -154,16 +103,14 @@ ul.terms_ul>li {
 	height: 24px;
 }
 
-.label1 {
-	height: 24px;
-	font-size: 14px;
-	font-weight: 700;
-	line-height: 24px;
-	position: absolute;
-	color: #333;
-	top: 0px;
-	left: 0px;
-	width: 100%
+.label1 {	
+	height: 27px;
+	line-height: 27px;
+	padding-left: 30px;
+}
+
+.label_allck {
+	font-size: 18px;
 }
 
 .span_only {
@@ -172,50 +119,45 @@ ul.terms_ul>li {
 	font-weight: 400;
 }
 
-.ul_li_span>input {
-	visibility: hidden;
+
+.terms_span>input {
 	position: absolute;
-	right: 1px;
-	width: 22px;
-	height: 22px;
+	left: -4px;
+    top: 11px;
+	width: 23px;
+	height:27px;
 	margin-top: -11px;
-	top: 50%;
+	z-index: 1;
+    opacity: .01;
 }
 
-.ul_li_span>label {
+.ul_li_span>input {
+	position: absolute;
+	left: -4px;
+    top: 11px;
+	width: 23px;
+	height:27px;
+	margin-top: -11px;
+	z-index: 1;
+    opacity: .01;
+}
+
+.checkbox_img {
 	background: url('${path}/resources/img/check_off.png') 100% 50% no-repeat;
 	background-size: 25px;
-	display: block;
+	width: 24px;
+	height: 27px;
+	position: absolute;
 }
 
-.ul_li_span>input:checked+label {
-	background-image: url('${path}/resources/img/check_on.png');
+.terms_span>input:checked+.checkbox_img {
+	background: url('${path}/resources/img/check_on.png') 100% 50% no-repeat;
 	background-size: 25px;
 }
 
-.terms_box {
-	position: relative;
-	box-sizing: border-box;
-	height: 88px;
-	margin-top: 11px;
-	padding: 8px 10px;
-	border: 1px solid #f0f0f0;
-	background-color: #f7f7f7;
-	overflow: auto;
-}
-
-h3.article_title {
-	font-size: 12px;
-	font-weight: 700;
-	line-height: 16px;
-	color: #666;
-}
-
-.article>p {
-	display: block;
-	font-size: 12px;
-	line-height: 16px;
-	color: #666;
+.ul_li_span>input:checked+.checkbox_img {
+	background-image: url('${path}/resources/img/check_on.png');
+	background-size: 25px;
 }
 
 .span_select {
@@ -230,134 +172,66 @@ h3.article_title {
 	line-height: 14px;
 	color: #f46665;
 	display: block;
+	margin: 15px;
 }
 
 .err_check {
 	visibility: hidden;
 }
 
-.btn_double_area {
-	overflow: hidden;
-}
-
-.btn_double_area>span {
-	display: block;
-	float: left;
-	width: 50%;
-}
-
-.btn_type {
-	width: 225px;
-	margin: 0px auto;
-	font-size: 20px;
-	font-weight: 600;
-	line-height: 61px;
-	display: block;
-	box-sizing: border-box;
-	height: 61px;
-	padding-top: 1px;
-	text-align: center;
-	outline: none;
-	cursor: pointer;
-}
-
-.btn_default {
-	color: #333;
-	border: 1px solid #e7e7e7;
-	background-color: #fff;
-}
-
-.btn_agree {
-	color: #fff;
-	border: 1px solid #e7e7e7;
-	background-color: #B22230;
-}
-
 </style>
 </head>
 <body>
-	<div class="wrap">
-		<header>
-			<!-- div : 내용물이 없으면 자리확보x -->
-			<div id="header">
-				<h1 class="paiks_logo">
-					<a href="${path}/" class="p_logo"></a>
-				</h1>
-				<div class="lang">
-					<select class="langselect">
-						<option>한국어</option>
-						<option>English</option>
-						<option>中文(简体)</option>
-						<option>中文(台灣)</option>
-					</select>
-				</div>
-			</div>
-		</header>
+	<div class="constract_wrap">
 		<section>
-			<div id="container">
-				<form class="join_content" name="" action="" method="">
+			<!-- div : 내용물이 없으면 자리확보x -->
+			<div class="contract_logo">
+				<h1 class="paiks_logo">
+					<div href="#" class="p_logo"></div>
+				</h1>
+			</div>
+			<div class="container">
+				<form class="constract_content" name="" action="" method="">
 					<div class="terms">
-						<p class="terms_p">
+						<div class="constract_step">
+							<h2>PAIK'S RECIPE계정</h2>
+							<h2>서비스약관에 동의해주세요</h2>
+						</div>
+						<span class="terms_p">
 							<span class="terms_span"> 
-							<input type="checkbox" id="cbox">
-								<label for=cbox> 이용약관, 개인정보 수집 및 이용, 위치정보 이용약 <br>관(선택), 프로모션 안내 메인 수신(선택)에 모두 동<br>의합니다.</label>
+								<input type="checkbox" id="cbox">
+								<span class="checkbox_img"></span>
+								<label for=cbox class="label1 label_allck">모두 동의합니다.</label>
 							</span>
-						</p>
+							<p>전체동의는 필수 및 선택정보에 대한 동의도 포함되어 있으며, 개별적으로도 동의를 선택하실 수 있습니다. 선택항목에 대한 동의를 거부하시는 경우에도 서비스는 이용이 가능합니다.</p>
+						</span>
 						<ul class="terms_ul">
 							<li class="terms_ul_li1">
 								<span class="ul_li_span"> 
-									<input type="checkbox" id="cons_box1" class="ckboxs"> 
-									<label for="cons_box1" class="label1"> PAIK'S RECIPE 이용악관 동의<span class="span_only">(필수)</span></label>
+									<input type="checkbox" id="cons_box1" class="ckboxs">
+									<span class="checkbox_img"></span>
+									<label for="cons_box1" class="label1"> PAIK'S RECIPE 이용악관 동의<span class="span_only"> (필수)</span></label>
 								</span>
-								<div class="terms_box">
-									<div class="article">
-										<h3 class="article_title">여러분을 환영합니다.</h3>
-										<p>PAIK'S RECIPE 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은
-											다양한 PAIK'S RECIPE 서비스의 이용과 관련하여 PAIK'S RECIPE 서비스를 제공하는
-											PAIK'S RECIPE 주식회사(이하 ‘PAIK'S RECIPE’)와 이를 이용하는 PAIK'S RECIPE
-											서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 PAIK'S RECIPE 서비스
-											이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.</p>
-									</div>
-								</div>
 							</li>
 							<li class="terms_ul_li2">
 								<span class="ul_li_span">
 									<input type="checkbox" id="cons_box2" class="ckboxs"> 
-									<label for="cons_box2" class="label1"> 개인정보 수집 및 이용에 대한 안내<span class="span_only">(필수)</span></label>
+									<span class="checkbox_img"></span>
+									<label for="cons_box2" class="label1"> 개인정보 수집 및 이용에 대한 안내<span class="span_only"> (필수)</span></label>
 								</span>
-								<div class="terms_box">
-									<div class="article">
-										<p>정보통신망법 규정에 따라 PAIK'S RECIPE에 회원가입 신청하시는 분께 수집하는 개인정보의
-											항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간을 안내 드리오니 자세히 읽은 후 동의하여
-											주시기 바랍니다.</p><br>
-										<h3 class="article_title">1. 수집하는 개인정보</h3><br>
-										<p>이용자는 회원가입을 하지 않아도 정보 검색, 뉴스 보기 등 대부분의 PAIK'S RECIPE
-											서비스를 회원과 동일하게 이용할 수 있습니다. 이용자가 메일, 캘린더, 카페, 블로그 등과 같이 개인화 혹은
-											회원제 서비스를 이용하기 위해 회원가입을 할 경우, PAIK'S RECIPE는 서비스 이용을 위해 필요한
-											최소한의 개인정보를 수집합니다.</p>
-									</div>
-								</div>
 							</li>
 							<li class="terms_ul_li3">
 								<span class="ul_li_span"> 
 									<input type="checkbox" id="cons_box3" class="ckboxs"> 
-									<label for="cons_box3" class="label1"> 개인정보 수집 및 이용에 대한 안내<span class="span_select">(선택)</span></label>
+									<span class="checkbox_img"></span>
+									<label for="cons_box3" class="label1"> 개인정보 수집 및 이용에 대한 안내<span class="span_select"> (선택)</span></label>
 								</span>
-								<div class="terms_box">
-									<div class="article">
-										<p>위치정보 이용약관에 동의하시면, <b>위치를 활용한 광고 정보 수신</b> 등을 포함하는 PAIK'S
-											RECIPE 위치기반 서비스를 이용할 수 있습니다.</p>
-										<h3 class="article_title">제 1 조 (목적)</h3>
-										<p>이 약관은 PAIK'S RECIPE 주식회사 (이하 “회사”)가 제공하는 위치정보사업 또는
-											위치기반서비스사업과 관련하여 회사와 개인위치정보주체와의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을
-											목적으로 합니다.</p>
-									</div>
-								</div>
 							</li>
 							<li class="terms_ul_li4">
 								<span class="ul_li_span"> 
-									<input type="checkbox" id="cons_box4" class="ckboxs"> 
-									<label for="cons_box4" class="label1"> 이벤트 등 프로모션 알림 메일 수신<span class="span_select">(선택)</span></label>
+									<input type="checkbox" id="cons_box4" class="ckboxs">
+									<span class="checkbox_img"></span> 
+									<label for="cons_box4" class="label1"> 이벤트 등 프로모션 알림 메일 수신<span class="span_select"> (선택)</span></label>
 								</span>
 							</li>
 						</ul>
@@ -367,10 +241,7 @@ h3.article_title {
 					</div>
 					<div class="btn_double_area">
 						<span>
-							<button type="button" id="cons_btn_cancel" class="btn_type btn_default">취소</button>
-						</span> 
-						<span>
-							<button type="button" id="cons_btn_agree" class="btn_type btn_agree">확인</button>
+							<a type="button" id="cons_btn_agree" class="btn-submit">확인</a>
 						</span>
 					</div>
 				</form>
@@ -388,6 +259,8 @@ h3.article_title {
 			} else {
 				$('.ckboxs').prop('checked', false);
 			}
+			
+			ckColorBtn();
 		});
 
 		/* 
@@ -402,8 +275,26 @@ h3.article_title {
 			} else {
 				$('#cbox').prop('checked', true);
 			}
+			
+			ckColorBtn();
 		});
+		
+		function ckColorBtn(){
+			var agree_one = $('#cons_box1').is(':checked');
+			var agree_two = $('#cons_box2').is(':checked');
+			
+			if(agree_one == true && agree_two == true){
+				$('.btn-submit').addClass('btn-primary');
+				// $('#btn_join').prop('disabled', false);
+				$('.btn-submit').css('cursor', 'pointer');
+			} else {
+				$('.btn-submit').removeClass('btn-primary');
+				// $('#btn_join').prop('disabled', true);
+				$('.btn-submit').css('cursor', 'no-drop');
+			}
+		}
 
+		
 		/* 확인버튼 클릭시 필수체크(2개) 체크유무 유효성 체크 */
 		$('#cons_btn_agree').on('click', function() {
 			var agree_one = $('#cons_box1').is(':checked');
@@ -425,11 +316,7 @@ h3.article_title {
 			
 		});
 
-		
-		/* 취소버튼 클릭시 INDEX페이지로 이동 */
-		$('#cons_btn_cancel').on('click', function() {
-			location.href = '${path}/';
-		});
 	});
+
 </script>
 </html>

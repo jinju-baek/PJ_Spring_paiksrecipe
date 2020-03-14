@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PAIKSRECIPE : 회원가입</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
+<title>PAIKSRECIPE : 회원가입</title>
 <style type="text/css">
 body {
 	background-color: #f5f6f7;

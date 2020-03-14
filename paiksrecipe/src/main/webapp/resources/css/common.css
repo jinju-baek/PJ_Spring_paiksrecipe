@@ -73,25 +73,41 @@ button.btn {
 	margin: 0px 2px;
 }
 
-button.btn-basic {
+.btn-submit {
+	display: block;
+    width: 350px;
+    height: 50px;
+    line-height: 50px;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    text-align: center;
+    color: #333;
+    background-color: #f6f6f6;
+    cursor: pointer;
+    margin: 0 auto;
+	
+}
+
+.btn-basic {
 	border: 1px solid #2F3138;
 	background-color: white;
 	color: #686f7a;
 	outline: none;
 }
 
-button.btn-basic:hover {
+.btn-basic:hover {
 	color: #2F3138;
 	border-color: #2F3138;
 }
 
-button.btn-primary {
+.btn-primary {
 	background-color: #B22230;
 	color: white;
 	outline: none;
 }
 
-button.btn-primary:hover {
+.btn-primary:hover {
 	background-color: #871a24;
 	border-color: transparent;
 }
