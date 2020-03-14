@@ -282,7 +282,10 @@ public class MemberController {
 	public String mypage(HttpSession session, Model model) {
 		log.info("★★★★★★★★★★★★★★★ GET: Member Mypage Page");
 		
-
+		String id = (String)session.getAttribute("userid");
+		
+		model.addAttribute("user", mService.userView(id));
+		
 		return "member/mypage";
 	}
 	

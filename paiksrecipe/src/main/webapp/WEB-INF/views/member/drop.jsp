@@ -156,21 +156,6 @@
 	margin: 20px 0 70px 0;
 }
 
-.drop_btn {
-	margin: 0 5px;
-	width: 150px;
-	height: 46px;
-	border-radius: 5px 5px;
-	border: 1px solid #e1e1e1;
-	text-decoration: none;
-	text-align: center;
-	line-height: 46px;
-	background-color: white;
-	color: #B22230;
-	cursor: no-drop;
-}
-
-
 </style>
 </head>
 
@@ -251,7 +236,7 @@
 						<span class="error_next_box all_error_box">탈퇴약관에 동의해주세요.</span>
 					</div>
 					<div class="info_id_button">
-						<a href="#" class="drop_btn"><strong>탈퇴하기</strong></a>
+						<a href="#" class="btn-submit"><strong>탈퇴하기</strong></a>
 					</div>
 				</div>
 			</form>
@@ -302,17 +287,17 @@
 				}
 			}
 			if (checkAll) {
-				$('.drop_btn').addClass('btn-primary');
+				$('.btn-submit').addClass('btn-primary');
 				// $('#btn_join').prop('disabled', false);
-				$('.drop_btn').css('cursor', 'pointer');
+				$('.btn-submit').css('cursor', 'pointer');
 			} else {
-				$('.drop_btn').removeClass('btn-primary');
+				$('.btn-submit').removeClass('btn-primary');
 				// $('#btn_join').prop('disabled', true);
-				$('.drop_btn').css('cursor', 'no-drop');
+				$('.btn-submit').css('cursor', 'no-drop');
 			}
 		}
 		
-		$('.drop_btn').click(function(){
+		$('.btn-submit').click(function(){
 			var checkAll = true;
 			
 			for(var i = 0; i < checkArr.length; i++) {

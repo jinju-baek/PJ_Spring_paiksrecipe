@@ -33,10 +33,12 @@
 
 th {
 	text-align: left;
+	width: 70px;
 }
 
 td {
 	text-align: left;
+	font-size: 14px;
 }
 
 .btn_wrap {
@@ -83,30 +85,30 @@ td {
 				<table class="info">
 					<tr class="info_list">
 						<th class="info_title">아이디:</th>
-						<td class="info_content"></td>
+						<td class="info_content">${user.id}</td>
 					</tr>
 					<tr class="info_list">
 						<th class="info_title">이름:</th>
-						<td class="info_content"></td>
+						<td class="info_content">${user.name}</td>
 					</tr>
 					<tr class="info_list">
 						<th class="info_title">전화번호:</th>
-						<td class="info_content"></td>
+						<td class="info_content">${user.phone}</td>
 					</tr>
 					<tr class="info_list">
 						<th class="info_title">이메일:</th>
-						<td class="info_content"></td>
+						<td class="info_content">${user.email}</td>
 					</tr>
 					<tr class="info_list">
-						<th class="info_title">주소:</th>
-						<td class="info_content"></td>
+						<th class="info_title">주소: </th>
+						<td class="info_content">${user.addr1} ${user.addr2}</td>
 					</tr>
 				</table>
 			</div>
 			<div class="btn_wrap">
-				<a href="${path}/member/update" class="btn_memUpdate">회원정보수정</a> 
-				<a href="${path}/member/pwupdate" class="btn_pwUpdate">비밀번호변경</a> 
-				<a href="${path}/member/drop" class="btn_drop">회원탈퇴</a>
+				<a href="${path}/member/update" class="btn-primary btn_memUpdate">회원정보수정</a> 
+				<a href="${path}/member/pwupdate" class="btn-primary btn_pwUpdate">비밀번호변경</a> 
+				<a href="${path}/member/drop" class="btn-primary btn_drop">회원탈퇴</a>
 			</div>
 
 		</div>

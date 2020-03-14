@@ -107,10 +107,13 @@ button.btn {
 	outline: none;
 }
 
+
 .btn-primary:hover {
 	background-color: #871a24;
 	border-color: transparent;
 }
+
+
 
 /* Text에 밑줄 쳐지는 css 효과 */
 .magicline:after {

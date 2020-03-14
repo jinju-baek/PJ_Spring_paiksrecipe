@@ -9,18 +9,9 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
 <title>PAIKSRECIPE : 회원가입</title>
 <style type="text/css">
-body {
-	background-color: #f5f6f7;
-}
-
 .wrap {
-	width: 768px;
-	margin: 80px auto 0;
-}
-
-.header {
-	padding: 62px 0px 20px;
-	position: relative;
+	width: 580px;
+	margin: 130px auto 0;
 }
 
 .p_logo {
@@ -30,15 +21,22 @@ body {
 		남는 가로를 margin: auto로 가운데 정렬 함 
 	*/
 	margin: auto;
-	width: 280px;
-	height: 64px;
+	width: 212px;
+	height: 40px;
 	background: url("${path}/resources/img/logo.png") 50% 50% no-repeat;
 	background-size: contain;
 }
 
 .join_content {
-	width: 460px;
-	margin: 0 auto;
+	margin: 40px auto;
+    padding: 50px 69px;
+    border: 1px solid #e5e5e5;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+.join_step {
+	margin-bottom: 40px;
 }
 
 .row_group {
@@ -47,9 +45,8 @@ body {
 }
 
 .join_title {
-	margin: 19px 0 8px;
-	font-size: 14px;
-	font-weight: 700;
+	margin: 8px;
+	font-size: 12px;
 	color: black;
 }
 
@@ -58,11 +55,18 @@ body {
 	align-items: center;
 	position: relative;
 	width: 100%;
-	height: 51px;
-	border: 1px solid #dadada;
+	height: 41px;
+	border-bottom: 2px solid #ebebeb;
 	padding: 10px 14px 10px 14px;
-	background: #fff;
-	vertical-align: top;
+	margin-bottom: 5px;
+}
+
+
+.input-basic {
+
+	border: 1px solid ;
+
+	background-color: white;
 }
 
 #uemail, #email_url, .at {
@@ -207,15 +211,8 @@ to {
 </head>
 <body>
 	<div class="wrap">
-		<header>
-			<div class="header">
-				<h1 class="paiks_logo">
-					<a href="${path}/" class="p_logo"></a>
-				</h1>
-			</div>
-		</header>
-
 		<section>
+			<div class="p_logo"></div>
 			<!-- 
 				spring form태그
 			 	method : POST(default)
@@ -224,6 +221,7 @@ to {
 			<form:form id="frm_member" modelAttribute="memberDTO" autocomplete="on">
 				<div class="container">
 					<div class="join_content">
+						<h2 class="join_step">PAIKS' RECIPE 계정 정보를 입력해주세요</h2>
 						<div class="row_group">
 							<div class="join_row">
 								<h3 class="join_title"><label for="uid">아이디</label></h3>
@@ -237,12 +235,12 @@ to {
 								<h3 class="join_title"><label for="upw">비밀번호</label></h3>
 								<div class="pw_wrap">
 									<div class="ps_box int_pass">
-										<input type="text" id="upw" name="pw" class="int" placeholder="비밀번호 입력" > 
+										<input type="password" id="upw" name="pw" class="int" placeholder="비밀번호 입력" > 
 										<span class="step_url"><span class="pw_lock"></span></span> 
 										<span class="step_url"><span class="repw_lock1"></span></span>
 									</div>
 									<div class="ps_box int_pass">
-										<input type="text" id="urpw" name="urpw" class="int" placeholder="비밀번호 재입력"> 
+										<input type="password" id="urpw" name="urpw" class="int" placeholder="비밀번호 재입력"> 
 										<span class="step_url"><span class="repw_lock2"></span></span>
 									</div>
 								</div>
@@ -288,7 +286,7 @@ to {
 							</div>
 						</div>
 						<div class="btn_double_area">
-							<span><button type="button" href="#" id="btn_join" class="btn_type">가입하기</button></span>
+							<span><button type="button" href="#" id="btn_join" class="btn-submit">가입하기</button></span>
 						</div>
 					</div>
 				</div>
@@ -347,13 +345,13 @@ to {
 
 		function ckDesign(code, desc, line, msg) {
 			if (code == 0 || code == 10) { // 통과 o
-				$('.ps_box:eq(' + line + ')').css('border', '2px solid #3885CA');
+				$('.ps_box:eq(' + line + ')').css('border-bottom', '2px solid #3885CA');
 				$('.error_next_box:eq(' + msg + ')').css('visibility', 'visible')
 													.text(desc)
 													.css('color', '#3885CA');
 				return true;
 			} else { // 통과 x
-				$('.ps_box:eq(' + line + ')').css('border', '2px solid #d95339');
+				$('.ps_box:eq(' + line + ')').css('border-bottom', '2px solid #d95339');
 				$('.error_next_box:eq(' + msg + ')').css('visibility', 'visible')
 													.text(desc)
 													.css('color', '#d95339');
@@ -401,11 +399,11 @@ to {
 			
 			if (result.code == 10) {
 				checkArr[1] = true;
-				$('.ps_box:eq(1)').css('border', '2px solid #3885CA');
+				$('.ps_box:eq(1)').css('border-bottom', '2px solid #3885CA');
 				// $('.pw_lock').css('background-position', '-54px 0px');
 			} else if (result.code == 6) {
 				checkArr[1] = false;
-				$('.ps_box:eq(1)').css('border', '2px solid #d95339');
+				$('.ps_box:eq(1)').css('border-bottom', '2px solid #d95339');
 			} else {
 				checkArr[1] = false;
 			}

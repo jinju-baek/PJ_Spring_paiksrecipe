@@ -31,7 +31,7 @@ a{
 .basic_modal_content_wrap{
 	position: absolute;
 	display: flex;
-	left: 40%;
+	left: 35%;
 	top: 35%
 }
 .basic_modal_content{

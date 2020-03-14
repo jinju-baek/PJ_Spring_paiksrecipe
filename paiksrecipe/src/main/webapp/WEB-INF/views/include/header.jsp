@@ -156,13 +156,14 @@ div.header_content {
 
 .header_content_dropdown_group>a {
 	display: inline-block;
-	padding: 12px 15px;
+	padding: 15px 15px;
 	font-weight: 400;
 	border: 1px solid transparent;
 	border-radius: 2px;
 	height: 45px;
-	color: #506763;
+	color: #686f7a;
 	line-height: 19px;
+	font-weight: bold;
 }
 
 .header_content_dropdown_wrqp:hover>div>a, .header_content_member_cart:hover>a
@@ -171,12 +172,23 @@ div.header_content {
 	border-color: rgba(20, 23, 28, .05);
 }
 
+.header_content_dropdown_mypage:hover .header_dropdown {
+	display: block;
+}
+
+.header_content_dropdown_mypage:hover>div>a, .header_content_member_cart:hover>a
+{
+	background-color: rgba(20, 23, 28, .05);
+	border-color: rgba(20, 23, 28, .05);
+	border-radius: 50%;
+}
+
 .header_content_member_cart>a {
 	display: inline-block;
 	width: 45px;
 	height: 45px;
 	border-radius: 50%;
-	color: #506763;
+	color: #686f7a;
 	border: 1px solid transparent;
 	text-align: center;
 	padding: 15px;
@@ -285,16 +297,16 @@ div.header_content {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px 18px;
+	padding: 15px 18px;
 }
 
 .modal_logo {
-	max-width: 170px;
-	padding-top: 10px;
-}
-
-.modal_logo:hover {
-	cursor: pointer;
+	background: url('${path}/resources/img/logo.png') no-repeat;
+	background-position: center;
+	background-size: contain;
+	width: 200px;
+	height: 38px;
+	
 }
 
 .login_close>button {
@@ -324,14 +336,15 @@ div.header_content {
 }
 
 .label>div {
-	font-size: 12px;
+	font-size: 14px;
+	font-weight: bold;
 }
 
 #login_id, #login_pw {
 	width: 100%;
 	height: 38px;
 	border: none;
-	border-bottom: 1px solid #e9e9e9;
+	border-bottom: 2px solid #e9e9e9;
 	outline: none;
 }
 
@@ -415,6 +428,7 @@ div.header_content {
 
 .login_btn:hover {
 	cursor: pointer;
+	background-color: #871a24;
 }
 
 .mem_wrap {
@@ -442,7 +456,7 @@ div.header_content {
 	<div class="modal_wrap">
 		<div class="modal_content">
 			<div class="modal_container">
-				<img class="modal_logo" src="${path}/resources/img/logo.png">
+				<div class="modal_logo"></div>
 				<div class="login_close">
 					<button>
 						<i class="fas fa-times"></i>
@@ -514,7 +528,7 @@ div.header_content {
 		<div class="header_wrap">
 			<div class="header_content">
 				<div class="header_content_logo">
-					<a href="#"><img class="header_content_logo_img" src="${path}/resources/img/logo.png"></a>
+					<a href="${path}/"><img class="header_content_logo_img" src="${path}/resources/img/logo.png"></a>
 				</div>
 
 				<div class="header_content_nav">
@@ -570,10 +584,10 @@ div.header_content {
 				</div>
 
 				<div class="header_content_member">
-					<div class="header_content_dropdown_wrqp">
+					<div class="header_content_dropdown_mypage">
 						<div class="header_content_dropdown_group">
 							<!-- 네비게이션 -->
-							<a href="#"><i class="fas fa-user"></i><span> MY PAGE</span></a>
+							<a href="#"><i class="fas fa-user"></i></a>
 							<!-- dropdown 메뉴 -->
 							<div class="header_dropdown">
 								<div class="arrow"></div>
@@ -663,10 +677,10 @@ div.header_content {
 
 	// 로그인 input(id, pw)에 focus되면 테두리색 변경
 	$(document).on('focus', '.login_input', function() {
-		$(this).css('border-bottom', '1px solid black');
+		$(this).css('border-bottom', '2px solid #7c7c7c');
 	});
 	$(document).on('blur', '.login_input', function() {
-		$(this).css('border-bottom', '1px solid #e9e9e9');
+		$(this).css('border-bottom', '2px solid #e9e9e9');
 	});
 
 	// modal창의 x버튼을 클릭하면 modal창 close
@@ -765,6 +779,7 @@ div.header_content {
 		});
 	});
 
+	
 	/* Header 가입하기 버튼 클릭시 동의 페이지 이동 */
 	$(document).on('click', '#header_btn_join', function() {
 		location.href = "${path}/member/constract";
