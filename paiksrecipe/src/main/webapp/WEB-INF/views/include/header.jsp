@@ -637,6 +637,15 @@ div.header_content {
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
+		
+		var message = '${message}';
+		if(message == 'nologin'){
+			$('.modal_wrap').css('display', 'flex');
+			$('#login_id').focus();
+			$('.modal_error_next_box').css('visibility', 'visible')
+									  .text('로그인이 필요한 기능입니다.');
+		}
+		
 		// find('') = ''내용을 찾음,
 		// each() = 앞에서 찾은 갯수(bar_fill의 갯수)만큼 반복 돌음 
 		$('.bar_wrap').find('.bar_fill').each(function() {

@@ -191,12 +191,6 @@ public class MemberController {
 		// 담기 전 형변환 해야함
 		String id = (String)session.getAttribute("userid");
 		
-		// 로그인이 안돼있으면 비정상적인 접근으로 간주하여
-		// 인덱스페이지로 이동!
-		if(id == null) {
-			return "redirect:/";
-		}
-		
 		// 로그인 된 유저의 정보를 GET
 		model.addAttribute("user", mService.userView(id));
 		return "member/join";
@@ -214,13 +208,8 @@ public class MemberController {
 	
 	// 비밀번호수정
 	@GetMapping("/pwupdate")
-	public String pwUpdate(HttpSession session) {
+	public String pwUpdate() {
 		log.info("★★★★★★★★★★★★★★★ GET: Password Update Action");
-		
-		String id = (String)session.getAttribute("userid");
-		if(id == null) {
-			return "redirect:/";
-		}
 		
 		return "member/pwupdate";
 	}

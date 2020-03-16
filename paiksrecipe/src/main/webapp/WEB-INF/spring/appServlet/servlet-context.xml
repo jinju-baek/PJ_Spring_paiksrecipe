@@ -40,4 +40,19 @@
 				</beans:props>
 			</beans:property>
 	</beans:bean>
+	
+	<!-- 어노테이션 붙이지않고 강제로 beans로 등록 -->
+	<!-- Add Interceptor Beans -->
+	<beans:bean id="loginInterceptor" class="com.paiksrecipe.interceptor.LoginInterceptor"></beans:bean>
+	
+	<!-- URL Mapping for Interceptor call -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/mypage"/>
+			<mapping path="/member/update"/>
+			<mapping path="/member/pwupdate"/>
+			<mapping path="/member/drop"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+	</interceptors>
 </beans:beans>

@@ -113,28 +113,6 @@
 	margin: 8px;
 }
 
-.button1 {
-	background-color: white;
-	color: #B22230;
-}
-
-.button2 {
-	background-color: #B22230;
-	color: white;
-}
-
-.button1, .button2 {
-	margin: 0 5px;
-	width: 93px;
-	height: 46px;
-	border-radius: 5px 5px;
-	border: 1px solid #e1e1e1;
-	text-decoration: none;
-	text-align: center;
-	line-height: 46px;
-	outline: none;
-	cursor: pointer;
-}
 </style>
 </head>
 <body>
@@ -187,10 +165,7 @@
 					</div>
 				</div>
 				<div class="info_id_button">
-					<button href="#" class="button1">
-						<strong>취소</strong>
-					</button>
-					<button href="#" class="button2" id="btn_join" >
+					<button href="#" class="btn-submit" id="btn_join" >
 						<strong>확인</strong>
 					</button>
 				</div>

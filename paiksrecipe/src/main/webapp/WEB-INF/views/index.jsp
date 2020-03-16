@@ -364,7 +364,7 @@ div.content {
 			var test = arr.splice(arr.indexOf($(this).next().text()), 1);
 			// 배열에 있는 값(체크하여 추가한 값)을 다시 추가한다.
 			for (var i = 0; i < arr.length; i++) {
-				$('.meterial_selected_content').append(arr[i] + ' ')
+				$('.meterial_selected_content').append(arr[i] + ' ');
 			}
 		}
 	});
