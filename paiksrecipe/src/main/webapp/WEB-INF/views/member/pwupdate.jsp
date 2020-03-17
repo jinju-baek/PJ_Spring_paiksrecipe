@@ -166,7 +166,7 @@
 				</div>
 				<div class="info_id_button">
 					<button href="#" class="btn-submit" id="btn_join" >
-						<strong>확인</strong>
+						<strong>수정하기</strong>
 					</button>
 				</div>
 			</div>
