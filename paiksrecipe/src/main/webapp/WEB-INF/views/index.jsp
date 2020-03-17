@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <!-- header.jsp에 include.jsp가 선언돼있기때문에 header.jsp가 선언된 페이지에는 include.jsp를 선언할 필요가 없음  -->
 <%@ include file="include/header.jsp"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -330,6 +329,7 @@ div.content {
 			</div>
 		</form>
 	</div>
+	<%@ include file="include/footer.jsp"%>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">

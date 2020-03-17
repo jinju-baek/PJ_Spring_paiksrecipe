@@ -248,6 +248,7 @@ ul.terms_ul>li {
 			</div>
 		</section>
 	</div>
+	<%@ include file="../include/footer.jsp"%>
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {

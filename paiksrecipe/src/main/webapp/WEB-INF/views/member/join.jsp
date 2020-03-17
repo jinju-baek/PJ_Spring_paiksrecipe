@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ include file="../include/header.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -294,6 +295,7 @@ to {
 			</form:form>
 		</section>
 	</div>
+	<%@ include file="../include/footer.jsp"%>
 </body>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="${path}/resources/js/validation.js"></script>

@@ -559,7 +559,7 @@ div.header_content {
 
 					<div class="header_content_dropdown_wrqp">
 						<div class="header_content_dropdown_group">
-							<a href="#" class="magicline">커뮤니티</a>
+							<a href="${path}/board/list" class="magicline">커뮤니티</a>
 							<div class="header_dropdown">
 								<div class="arrow"></div>
 								<ul class="header_dropdown_menu">

@@ -173,6 +173,7 @@
 		<!-- </form> -->
 		</form:form>
 	</div>
+	<%@ include file="../include/footer.jsp"%>
 </body>
 <script src="${path}/resources/js/validation.js"></script>
 <script type="text/javascript">
