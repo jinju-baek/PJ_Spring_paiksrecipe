@@ -71,7 +71,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void memDrop(HttpSession session, String id) {
 		// 비즈니스로직(회원탈퇴)
-		// 1) 해당 회원의 useyn을 n으로 update(DB)
+		// 1) 해당 회원의 useyn을 d로 update(DB)
 		int result = mDao.memDrop(id);
 		
 		// 회원탈퇴 성공시 로그인 정보를 삭제 (session 초기화)

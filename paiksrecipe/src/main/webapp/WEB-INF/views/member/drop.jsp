@@ -315,7 +315,7 @@
 			}
 		});
 		
-		$('.y_btn').click(function(){
+		$('.btn-submit').click(function(){
 			location.href='${path}/member/dropAction';
 		});
 	});
