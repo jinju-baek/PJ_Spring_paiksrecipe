@@ -112,7 +112,7 @@ th, td{
 	background: url('${path}/resources/img/icons8-new-24.png') no-repeat;
 	background-size: cover;
 	height: 20px;
- 			width: 24px;
+ 	width: 24px;
 	/* 설정할 애니메이션 이름 */
 	animation-name: twinkle;
 	/* 애니메이션 반복 횟수 */
@@ -208,7 +208,7 @@ border: 1px solid #ccc;
 			</div>
 		</div>
 		<div class="board_wrap">
-			<div class="total_count">총  <strong style="color: #B22230;">${map.listCnt}</strong>  건의 글이 있습니다.</div>
+			<div class="total_count">총  <strong style="color: #B22230;">${map.count}</strong>  건의 글이 있습니다.</div>
 			<table class="board">
 				<tr class="board_first">
 					<th>NO</th>

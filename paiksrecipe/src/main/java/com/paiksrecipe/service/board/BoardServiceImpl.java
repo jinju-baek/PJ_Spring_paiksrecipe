@@ -1,5 +1,6 @@
 package com.paiksrecipe.service.board;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -24,14 +25,18 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 총 게시글 수
 	@Override
-	public List<BoardDTO> listCnt() {		
-		return bDao.listCnt();
+	public int countArticle() {		
+		return bDao.countArticle();
 	}
 	
 	// 게시글 목록 출력
 	@Override
-	public List<BoardDTO> listAll() {		
-		return bDao.listAll();
+	public List<BoardDTO> listAll(int start, int end) {		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("start", start);
+		map.put("end", end);
+		
+		return bDao.listAll(map);
 	}
 
 }
