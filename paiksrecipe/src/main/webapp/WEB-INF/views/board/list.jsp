@@ -101,7 +101,7 @@ option{
 	border-bottom: 1px solid black;
 }
 th, td{
-	text-align: left;
+	text-align: center;
 	padding: 15px 1px 15px 5px;
 }
 .board_list>td div{
@@ -180,6 +180,8 @@ border: 1px solid #ccc;
 
 </head>
 <body>
+	<jsp:useBean id="now" class="java.util.Date"/><!-- 접속날짜 -->
+	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today"/><!-- 접속날짜를 변환 -->
 	<div class="wrap">
 		<div class="board_title_wrap">
 			<h2>커뮤니티</h2>
@@ -206,7 +208,7 @@ border: 1px solid #ccc;
 			</div>
 		</div>
 		<div class="board_wrap">
-			<div class="total_count">총  <strong style="color: #B22230;">926</strong>  건의 글이 있습니다.</div>
+			<div class="total_count">총  <strong style="color: #B22230;">${map.listCnt}</strong>  건의 글이 있습니다.</div>
 			<table class="board">
 				<tr class="board_first">
 					<th>NO</th>
@@ -216,30 +218,33 @@ border: 1px solid #ccc;
 					<th>조회수</th>
 					<th>추천</th>
 				</tr>
-				<tr class="board_list">
-					<td>1</td>
-					<td><a href="#">빈츠 먹고 싶다  (12)  </a><div><i class="fas fa-paperclip"></i></div><div class="new_img"></div></td>
-					<td>징구</td>
-					<td>2020-02-24</td>
-					<td>25</td>
-					<td>174</td>
-				</tr>
-				<tr class="board_list">
-					<td>2</td>
-					<td><a href="#">젤리 먹고 싶다  (15)  </a><div class="new_img"></div></td>
-					<td>징구</td>
-					<td>2020-02-28</td>
-					<td>58</td>
-					<td>716</td>
-				</tr>
-				<tr class="board_list">
-					<td>3</td>
-					<td><a href="#">여행가고싶은데  (8)  </a><div class="new_img"></div></td>
-					<td>징구</td>
-					<td>2020-03-17</td>
-					<td>63</td>
-					<td>1017</td>
-				</tr>
+				<c:forEach items="${map.list}" var="list">
+				<fmt:formatDate value="${list.updatedate}" pattern="yyyy-MM-dd" var="regdate"/>
+					<tr class="board_list">
+						<td>${list.bno}</td>
+						<td>
+							<a href="#">${list.title}  (${list.replycnt})  </a>
+							<div><i class="fas fa-paperclip"></i></div>
+							<c:if test="${today == regdate}">
+								<div class="new_img"></div>
+							</c:if>
+						</td>
+						<td>${list.writer}</td>
+						<td>
+							<c:choose>
+							<%-- JSTL 주석은 이렇게 써야 에러 안뜸--%>
+								<c:when test="${today == regdate}">
+									<fmt:formatDate value="${list.updatedate}" pattern="HH:mm:ss" />		
+								</c:when>
+								<c:otherwise>
+									<fmt:formatDate value="${list.updatedate}" pattern="yyyy-MM-dd" />
+								</c:otherwise>
+							</c:choose>
+						</td>
+						<td>${list.viewcnt}</td>
+						<td>${list.goodcnt}</td>
+					</tr>
+				</c:forEach>
 			</table>
 			<div class="write_btn_wrap"><a href="#" class="write_btn">글쓰기</a></div>
 			<div class="page_btn_wrap"> 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paiksrecipe.persistence.BoardDAO">
+	<select id="listCnt" resultType="Integer">
+		SELECT COUNT(*) FROM tbl_board
+	</select>
+
+	<select id="listAll" resultType="BoardDTO">
+		SELECT bno, title, writer, name, updatedate, viewcnt, replycnt, goodcnt, show
+		FROM tbl_board b, tbl_member m
+		WHERE b.writer = m.name AND b.show = 'y'
+		ORDER BY b.bno DESC
+	</select>
+</mapper>

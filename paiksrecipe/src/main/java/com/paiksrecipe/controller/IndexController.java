@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.paiksrecipe.controller.IndexController;
 import com.paiksrecipe.service.index.IndexService;
 
 import lombok.extern.slf4j.Slf4j;

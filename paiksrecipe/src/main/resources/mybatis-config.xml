@@ -4,6 +4,6 @@
 	<typeAliases>
 		<typeAlias type="com.paiksrecipe.domain.ProductDTO" alias="ProductDTO"></typeAlias>
 		<typeAlias type="com.paiksrecipe.domain.MemberDTO" alias="MemberDTO"></typeAlias>
+		<typeAlias type="com.paiksrecipe.domain.BoardDTO" alias="BoardDTO"></typeAlias>
 	</typeAliases>
-	
 </configuration>
