@@ -214,10 +214,10 @@ th, td{
 		<div class="search_wrap">
 
 			<div class="search_list">
-				<a href="${path}/board/list?sort_option=new&keyword=${map.keyword}" id="sort_new">최신순</a>	
-				<a href="${path}/board/list?sort_option=cnt&keyword=${map.keyword}" id="sort_cnt">조회순</a>
-				<a href="${path}/board/list?sort_option=reply&keyword=${map.keyword}" id="sort_reply">댓글순</a>
-				<a href="${path}/board/list?sort_option=good&keyword=${map.keyword}" id="sort_good">추천순</a>
+				<a href="${path}/board/list?sort_option=new&keyword=${map.keyword}" class="sort_li" id="sort_new">최신순</a>
+				<a href="${path}/board/list?sort_option=cnt&keyword=${map.keyword}" class="sort_li" id="sort_cnt">조회순</a>
+				<a href="${path}/board/list?sort_option=reply&keyword=${map.keyword}" class="sort_li" id="sort_reply">댓글순</a>
+				<a href="${path}/board/list?sort_option=good&keyword=${map.keyword}" class="sort_li" id="sort_good">추천순</a>
 			</div>
 			
 			<form action="${path}/board/list" method="GET">
@@ -305,14 +305,16 @@ th, td{
 </body>
 <script type="text/javascript">
 	$(function() {
-		var sort_option = '${map.sort_option}';		
-		$('.search_list a').click(function(){
-			option = $(this).attr('id');
-			if(sort_option == option){
-				$(this).css('border-bottom', '1px solid #B22230')
-					   .css('color', '#B22230');
-			}
-		});		
+		var sort_option = '${map.sort_option}';
+		if(sort_option == 'new') {
+			$('.sort_li:eq(0)').css('color', '#B22230');
+		} else if(sort_option == 'cnt') {
+			$('.sort_li:eq(1)').css('color', '#B22230');
+		} else if(sort_option == 'reply') {
+			$('.sort_li:eq(2)').css('color', '#B22230');
+		} else {
+			$('.sort_li:eq(3)').css('color', '#B22230');
+		}
 	});
 </script>
 </html>
