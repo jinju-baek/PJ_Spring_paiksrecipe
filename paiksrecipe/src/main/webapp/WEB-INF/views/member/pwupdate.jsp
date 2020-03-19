@@ -139,13 +139,13 @@
 							<div class="pw_wrap up_pw">
 								<div class="content">수정할 비밀번호</div>
 								<div class="input_wrap">
-									<input class="next_pw_input pw int" name="pw" type="password" placeholder="비밀번호 입력">
+									<input class="next_pw_input pw int" name="pw" type="password" placeholder="비밀번호 입력" readonly>
 								</div>
 							</div>
 							<div class="pw_wrap re_pw">
 								<div class="content">비밀번호 재확인</div>
 								<div class="input_wrap">
-									<input class="next_repw_input pw int" type="password" placeholder="비밀번호 입력">
+									<input class="next_repw_input pw int" type="password" placeholder="비밀번호 입력" readonly>
 								</div>
 							</div>
 							<span class="error_next_box">필수 정보입니다.</span>
@@ -205,8 +205,12 @@
 			
 			if(result.code == 100) {
 				checkArr[0] = true;
+				$(this).prop('readonly', true);
+				$('.next_pw_input').prop('readonly', false);
+				$('.next_repw_input').prop('readonly', false);
 			} else {
 				checkArr[0] = false;
+				$(this).prop('readonly', false);
 			}
 		});
 		
@@ -232,10 +236,10 @@
 			if (result.code == 10) {
 				checkArr[1] = true;
 				$('.input_wrap:eq(1)').css('border', '2px solid #3885CA');
+				$('.input_wrap:eq(2)').css('border', '2px solid #3885CA');
 				// $('.pw_lock').css('background-position', '-54px 0px');
 			} else if (result.code == 6) {
 				checkArr[1] = false;
-				$('.input_wrap:eq(1)').css('border', '2px solid #d95339');
 			} else {
 				checkArr[1] = false;
 			}
@@ -251,6 +255,7 @@
 
 			if (result.code == 10) {
 				checkArr[1] = true;
+				$('.input_wrap:eq(1)').css('border', '2px solid #3885CA');
 			} else if (result.code == 6) {
 				checkArr[1] = false;
 			} else {
