@@ -28,6 +28,7 @@ public class BoardContorller {
 	public String list(@RequestParam(defaultValue="1") int curPage, Model model) {
 		log.info("★★★★★★★★★★★★★★★ GET: BOARD List PAGE");
 
+		log.info("curPage= "+curPage);
 		// 게시글 개수 계산
 		int count = bService.countArticle();
 		
@@ -41,9 +42,11 @@ public class BoardContorller {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("count", count);
 		map.put("list", list);
+		map.put("pager", pager);
 		
 		model.addAttribute("map", map);
 		
+		log.info(pager.toString());
 		return "board/list";
 	}
 }

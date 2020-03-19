@@ -154,27 +154,25 @@ th, td{
 	margin: 20px 0;
 }
 .page_btn_wrap>a{
-	margin: 0 1px;
+	margin: 0 3px;
 }
-.page_arrow{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 40px;
-	height: 40px;
+
+.page_btn_wrap>a>i{
+	line-height: 23px;
+}
+
+.page_num{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	padding: 3px;
 	color: #8a8a8a;
 	border: 1px solid #ccc;
 }
-.page_arrow>img{
-	width: 15px;
-}
-.page_num{
-	display: inline-block;
-	width: 40px;
-	height: 40px;
-	padding: 8px;
-	color: #8a8a8a;
-border: 1px solid #ccc;
+#check_color{
+	color: white;
+	background-color: #B22230;
+	border: 1px solid #B22230;
 }
 </style>
 
@@ -248,20 +246,30 @@ border: 1px solid #ccc;
 			</table>
 			<div class="write_btn_wrap"><a href="#" class="write_btn">글쓰기</a></div>
 			<div class="page_btn_wrap"> 
-				<a class="page_arrow" href="#"><img src="${path}/resources/img/icons8-chevron-doubleLeft-24.png"></a>
-				<a class="page_arrow" href="#"><img src="${path}/resources/img/icons8-chevron-left-24.png"></a>
-				<a class="page_num" href="#">1</a>
-				<a class="page_num" href="#">2</a>
-				<a class="page_num" href="#">3</a>
-				<a class="page_num" href="#">4</a>
-				<a class="page_num" href="#">5</a>
-				<a class="page_num" href="#">6</a>
-				<a class="page_num" href="#">7</a>
-				<a class="page_num" href="#">8</a>
-				<a class="page_num" href="#">9</a>
-				<a class="page_num" href="#">10</a>
-				<a class="page_arrow" href="#"><img src="${path}/resources/img/icons8-chevron-right-24.png"></a>
-				<a class="page_arrow" href="#"><img src="${path}/resources/img/icons8-chevron-doubleRight-24.png"></a>
+			
+				<c:if test="${map.pager.curBlock > 1}">
+					<a class="page_num" href="${path}/board/list?curPage=${map.pager.blockBegin-10}&sort_option=${map.sort_option}&keyword=${map.keyword}"><i class="fas fa-angle-left"></i></a>
+					<a class="page_num" href="${path}/board/list?curPage=1&sort_option=${map.sort_option}&keyword=${map.keyword}">1</a>
+					<a class="page_num" href="#">...</a>
+				</c:if>
+					
+				<c:forEach var="num" begin="${map.pager.blockBegin}" end="${map.pager.blockEnd}">
+				<c:choose>
+					<c:when test="${num == map.pager.curPage}">
+						<a class="page_num" id="check_color" href="${path}/board/list?curPage=${num}&sort_option=${map.sort_option}&keyword=${map.keyword}">${num}</a>
+					</c:when>
+					<c:otherwise>
+						<a class="page_num" href="${path}/board/list?curPage=${num}&sort_option=${map.sort_option}&keyword=${map.keyword}">${num}</a>
+					</c:otherwise>
+				</c:choose>
+				</c:forEach>
+				
+				<c:if test="${map.pager.curBlock < map.pager.totBlock}">
+					<a class="page_num" href="#">...</a>
+					<a class="page_num" href="${path}/board/list?curPage=${map.pager.totPage}&sort_option=${map.sort_option}&keyword=${map.keyword}">${map.pager.totPage}</a>
+					<a class="page_num" href="${path}/board/list?curPage=${map.pager.blockEnd + 1}&sort_option=${map.sort_option}&keyword=${map.keyword}"><i class="fas fa-angle-right"></i></a>
+				</c:if>
+				
 			</div>
 		</div>
 	</div>

@@ -54,7 +54,7 @@ public class Pager {
 	// where rn between #{start} and #{end}에 입력될 값
 	public void setPageRange() {
 		// 시작번호 = (현재페이지 - 1) * 페이지당 게시물 수 +1
-		// 끝번호 = (시작번호 + 페이지당 게시물 수 -1
+		// 끝번호 = (시작번호 + 페이지당 게시물 수) -1
 		pageBegin = (curPage - 1) * PAGE_SCALE + 1;
 		pageEnd = pageBegin + PAGE_SCALE - 1;
 	}
@@ -155,6 +155,14 @@ public class Pager {
 
 	public void setBlockEnd(int blockEnd) {
 		this.blockEnd = blockEnd;
+	}
+
+	@Override
+	public String toString() {
+		return "Pager [curPage=" + curPage + ", prevPage=" + prevPage + ", nextPage=" + nextPage + ", totPage="
+				+ totPage + ", totBlock=" + totBlock + ", curBlock=" + curBlock + ", prevBlock=" + prevBlock
+				+ ", nextBlock=" + nextBlock + ", pageBegin=" + pageBegin + ", pageEnd=" + pageEnd + ", blockBegin="
+				+ blockBegin + ", blockEnd=" + blockEnd + "]";
 	}
 
 }
