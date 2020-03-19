@@ -84,13 +84,30 @@ option{
 }
 .board{
 	border-collapse: collapse;
-	width: 100%;
-	margin: 20px 0;
+	width: 770px;
+	margin: 20px auto;
 }
 .board_first{
 	border-bottom: 1px solid black;
 	color: #8a8a8a;
 }
+
+.board_bno, .board_viewcnt, .board_goodcnt{
+	width: 50px;
+}
+
+.board_title{
+	width: 430px;
+}
+
+.board_writer{
+ 	width: 75px;
+}
+
+.board_regdate {
+	width: 90px;
+}
+
 .board_list{
 	border-bottom: 1px solid #ebebeb;
 }
@@ -169,6 +186,12 @@ th, td{
 	color: #8a8a8a;
 	border: 1px solid #ccc;
 }
+
+.page_num:hover{
+	color: #B22230;
+	border: 1px solid #B22230;
+}
+
 #check_color{
 	color: white;
 	background-color: #B22230;
@@ -189,46 +212,51 @@ th, td{
 			</div>
 		</div>
 		<div class="search_wrap">
+
 			<div class="search_list">
-				<a href="#">최신순</a>	
-				<a href="#">조회순</a>
-				<a href="#">댓글순</a>
-				<a href="#">추천순</a>
+				<a href="${path}/board/list?sort_option=new&keyword=${map.keyword}" id="sort_new">최신순</a>	
+				<a href="${path}/board/list?sort_option=cnt&keyword=${map.keyword}" id="sort_cnt">조회순</a>
+				<a href="${path}/board/list?sort_option=reply&keyword=${map.keyword}" id="sort_reply">댓글순</a>
+				<a href="${path}/board/list?sort_option=good&keyword=${map.keyword}" id="sort_good">추천순</a>
 			</div>
-			<div class="search_box">
-				<select>
-					<option>전체</option>
-					<option>제목</option>
-					<option>내용</option>
-				</select>
-				<div class="search_input"><input type="search" name="" placeholder="검색어를 입력해주세요."></div>
-				<button class="search_submit">조회</button>
-			</div>
+			
+			<form action="${path}/board/list" method="GET">
+				<div class="search_box">
+					<select name="search_option">
+						<option value="all">전체</option>
+						<option value="title">제목</option>
+						<option value="content">내용</option>
+						<option value="writer">작성자</option>
+					</select>
+					<div class="search_input"><input type="text" name="keyword" placeholder="검색어를 입력해주세요."></div>
+					<button type="submit" class="search_submit">조회</button>
+				</div>
+			</form>
 		</div>
 		<div class="board_wrap">
 			<div class="total_count">총  <strong style="color: #B22230;">${map.count}</strong>  건의 글이 있습니다.</div>
 			<table class="board">
 				<tr class="board_first">
-					<th>NO</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-					<th>조회수</th>
-					<th>추천</th>
+					<th class="board_bno">NO</th>
+					<th class="board_title">제목</th>
+					<th class="board_writer">작성자</th>
+					<th class="board_regdate">작성일</th>
+					<th class="board_viewcnt">조회수</th>
+					<th class="board_goodcnt">추천</th>
 				</tr>
 				<c:forEach items="${map.list}" var="list">
 				<fmt:formatDate value="${list.updatedate}" pattern="yyyy-MM-dd" var="regdate"/>
 					<tr class="board_list">
-						<td>${list.bno}</td>
-						<td>
-							<a href="#">${list.title}  (${list.replycnt})  </a>
+						<td class="board_bno">${list.bno}</td>
+						<td class="board_title">
+							<a href="#">${list.title}  [${list.replycnt}]  </a>
 							<div><i class="fas fa-paperclip"></i></div>
 							<c:if test="${today == regdate}">
 								<div class="new_img"></div>
 							</c:if>
 						</td>
-						<td>${list.writer}</td>
-						<td>
+						<td class="board_writer">${list.writer}</td>
+						<td class="board_regdate">
 							<c:choose>
 							<%-- JSTL 주석은 이렇게 써야 에러 안뜸--%>
 								<c:when test="${today == regdate}">
@@ -239,8 +267,8 @@ th, td{
 								</c:otherwise>
 							</c:choose>
 						</td>
-						<td>${list.viewcnt}</td>
-						<td>${list.goodcnt}</td>
+						<td class="board_viewcnt">${list.viewcnt}</td>
+						<td class="board_goodcnt">${list.goodcnt}</td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -254,14 +282,14 @@ th, td{
 				</c:if>
 					
 				<c:forEach var="num" begin="${map.pager.blockBegin}" end="${map.pager.blockEnd}">
-				<c:choose>
-					<c:when test="${num == map.pager.curPage}">
-						<a class="page_num" id="check_color" href="${path}/board/list?curPage=${num}&sort_option=${map.sort_option}&keyword=${map.keyword}">${num}</a>
-					</c:when>
-					<c:otherwise>
-						<a class="page_num" href="${path}/board/list?curPage=${num}&sort_option=${map.sort_option}&keyword=${map.keyword}">${num}</a>
-					</c:otherwise>
-				</c:choose>
+					<c:choose>
+						<c:when test="${num == map.pager.curPage}">
+							<a class="page_num" id="check_color" href="${path}/board/list?curPage=${num}&sort_option=${map.sort_option}&keyword=${map.keyword}">${num}</a>
+						</c:when>
+						<c:otherwise>
+							<a class="page_num" href="${path}/board/list?curPage=${num}&sort_option=${map.sort_option}&keyword=${map.keyword}">${num}</a>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
 				
 				<c:if test="${map.pager.curBlock < map.pager.totBlock}">
@@ -275,4 +303,16 @@ th, td{
 	</div>
 	<%@ include file="../include/footer.jsp"%>	
 </body>
+<script type="text/javascript">
+	$(function() {
+		var sort_option = '${map.sort_option}';		
+		$('.search_list a').click(function(){
+			option = $(this).attr('id');
+			if(sort_option == option){
+				$(this).css('border-bottom', '1px solid #B22230')
+					   .css('color', '#B22230');
+			}
+		});		
+	});
+</script>
 </html>

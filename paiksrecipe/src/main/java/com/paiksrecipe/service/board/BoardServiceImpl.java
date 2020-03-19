@@ -2,6 +2,7 @@ package com.paiksrecipe.service.board;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +26,22 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 총 게시글 수
 	@Override
-	public int countArticle() {		
-		return bDao.countArticle();
+	public int countArticle(String search_option, String keyword) {		
+		Map<String, String> map = new HashMap<>();
+		map.put("search_option", search_option);
+		map.put("keyword", "%"+keyword+"%");
+		return bDao.countArticle(map);
 	}
 	
 	// 게시글 목록 출력
 	@Override
-	public List<BoardDTO> listAll(int start, int end) {		
-		HashMap<String, Object> map = new HashMap<>();
+	public List<BoardDTO> listAll(String sort_option, String search_option, String keyword, int start, int end) {		
+		Map<String, Object> map = new HashMap<>();
+		map.put("sort_option", sort_option);
 		map.put("start", start);
 		map.put("end", end);
-		
+		map.put("search_option", search_option);
+		map.put("keyword", "%"+keyword+"%");
 		return bDao.listAll(map);
 	}
 
