@@ -228,11 +228,7 @@ strong{
 	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today"/><!-- 접속날짜를 변환 -->
 	<div class="wrap">
 		<div class="board_title_wrap">
-			<h2>커뮤니티</h2>
-			<div class="board_menu_wrap">
-				<a href="#">자유게시판</a>
-				<a href="#">요리게시판</a>
-			</div>
+			<h2>자유게시판</h2>
 		</div>
 		<div class="search_wrap">
 

@@ -559,11 +559,11 @@ div.header_content {
 
 					<div class="header_content_dropdown_wrqp">
 						<div class="header_content_dropdown_group">
-							<a href="${path}/board/list" class="magicline">커뮤니티</a>
+							<a href="#" class="magicline">커뮤니티</a>
 							<div class="header_dropdown">
 								<div class="arrow"></div>
 								<ul class="header_dropdown_menu">
-									<li><a href="#">자유게시판</a></li>
+									<li><a href="${path}/board/list">자유게시판</a></li>
 									<li><a href="#">요리게시판</a></li>
 								</ul>
 							</div>
