@@ -30,11 +30,12 @@ h2{
 }
 .search_list>a{
 	margin: 0 5px;
-	padding: 5px 0;
+	padding: 2px 0;
+	font-weight: bold;
 
 }
 .search_list>a:hover{
-	border-bottom: 1px solid #B22230;
+	border-bottom: 2px solid #B22230;
 	color: #B22230;
 }
 .search_box{
@@ -82,6 +83,25 @@ option{
 	width: 768px;
 	margin: 0 auto;
 }
+
+.board_count_info{
+	display: flex;
+
+}
+
+.clear_btn{
+	padding: 0px 5px;
+    background: #B22230;
+    color: white;
+    border-radius: 5px;
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+.total_count, .clear_btn{
+	line-height: 20px;
+}
+
 .board{
 	border-collapse: collapse;
 	width: 770px;
@@ -197,6 +217,9 @@ th, td{
 	background-color: #B22230;
 	border: 1px solid #B22230;
 }
+strong{
+	color: #B22230;
+}
 </style>
 
 </head>
@@ -228,13 +251,25 @@ th, td{
 						<option value="content">내용</option>
 						<option value="writer">작성자</option>
 					</select>
-					<div class="search_input"><input type="text" name="keyword" placeholder="검색어를 입력해주세요."></div>
+					<div class="search_input"><input type="text" name="keyword" placeholder="검색어를 입력해주세요." value="${map.keyword}"></div>
 					<button type="submit" class="search_submit">조회</button>
 				</div>
 			</form>
 		</div>
 		<div class="board_wrap">
-			<div class="total_count">총  <strong style="color: #B22230;">${map.count}</strong>  건의 글이 있습니다.</div>
+			<div class="board_count_info">
+				<c:choose>
+					<c:when test="${empty map.keyword}">
+						<div class="total_count">총  <strong>${map.count}</strong>  건의 글이 있습니다.</div>
+					</c:when>
+					<c:otherwise>
+						<div class="total_count"><strong>"${map.keyword}"</strong> 검색결과 <strong>${map.count}</strong>건 검색되었습니다.</div>
+						<a class="clear_btn" href="${path}/board/list">CLEAR <i class="far fa-times-circle"></i></a>
+					</c:otherwise>
+				</c:choose>
+			</div>
+
+			
 			<table class="board">
 				<tr class="board_first">
 					<th class="board_bno">NO</th>
