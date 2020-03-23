@@ -45,4 +45,9 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.listAll(map);
 	}
 
+	@Override
+	public BoardDTO view(int bno) {		
+		return bDao.view(bno);
+	}
+
 }

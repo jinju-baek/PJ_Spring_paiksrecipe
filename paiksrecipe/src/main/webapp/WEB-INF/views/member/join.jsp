@@ -12,7 +12,7 @@
 <style type="text/css">
 .wrap {
 	width: 580px;
-	margin: 130px auto 0;
+	margin: 130px auto;
 }
 
 .p_logo {

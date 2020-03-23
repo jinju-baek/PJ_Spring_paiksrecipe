@@ -26,7 +26,7 @@ a {
 }
 
 .constract_wrap {
-	margin: 130px auto 0;
+	margin: 130px auto;
 }
 
 .container {
@@ -49,7 +49,7 @@ a {
 /* Container */
 .constract_content {
 	width: 520px;
-	margin: 40px auto 40px;
+	margin: 40px auto;
 	padding : 58px 69px 40px;
 	border: 1px solid #dadada;
 }

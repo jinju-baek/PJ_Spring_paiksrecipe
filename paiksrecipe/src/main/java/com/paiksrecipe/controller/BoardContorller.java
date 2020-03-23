@@ -59,4 +59,14 @@ public class BoardContorller {
 		log.info(pager.toString());
 		return "board/list";
 	}
+	
+	@GetMapping("view")
+	public String view(int bno, Model model) {
+		log.info("★★★★★★★★★★★★★★★ GET: BOARD VIEW PAGE");
+		
+		model.addAttribute("view", bService.view(bno));
+		
+		
+		return "board/view";
+	}
 }

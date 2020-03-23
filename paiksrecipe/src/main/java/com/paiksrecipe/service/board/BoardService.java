@@ -11,4 +11,6 @@ public interface BoardService {
 	
 	// 게시글 목록
 	public List<BoardDTO> listAll(String sort_option, String search_option, String keyword, int start, int end);
+	
+	public BoardDTO view(int bno);
 }

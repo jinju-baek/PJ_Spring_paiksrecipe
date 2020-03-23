@@ -10,7 +10,7 @@
 <style type="text/css">
 .wrap {
 	width: 768px;
-	margin: 80px auto 0;
+	margin: 80px auto;
 }
 
 .header {

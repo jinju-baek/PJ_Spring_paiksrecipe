@@ -13,4 +13,6 @@ public interface BoardDAO {
 	
 	// 게시글 목록(페이지 나누기, 검색 기능 포함)
 	public List<BoardDTO> listAll(@Param("map") Map<String, Object> map);
+	
+	public BoardDTO view(int num);
 }

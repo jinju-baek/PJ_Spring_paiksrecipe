@@ -10,7 +10,7 @@
 <style type="text/css">
 .mypage_wrap {
 	width: 500px;
-	margin: 130px auto 0;
+	margin: 130px auto;
 }
 
 .wrap_info {

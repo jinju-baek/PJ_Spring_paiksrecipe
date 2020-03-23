@@ -8,6 +8,9 @@
 <title>PAIKSRECIPE : 커뮤니티</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
 <style type="text/css">
+.wrap{
+	margin-bottom: 130px;
+}
 .board_title_wrap{
 	width: 768px;
 	margin: 130px auto 0;
@@ -259,13 +262,12 @@ strong{
 						<div class="total_count">총  <strong>${map.count}</strong>  건의 글이 있습니다.</div>
 					</c:when>
 					<c:otherwise>
-						<div class="total_count"><strong>"${map.keyword}"</strong> 검색결과 <strong>${map.count}</strong>건 검색되었습니다.</div>
+						<div class="total_count"><strong>"${map.keyword}"</strong> 검색결과 <strong>${map.count}</strong>건</div>
 						<a class="clear_btn" href="${path}/board/list">CLEAR <i class="far fa-times-circle"></i></a>
 					</c:otherwise>
 				</c:choose>
 			</div>
 
-			
 			<table class="board">
 				<tr class="board_first">
 					<th class="board_bno">NO</th>
@@ -280,7 +282,7 @@ strong{
 					<tr class="board_list">
 						<td class="board_bno">${list.bno}</td>
 						<td class="board_title">
-							<a href="#">${list.title}  [${list.replycnt}]  </a>
+							<a href="${path}/board/view?bno=${list.bno}">${list.title}  [${list.replycnt}]  </a>
 							<div><i class="fas fa-paperclip"></i></div>
 							<c:if test="${today == regdate}">
 								<div class="new_img"></div>
@@ -301,7 +303,13 @@ strong{
 						<td class="board_viewcnt">${list.viewcnt}</td>
 						<td class="board_goodcnt">${list.goodcnt}</td>
 					</tr>
+
 				</c:forEach>
+				<c:if test="${map.count == 0}">
+					<tr>
+						<td colspan="6">검색된 결과가 없습니다.</td>
+					</tr>
+				</c:if>
 			</table>
 			<div class="write_btn_wrap"><a href="#" class="write_btn">글쓰기</a></div>
 			<div class="page_btn_wrap"> 

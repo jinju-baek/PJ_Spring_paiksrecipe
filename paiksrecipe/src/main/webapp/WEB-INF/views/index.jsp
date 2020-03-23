@@ -14,13 +14,8 @@ body {
 }
 
 div.content_wrap {
-	margin-top: 80px;
-	width: 100%
-}
-
-div.content {
+	margin: 80px auto;
 	width: 1400px;
-	margin: 0 auto;
 	box-sizing: border-box;
 }
 
