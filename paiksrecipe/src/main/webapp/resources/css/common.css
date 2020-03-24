@@ -76,7 +76,7 @@ button.btn {
     text-align: center;
     color: #333;
     background-color: #f6f6f6;
-    cursor: pointer;
+    cursor: no-drop;
     margin: 0 auto;
 	
 }

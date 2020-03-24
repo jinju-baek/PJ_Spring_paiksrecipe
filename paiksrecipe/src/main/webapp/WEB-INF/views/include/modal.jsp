@@ -22,7 +22,7 @@ a{
 	display: none;
 	position: fixed;
 	background-color: rgba(0,0,0,0.4);
-	width: 100%;
+	width: 115%;
 	height: 100%;
 	overflow: auto;
 	z-index: 1000;
@@ -73,15 +73,11 @@ a{
 	padding: 15px;
 }
 .basic_modal_recheck{
-	height: 70px;
-}
-
-.basic_modal_recheck div{
-    margin: 5px 0;
-}
-
+	margin-bottom: 15px;
+} 
 .basic_modal_maintext{
 	font-size: 20px;
+	margin-bottom: 5px;
 }
 .basic_modal_subtext{
 	font-size: 13px;
@@ -141,6 +137,9 @@ a{
 		var dropResult_main_txt = id + '님 탈퇴되셨습니다.';
 		var dropResult_sub_txt = '그동안 PAIKS RECIPE를 이용해주셔서 감사합니다.';
 	
+		var dropBoard_main_txt = "정말 삭제하시겠습니까?";
+		var dropBoardNo_main_txt = "댓글이 있는 게시글은 삭제할 수 없습니다.";
+		
 		if(key == 'join'){
 			$('.basic_modal_maintext').text(join_main_txt); // 메인텍스트
 			$('.basic_modal_subtext').text(join_sub_txt); // 서브텍스트
@@ -162,6 +161,14 @@ a{
 			$('.y_btn').css('display', 'none');
 			$('.n_btn').text('확  인');
 			$('.basic_modal_wrap').css('display', 'flex');
+		} else if(key == 'dropBoard'){
+			if('${one.replycnt}' == 0){ // 댓글이 없는 경우
+				$('.basic_modal_maintext').text(dropBoard_main_txt);	
+			}else{ // 댓글이 있는 경우
+				$('.basic_modal_maintext').text(dropBoardNo_main_txt);	
+				$('.y_btn').css('display', 'none');
+				$('.n_btn').text('확  인');			
+			}
 		}
 		
 		$('.n_btn').on('click', function(){

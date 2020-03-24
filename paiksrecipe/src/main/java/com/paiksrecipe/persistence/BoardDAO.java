@@ -19,4 +19,7 @@ public interface BoardDAO {
 	
 	// 상세게시글 출력
 	public BoardDTO view(int num);
+	
+	// 상세게시글 삭제
+	public void delBoard(@Param("bno") int bno);
 }

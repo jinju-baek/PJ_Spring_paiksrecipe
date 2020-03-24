@@ -53,7 +53,7 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.view(bno);
 	}
 
-	//조회수 +1 증가
+	// 조회수 +1 증가
 	@Override
 	public void increaseViewCnt(HttpSession session, int bno) {
 		long update_time = 0; // 조회수 +1 증가한 시간
@@ -73,6 +73,12 @@ public class BoardServiceImpl implements BoardService {
 			session.setAttribute("update_time_"+bno, current_time);
 		}
 		
+	}
+
+	// 상세게시글 삭제
+	@Override
+	public void delBoard(int bno) {
+		bDao.delBoard(bno);
 	}
 
 }

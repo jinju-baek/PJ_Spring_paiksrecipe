@@ -176,6 +176,7 @@
 </style>
 </head>
 <body>
+	<%@ include file="../include/modal.jsp"%>
 	<jsp:useBean id="now" class="java.util.Date"/><!-- 접속날짜 -->
 	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today"/><!-- 접속날짜를 변환 -->
 	<div class="board_view_wrap">
@@ -218,13 +219,13 @@
 			<c:if test="${name == one.writer}">
 				<div>
 					<a href="#">수정</a> 
-					<a href="#">삭제</a>
+					<a href="#" class="btn_delete">삭제</a>
 				</div>
 			</c:if>
 		</div>
 		<div class="view_reply_list_wrap">
 			<div class="view_reply_header">
-				<i class="fas fa-comment-dots"></i> 댓글
+				<i class="fas fa-comment-dots"></i> 댓글 (${one.replycnt})
 			</div>
 			<div class="view_reply_input_wrap">
 
@@ -268,4 +269,13 @@
 	</div>
 	<%@ include file="../include/footer.jsp"%>
 </body>
+<script type="text/javascript">
+	$('.btn_delete').click(function(){
+		$('.basic_modal_wrap').css('display', 'flex');
+	});
+	
+	$('.y_btn').click(function(){
+		location.href="${path}/board/delete?bno=${one.bno}";
+	});
+</script>
 </html>

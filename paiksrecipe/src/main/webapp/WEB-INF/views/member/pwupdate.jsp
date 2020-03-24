@@ -293,7 +293,7 @@
 			 for(var i = 0; i < checkArr.length; i++){
 				 if(!checkArr[i]) {
 					 invalidAll = false;
-					 $('.join_err_msg:eq('+i+')').css('visibility', 'visible')
+					 $('.error_next_box:eq('+i+')').css('visibility', 'visible')
 					 							 .css('color', '#d95339');
 				 }
 			 }

@@ -19,4 +19,7 @@ public interface BoardService {
 	
 	// 상세게시글 출력
 	public BoardDTO view(int bno);
+	
+	// 상세게시글 삭제
+	public void delBoard(int bno);
 }

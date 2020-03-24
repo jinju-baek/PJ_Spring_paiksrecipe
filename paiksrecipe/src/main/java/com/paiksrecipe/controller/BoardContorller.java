@@ -72,8 +72,18 @@ public class BoardContorller {
 		
 		// DB에서 해당 bno정보를 get해서 view단으로 전송
 		model.addAttribute("one", bService.view(bno));
-		
+		model.addAttribute("key", "dropBoard");
 		
 		return "board/view";
 	}
+	
+	@GetMapping("/delete")
+	public String delete(int bno) {
+		log.info("★★★★★★★★★★★★★★★ GET: BOARD DELETE ACTION");
+		
+		bService.delBoard(bno);
+		
+		return "redirect:/board/list";
+	}
+	
 }

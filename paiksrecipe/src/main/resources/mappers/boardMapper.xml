@@ -66,6 +66,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE tbl_board
 		SET viewcnt = viewcnt+1
 		WHERE bno=#{bno}
-	
 	</update>
+	
+	<update id="delBoard">
+		UPDATE tbl_board
+		SET show='n'
+		WHERE bno=#{bno}
+	</update>
+	
 </mapper>
