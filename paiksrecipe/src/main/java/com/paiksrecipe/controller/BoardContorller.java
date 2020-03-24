@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -60,11 +61,11 @@ public class BoardContorller {
 		return "board/list";
 	}
 	
-	@GetMapping("view")
-	public String view(int bno, Model model) {
+	@GetMapping("/view/{bno}")
+	public String view(@PathVariable(value="bno") int bno, Model model) {
 		log.info("★★★★★★★★★★★★★★★ GET: BOARD VIEW PAGE");
 		
-		model.addAttribute("view", bService.view(bno));
+		model.addAttribute("one", bService.view(bno));
 		
 		
 		return "board/view";

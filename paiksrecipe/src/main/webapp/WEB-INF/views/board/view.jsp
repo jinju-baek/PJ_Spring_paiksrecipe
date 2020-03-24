@@ -181,38 +181,42 @@
 		<div class="view_content_wrap">
 			<!-- <div class="view_title">제목</div> -->
 			<div class="view_info_wrap">
-				<div class="view_info_title">${view.title}</div>
+				<div class="view_info_title">${one.title}</div>
 				<div class="view_info">
-					<div>${view.writer}</div>
+					<div>${one.writer}</div>
 					<div>
 						<c:choose>
 						<%-- JSTL 주석은 이렇게 써야 에러 안뜸--%>
 							<c:when test="${today == regdate}">
-								<fmt:formatDate value="${view.regdate}" pattern="HH:mm:ss" />		
+								<fmt:formatDate value="${one.regdate}" pattern="HH:mm:ss" />		
 							</c:when>
 							<c:otherwise>
-								<fmt:formatDate value="${view.regdate}" pattern="yyyy-MM-dd" />
+								<fmt:formatDate value="${one.regdate}" pattern="yyyy-MM-dd" />
 							</c:otherwise>
 						</c:choose>
 					</div>
 					<div>
-						<i class="far fa-eye"></i> ${view.viewcnt}
+						<i class="far fa-eye"></i> ${one.viewcnt}
 					</div>
 					<div>
-						<i class="far fa-thumbs-up"></i> ${view.goodcnt}
+						<i class="far fa-thumbs-up"></i> ${one.goodcnt}
 					</div>
 				</div>
 			</div>
-			<div class="view_content">${view.content}</div>
+			<div class="view_content">${one.content}</div>
 			<a class="thumbs_up" href="#"><i class="far fa-thumbs-up"></i>추천</a>
 		</div>
 		<div class="view_info_btn_wrap">
 			<div>
-				<a href="#">목록</a> <a href="#">답글</a>
+				<a href="#">목록</a> 
+				<a href="#">답글</a>
 			</div>
-			<div>
-				<a href="#">수정</a> <a href="#">삭제</a>
-			</div>
+			<c:if test="${name == one.writer}">
+				<div>
+					<a href="#">수정</a> 
+					<a href="#">삭제</a>
+				</div>
+			</c:if>
 		</div>
 		<div class="view_reply_list_wrap">
 			<div class="view_reply_header">
