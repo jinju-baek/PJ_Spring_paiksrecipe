@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,9 +64,13 @@ public class BoardContorller {
 	}
 	
 	@GetMapping("/view/{bno}")
-	public String view(@PathVariable(value="bno") int bno, Model model) {
+	public String view(@PathVariable(value="bno") int bno, Model model, HttpSession session) {
 		log.info("★★★★★★★★★★★★★★★ GET: BOARD VIEW PAGE");
 		
+		// 1. 해당 bno 조회수 +1 증가
+		bService.increaseViewCnt(session, bno);
+		
+		// DB에서 해당 bno정보를 get해서 view단으로 전송
 		model.addAttribute("one", bService.view(bno));
 		
 		

@@ -47,6 +47,10 @@
 	line-height: 29px;
 }
 
+.view_info_writer {
+	font-weight: bold;
+}
+
 .view_info>div {
 	padding: 0 5px;
 }
@@ -183,7 +187,7 @@
 			<div class="view_info_wrap">
 				<div class="view_info_title">${one.title}</div>
 				<div class="view_info">
-					<div>${one.writer}</div>
+					<div class="view_info_writer">${one.writer}</div>
 					<div>
 						<c:choose>
 						<%-- JSTL 주석은 이렇게 써야 에러 안뜸--%>

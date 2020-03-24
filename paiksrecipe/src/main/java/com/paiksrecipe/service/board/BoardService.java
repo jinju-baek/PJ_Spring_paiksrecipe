@@ -2,6 +2,8 @@ package com.paiksrecipe.service.board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.paiksrecipe.domain.BoardDTO;
 
 public interface BoardService {
@@ -12,5 +14,9 @@ public interface BoardService {
 	// 게시글 목록
 	public List<BoardDTO> listAll(String sort_option, String search_option, String keyword, int start, int end);
 	
+	// 조회수 +1증가
+	public void increaseViewCnt(HttpSession session, int bno);
+	
+	// 상세게시글 출력
 	public BoardDTO view(int bno);
 }

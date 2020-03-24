@@ -288,6 +288,7 @@
 		}
 		
 		$('#btn_join').click(function(){
+			printCheckArr(checkArr);
 			 var invalidAll = true;
 			 for(var i = 0; i < checkArr.length; i++){
 				 if(!checkArr[i]) {
