@@ -165,7 +165,7 @@
 					</div>
 				</div>
 				<div class="info_id_button">
-					<button href="#" class="btn-submit" id="btn_join" >
+					<button type="button" class="btn-submit" id="btn_update" >
 						<strong>수정하기</strong>
 					</button>
 				</div>
@@ -277,17 +277,17 @@
 				}
 			}
 			if (checkAll) {
-				$('#btn_join').addClass('btn-primary');
-				// $('#btn_join').prop('disabled', false);
-				$('#btn_join').css('cursor', 'pointer');
+				$('#btn_update').addClass('btn-primary');
+				// $('#btn_update').prop('disabled', false);
+				$('#btn_update').css('cursor', 'pointer');
 			} else {
-				$('#btn_join').removeClass('btn-primary');
-				// $('#btn_join').prop('disabled', true);
-				$('#btn_join').css('cursor', 'no-drop');
+				$('#btn_update').removeClass('btn-primary');
+				// $('#btn_update').prop('disabled', true);
+				$('#btn_update').css('cursor', 'no-drop');
 			}
 		}
 		
-		$('#btn_join').click(function(){
+		$('#btn_update').click(function(){
 			printCheckArr(checkArr);
 			 var invalidAll = true;
 			 for(var i = 0; i < checkArr.length; i++){

@@ -86,7 +86,7 @@ a{
 	display: flex;
 	justify-content: center;
 }
-.y_btn, .n_btn{
+.modal_btn_yes, .modal_btn_no{
 	margin: 5px 20px;
 	padding: 10px 35px;
 	background-color: #B22230;
@@ -114,8 +114,8 @@ a{
 						<div class="basic_modal_subtext"></div>
 					</div>
 					<div class="basic_modal_button">
-						<a href="#" class="n_btn">취  소</a>
-						<a href="#" class="y_btn">확  인</a>
+						<a href="#" class="modal_btn_no">취  소</a>
+						<a href="#" class="modal_btn_yes">확  인</a>
 					</div>
 				</div>	
 			</div>
@@ -143,14 +143,14 @@ a{
 		if(key == 'join'){
 			$('.basic_modal_maintext').text(join_main_txt); // 메인텍스트
 			$('.basic_modal_subtext').text(join_sub_txt); // 서브텍스트
-			$('.y_btn').css('display', 'none'); // 확인버튼 제거
-			$('.n_btn').text('확  인');
+			$('.modal_btn_yes').css('display', 'none'); // 확인버튼 제거
+			$('.modal_btn_no').text('확  인');
 			$('.basic_modal_wrap').css('display', 'flex'); // 모달창 출력
 		} else if(key == 'auth'){
 			$('.basic_modal_maintext').text(auth_main_txt);
 			$('.basic_modal_subtext').text(auth_sub_txt);
-			$('.y_btn').css('display', 'none');
-			$('.n_btn').text('확  인');
+			$('.modal_btn_yes').css('display', 'none');
+			$('.modal_btn_no').text('확  인');
 			$('.basic_modal_wrap').css('display', 'flex');
 		} else if(key == 'drop'){
 			$('.basic_modal_maintext').text(drop_main_txt);			
@@ -158,20 +158,20 @@ a{
 		} else if(key == 'dropResult'){
 			$('.basic_modal_maintext').text(dropResult_main_txt);			
 			$('.basic_modal_subtext').text(dropResult_sub_txt);
-			$('.y_btn').css('display', 'none');
-			$('.n_btn').text('확  인');
+			$('.modal_btn_yes').css('display', 'none');
+			$('.modal_btn_no').text('확  인');
 			$('.basic_modal_wrap').css('display', 'flex');
 		} else if(key == 'dropBoard'){
 			if('${one.replycnt}' == 0){ // 댓글이 없는 경우
 				$('.basic_modal_maintext').text(dropBoard_main_txt);	
 			}else{ // 댓글이 있는 경우
 				$('.basic_modal_maintext').text(dropBoardNo_main_txt);	
-				$('.y_btn').css('display', 'none');
-				$('.n_btn').text('확  인');			
+				$('.modal_btn_yes').css('display', 'none');
+				$('.modal_btn_no').text('확  인');			
 			}
 		}
 		
-		$('.n_btn').on('click', function(){
+		$('.modal_btn_no').on('click', function(){
 			$('.basic_modal_wrap').css('display', 'none');
 		});
 		$('.basic_modal_close').on('click', function(){

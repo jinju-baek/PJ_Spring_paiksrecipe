@@ -213,7 +213,7 @@
 		</div>
 		<div class="view_info_btn_wrap">
 			<div>
-				<a href="#">목록</a> 
+				<a href="${header.referer}">목록</a> 
 				<a href="#">답글</a>
 			</div>
 			<c:if test="${name == one.writer}">
@@ -274,7 +274,7 @@
 		$('.basic_modal_wrap').css('display', 'flex');
 	});
 	
-	$('.y_btn').click(function(){
+	$('.modal_btn_yes').click(function(){
 		location.href="${path}/board/delete?bno=${one.bno}";
 	});
 </script>
