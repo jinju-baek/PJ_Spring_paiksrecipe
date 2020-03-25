@@ -223,59 +223,39 @@
 				</div>
 			</c:if>
 		</div>
-		<div class="view_reply_list_wrap">
-			<div class="view_reply_header">
-				<i class="fas fa-comment-dots"></i> 댓글 (${one.replycnt})
-			</div>
-			<div class="view_reply_input_wrap">
-
-				<div class="view_reply_input" > 
-					<textarea name="" placeholder="로그인이 필요한 서비스 입니다."></textarea>
-				</div> 
-				<a class="view_reply_input_btn" href="#">댓글쓰기</a>
-			</div>
-
-			<div class="view_reply_wrap">
-				<div class="view_reply_title">
-					<div>징구</div>
-					<div>
-						<div>2020-03-21</div>
-						<div>
-							<a href="#"><i class="fas fa-heart"></i> 25</a>
-						</div>
-					</div>
-				</div>
-				<div class="view_reply_content">
-					<div>댓글 내용1</div>
-				</div>
-			</div>
-
-			<div class="view_reply_wrap">
-				<div class="view_reply_title">
-					<div>징구</div>
-					<div>
-						<div>2020-03-21</div>
-						<div>
-							<a href="#"><i class="fas fa-heart"></i> 38</a>
-						</div>
-					</div>
-				</div>
-				<div class="view_reply_content">
-					<div>댓글 내용2</div>
-				</div>
-			</div>
+		
+		<!-- 댓글창 -->
+		<!-- 여기서 forEach문을 쓸 경우 댓글 수정 삭제시 
+		동적으로 보여지지않고 새로 페이지를 띄워야만 바뀜 -->
+		<div id="listReply"></div>
 			
-		</div>
 	</div>
 	<%@ include file="../include/footer.jsp"%>
 </body>
 <script type="text/javascript">
-	$('.btn_delete').click(function(){
-		$('.basic_modal_wrap').css('display', 'flex');
+	$(function(){		
+		
+		listReply();
+		
+		$('.btn_delete').click(function(){
+			$('.basic_modal_wrap').css('display', 'flex');
+		});
+		
+		$('.modal_btn_yes').click(function(){
+			location.href="${path}/board/delete?bno=${one.bno}";
+		});
 	});
 	
-	$('.modal_btn_yes').click(function(){
-		location.href="${path}/board/delete?bno=${one.bno}";
-	});
+	// 댓글 목록 출력 함수
+	function listReply(){
+		$.ajax({
+			type: "get",
+			url: "${path}/reply/list?bno=${one.bno}",
+			success: function(result){
+				//result: responseText 응답텍스트(html)
+				$('#listReply').html(result);
+			}
+		});
+	}
 </script>
 </html>
