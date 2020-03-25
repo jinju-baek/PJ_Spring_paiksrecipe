@@ -85,7 +85,7 @@
     60% {transform: translateY(-5px);}
 }
 .view_content {
-	padding: 10px;
+	padding: 20px;
 }
 
 .view_info_btn_wrap {
@@ -234,7 +234,6 @@
 </body>
 <script type="text/javascript">
 	$(function(){		
-		
 		listReply();
 		
 		$('.btn_delete').click(function(){
@@ -252,7 +251,7 @@
 			type: "get",
 			url: "${path}/reply/list?bno=${one.bno}",
 			success: function(result){
-				//result: responseText 응답텍스트(html)
+				// result: responseText 응답텍스트(html)
 				$('#listReply').html(result);
 			}
 		});
