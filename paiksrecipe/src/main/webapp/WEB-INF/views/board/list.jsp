@@ -173,17 +173,14 @@ th, td{
 	margin-right: 5px;
 }
 .write_btn{
-	display: block;
-	position: relative;
 	border:#B22230;
 	background-color: #B22230;
 	color: white;
-	height: 35px;
 	width: 70px;
 	outline: none;
 	border-radius: 2px;
-	text-align: center;
 	line-height: 35px;
+	cursor: pointer;
 
 }
 .page_btn_wrap{
@@ -311,7 +308,7 @@ strong{
 					</tr>
 				</c:if>
 			</table>
-			<div class="write_btn_wrap"><a href="#" class="write_btn">글쓰기</a></div>
+			<div class="write_btn_wrap"><button type="button" class="write_btn">글쓰기</button></div>
 			<div class="page_btn_wrap"> 
 			
 				<c:if test="${map.pager.curBlock > 1}">

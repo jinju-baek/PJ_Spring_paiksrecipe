@@ -10,10 +10,11 @@
 <body>
  	<div class="view_reply_list_wrap">
 		<div class="view_reply_header">
-			<i class="fas fa-comment-dots"></i> 댓글 (${list.size()})
+			<input type="hidden" class="replyListCnt" value="${list.size()}">
+			<i class="fas fa-comment-dots"></i> 댓글 (${list.size()}) 
+			<button type="button" class="refresh_btn"><i class="fas fa-sync-alt"></i></button>
 		</div>
 		<div class="view_reply_input_wrap">
-
 		<c:choose>
 			<c:when test="${empty userid}">
 				<div class="view_reply_input" > 
@@ -21,13 +22,19 @@
 				</div>
 			</c:when>
 			<c:otherwise>
-				<div class="view_reply_input" > 
-					<textarea name="" placeholder="댓글을 등록해주세요."></textarea>
-				</div>				
+				<form class="frm_reply">
+					<input type="hidden" name="bno" class="reply_bno">
+					<input type="hidden" name="type" class="reply_type">
+					<input type="hidden" name="writer" class="reply_writer">
+					<div class="view_reply_input" > 
+						<textarea class="reply_textarea_on" name="content" placeholder="댓글을 등록해주세요."></textarea>
+					</div>
+				</form>				
 			</c:otherwise>
 		</c:choose> 
-			<a class="view_reply_input_btn" href="#">댓글쓰기</a>
+			<button type="button" class="view_reply_input_btn">댓글쓰기</button>
 		</div>
+		<div class="view_error_box">텍스트를 입력해주세요.</div>
 
 		<c:forEach items="${list}" var="reply">
 			<div class="view_reply_wrap">
@@ -38,7 +45,8 @@
 							<fmt:formatDate value="${reply.regdate}" pattern="yyyy-MM-dd HH:mm:ss" />	
 						</div>
 						<div>
-							<a href="#"><i class="fas fa-heart"></i> 25</a>
+							<button type="button" class="heart_btn"><i class="fas fa-heart"></i></button>
+							<span>25</span>
 						</div>
 					</div>
 				</div>
@@ -68,14 +76,4 @@
 		</c:if>
 	</div>
 </body>
-<script type="text/javascript">
-	$(function(){		
-		$('.reply_textarea').click(function(){
-			$('.modal_wrap').css('display', 'flex');
-			$('#login_id').focus();
-			$('.modal_error_next_box').css('visibility', 'visible')
-			 						  .text('로그인이 필요한 기능입니다.');
-		});
-	});
-</script>
 </html>

@@ -7,4 +7,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM tbl_Reply
 		WHERE bno=#{bno}
 	</select>
+	
+	<insert id="insert">
+		INSERT INTO tbl_reply(rno, type, content, writer, bno)
+		VALUES (seq_reply.NEXTVAL, #{type}, #{content}, #{writer}, #{bno})
+	</insert>
+	
+	<update id="replyCntPlus">
+		UPDATE tbl_board
+		SET replycnt=replycnt+1
+		WHERE bno=#{bno}
+	</update>
 </mapper>

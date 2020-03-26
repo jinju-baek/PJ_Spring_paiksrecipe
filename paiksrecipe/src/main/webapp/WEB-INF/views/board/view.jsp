@@ -64,6 +64,9 @@
 	color: #B22230;
 	border-radius: 5px;
 	text-align: center;
+	background: white;
+    cursor: pointer;
+    outline: none;
 }
 
 .thumbs_up:hover {
@@ -110,6 +113,14 @@
 	margin: 10px;
 }
 
+.refresh_btn {
+    /* color: #B22230; */
+    margin-left: 5px;
+    background: white;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
 .view_reply_wrap {
 	margin: 20px 0 40px;
 }
@@ -127,6 +138,12 @@
 
 .view_reply_title>div>div {
 	margin: 0 5px;
+}
+
+.heart_btn {
+	outline: none;
+    border: none;
+    cursor: pointer;
 }
 
 .fa-heart {
@@ -147,6 +164,16 @@
 	justify-content: center;
 }
 
+.view_error_box{
+	display: block;
+	margin: 5px 20px;
+	font-size: 12px;
+	line-height: 14px;
+	color: red;
+	height: 15px;
+	visibility: hidden;
+}
+
 .view_reply_input {
 	border: 1px solid black;
 	height: 80px;
@@ -164,14 +191,13 @@
 }
 
 .view_reply_input_btn {
-	display: inline-block;
 	border: 1px solid #B22230;
 	background-color: #B22230;
 	color: white;
-	height: 80px;
-	text-align: center;
 	padding: 29px;
 	margin-left: 10px;
+	outline: none;
+	cursor: pointer;
 }
 </style>
 </head>
@@ -206,10 +232,13 @@
 					<div>
 						<i class="far fa-thumbs-up"></i> ${one.goodcnt}
 					</div>
+					<div>
+						<i class="fas fa-comment-dots"></i> <span class="view_info_replycnt">${one.replycnt}</span>
+					</div>
 				</div>
 			</div>
 			<div class="view_content">${one.content}</div>
-			<a class="thumbs_up" href="#"><i class="far fa-thumbs-up"></i>추천</a>
+			<button type="button" class="thumbs_up"><i class="far fa-thumbs-up"></i>추천</button>
 		</div>
 		<div class="view_info_btn_wrap">
 			<div>
@@ -245,16 +274,64 @@
 		});
 	});
 	
+	/* 
+		문서가 다 로드된 후 클릭이벤트(예시) 발생시 실행 -> $(function(){}); 에 넣을경우 문서가 다 로드가 되면 가져오기 때문에 
+		문서안에서 실행 -> $(documnet).on(function(){}); 에 넣어야함
+	*/
+	$(document).on('click', '.reply_textarea', function(){
+		$('.modal_wrap').css('display', 'flex');
+		$('#login_id').focus();
+		$('.modal_error_next_box').css('visibility', 'visible')
+		 						  .text('로그인이 필요한 기능입니다.');
+	});
+
+	$(document).on('click', '.view_reply_input_btn', function(){
+		var reply_txt = $('.reply_textarea_on').val();
+		
+		if(reply_txt == '' || reply_txt.length == 0) {
+			$('.reply_textarea_on').focus();
+			$('.view_error_box').css('visibility', 'visible');
+			return false;
+		}
+		
+		/* 
+			댓글 등록시 type, content, writer, bno 필요 
+			jstl안의 값 고칠 때 에러뜨면 오류가 아니라 버그임 
+			serialize() : 값을 직렬화하여 하나씩 순서대로 보냄  
+		*/
+
+		$('.reply_bno').val('${one.bno}');
+		$('.reply_type').val('${one.type}');
+		$('.reply_writer').val('${name}');
+		
+		
+		$.ajax({
+			url: '${path}/reply/insert',
+			type: 'POST',
+			data: $('.frm_reply').serialize(),
+			success: function(){
+				listReply();
+			}
+		});
+	});
+ 
 	// 댓글 목록 출력 함수
+	// async : false로 해야 동기식으로 바뀐다
+	// --> 댓글 수 증가 후에 받아오기 위해서는 동기식으로 해야함
+	// 비동기(동시에 모든 명령문 시작)식일 경우 댓글 수 증가 전의 값을 받고 후에 증가 
 	function listReply(){
 		$.ajax({
 			type: "get",
+			async: false,
 			url: "${path}/reply/list?bno=${one.bno}",
 			success: function(result){
 				// result: responseText 응답텍스트(html)
 				$('#listReply').html(result);
 			}
 		});
+		
+		// 게시글 댓글수 수정!
+		$('.view_info_replycnt').text($('.replyListCnt').val());
 	}
 </script>
 </html>

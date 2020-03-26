@@ -369,7 +369,7 @@ div.header_content {
 	visibility: hidden;
 	color: rgb(217, 83, 57);
 	font-size: 13px;
-	padding: 6px 6px 0;
+	padding: 6px;
 }
 
 .login_check {

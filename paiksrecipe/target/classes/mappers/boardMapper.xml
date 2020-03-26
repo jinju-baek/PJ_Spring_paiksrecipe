@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.paiksrecipe.persistence.BoardDAO">
 	<select id="listAll" resultType="BoardDTO">
 		<include refid="paging_header"/>
-		SELECT bno, title, writer, name, updatedate, viewcnt, replycnt, goodcnt, show
+		SELECT bno, type, title, writer, name, updatedate, viewcnt, replycnt, goodcnt, show
 		FROM tbl_board b, tbl_member m
 		<include refid="search"/>
 		<if test="map.sort_option == 'new'">
