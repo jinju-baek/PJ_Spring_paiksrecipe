@@ -140,37 +140,38 @@ SELECT * FROM tbl_board;
 
 -- 게시판 총 15건 추가 ref=1 re_step=1 re_level=0, type=free, writer=가입한 유저
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '배고프다', '밥먹고싶다', 'logintest', 1, 1, 0);
+VALUES (seq_board.NEXTVAL, 'free', '배고프다', '밥먹고싶다', '테스트', 1, 1, 0);
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '빈츠먹을래', '냠냠', 'logintest', 1, 1, 0);
+VALUES (seq_board.NEXTVAL, 'free', '빈츠먹을래', '냠냠', '테스트', 1, 1, 0);
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '제리', '보고싶다', 'logintest', 1, 1, 0);
+VALUES (seq_board.NEXTVAL, 'free', '제리', '보고싶다', '테스트', 1, 1, 0);
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '마스크답답', '하다', 'logintest', 1, 1, 0);
+VALUES (seq_board.NEXTVAL, 'free', '마스크답답', '하다', '테스트', 1, 1, 0);
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '집에가고싶다', '금요일됐으면ㅠ', 'logintest', 1, 1, 0);
+VALUES (seq_board.NEXTVAL, 'free', '집에가고싶다', '금요일됐으면ㅠ', '징구', 1, 1, 0);
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '파이썬', '어떻게해요', 'logintest', 1, 1, 0);
+VALUES (seq_board.NEXTVAL, 'free', '파이썬', '어떻게해요', '징구', 1, 1, 0);
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '파이썬 DB연동 에러 좀 봐주세요', '여기서 에러뜨는뎅', 'logintest', 1, 1, 0);
+VALUES (seq_board.NEXTVAL, 'free', '파이썬 DB연동 에러 좀 봐주세요', '여기서 에러뜨는뎅', '테스트', 1, 1, 0);
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '스프링 에러떴어요', 'ㅜㅜ', 'logintest', 1, 1, 0);
+VALUES (seq_board.NEXTVAL, 'free', '스프링 에러떴어요', 'ㅜㅜ', '징구', 1, 1, 0);
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '취직하기싫다', '해야겠지', 'logintest', 1, 1, 0);
+VALUES (seq_board.NEXTVAL, 'free', '취직하기싫다', '해야겠지', '징구', 1, 1, 0);
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '자바설치', '어떻게해요', 'logintest', 1, 1, 0);
+VALUES (seq_board.NEXTVAL, 'free', '자바설치', '어떻게해요', '징구', 1, 1, 0);
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '이거 에러', '봐주세요', 'logintest', 1, 1, 0);
+VALUES (seq_board.NEXTVAL, 'free', '이거 에러', '봐주세요', '테스트', 1, 1, 0);
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '멍멍멍', '멍멍멍어멍멍!!@!', 'logintest', 1, 1, 0);
+VALUES (seq_board.NEXTVAL, 'free', '멍멍멍', '멍멍멍어멍멍!!@!', '테스트', 1, 1, 0);
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '왈!', '와뢍뢍롸아ㅗㄹ왈!!!', 'logintest', 1, 1, 0);
+VALUES (seq_board.NEXTVAL, 'free', '왈!', '와뢍뢍롸아ㅗㄹ왈!!!', '테스트', 1, 1, 0);
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '졸리다졸려', '졸려~~~~~~~~~~~~~', 'logintest', 1, 1, 0);
+VALUES (seq_board.NEXTVAL, 'free', '졸리다졸려', '졸려~~~~~~~~~~~~~', '테스트', 1, 1, 0);
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '갈비찜먹고싶당', '갈비찌뮤', 'logintest', 1, 1, 0);
+VALUES (seq_board.NEXTVAL, 'free', '갈비찜먹고싶당', '갈비찌뮤', '징구', 1, 1, 0);
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '냠냠냠냠', '냠냠냠냠존맛', 'logintest', 1, 1, 0);
+VALUES (seq_board.NEXTVAL, 'free', '냠냠냠냠', '냠냠냠냠존맛', '징구', 1, 1, 0);
+
 
 
 
