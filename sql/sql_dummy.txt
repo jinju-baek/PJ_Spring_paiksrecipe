@@ -171,3 +171,36 @@ INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
 VALUES (seq_board.NEXTVAL, 'free', '갈비찜먹고싶당', '갈비찌뮤', 'logintest', 1, 1, 0);
 INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
 VALUES (seq_board.NEXTVAL, 'free', '냠냠냠냠', '냠냠냠냠존맛', 'logintest', 1, 1, 0);
+
+
+
+
+
+
+-- 댓글 테이블 생성
+DROP SEQUENCE seq_reply;
+CREATE SEQUENCE seq_reply
+    START WITH 1   
+    INCREMENT BY 1
+    NOCYCLE;
+
+DROP TABLE tbl_reply;
+CREATE TABLE tbl_reply(
+    rno NUMBER,
+    type CHAR(4) NOT NULL,--
+    content VARCHAR2(2000) NOT NULL,--
+    writer VARCHAR2(100) NOT NULL,--
+    regdate DATE DEFAULT SYSDATE,
+    bno NUMBER NOT NULL--
+);
+
+-- PRIMARY KEY 쓸 때 이렇게 쓰는 것을 추천(DBA입장에서 좋음)
+ALTER TABLE tbl_reply ADD CONSTRAINT pk_reply
+PRIMARY KEY(rno);
+
+INSERT INTO tbl_reply(rno, type, content, writer, bno)
+VALUES (seq_reply.NEXTVAL, 'free', '멍', '테스트', '368');
+
+SELECT * FROM tbl_reply;
+
+COMMIT;
