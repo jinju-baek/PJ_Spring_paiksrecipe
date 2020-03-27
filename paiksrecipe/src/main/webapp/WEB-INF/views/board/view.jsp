@@ -131,13 +131,26 @@
 	background-color: #F1F1F1;
 	padding: 5px 10px;
 }
+.reply_update_btn_wrap{
+	border-right:1px solid #888;
+	height: 12px;
+}
 
+.reply_update_btn, .reply_delete_btn {
+	outline: none;
+    cursor: pointer;
+    border: none;
+    color: #888;
+    font-size: 12px;
+    line-height: 12px;
+}
 .view_reply_title>div {
 	display: flex;
+	align-items: center;
 }
 
 .view_reply_title>div>div {
-	margin: 0 5px;
+	padding: 0 5px;
 }
 
 .heart_btn {
@@ -315,6 +328,24 @@
 		});
 	});
  
+	$(document).on('click', '.fa-sync-alt', function(){
+		listReply();
+	});
+	
+	// 댓글 삭제
+	$(document).on('click', '.reply_delete_btn', function(){
+		var rno = $(this).attr('data_num');
+		var bno = ${one.bno};
+		$.ajax({
+			type: 'POST',
+			url: '${path}/reply/delete',
+			data: {'rno' : rno, 'bno' : bno},
+			success: function(){
+				listReply();
+			}
+		});
+	});
+	
 	// 댓글 목록 출력 함수
 	// async : false로 해야 동기식으로 바뀐다
 	// --> 댓글 수 증가 후에 받아오기 위해서는 동기식으로 해야함

@@ -11,5 +11,7 @@ public interface ReplyDAO {
 
 	public void insert(ReplyDTO rDto);
 
-	public void replyCntPlus(int bno);
+	public void delete(@Param("rno") int rno);
+
+	public void replyCntUpdate(@Param("bno") int bno, @Param("type") String type);
 }

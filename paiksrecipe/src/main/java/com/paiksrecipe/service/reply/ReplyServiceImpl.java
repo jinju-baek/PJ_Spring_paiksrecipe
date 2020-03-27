@@ -33,8 +33,17 @@ public class ReplyServiceImpl implements ReplyService{
 		// 해당 게시글의 reply_cnt를 +1함.
 		// 1. 댓글 등록
 		rDao.insert(rDto);
-		rDao.replyCntPlus(rDto.getBno());
+		// 2. 게시글 댓글수 +1
+		rDao.replyCntUpdate(rDto.getBno(), "plus");
 		
+	}
+
+	@Override
+	public void delete(int rno, int bno) {
+		// 1. 댓글 삭제
+		rDao.delete(rno);
+		// 2. 게시글 댓글수 +1
+		rDao.replyCntUpdate(bno, "minus");
 	}
 
 }

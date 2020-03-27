@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="list" resultType="ReplyDTO">
 		SELECT * FROM tbl_Reply
 		WHERE bno=#{bno}
+		ORDER BY regdate DESC
 	</select>
 	
 	<insert id="insert">
@@ -13,9 +14,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (seq_reply.NEXTVAL, #{type}, #{content}, #{writer}, #{bno})
 	</insert>
 	
-	<update id="replyCntPlus">
-		UPDATE tbl_board
-		SET replycnt=replycnt+1
+	<delete id="delete">
+		DELETE FROM tbl_reply
+		WHERE rno=#{rno}
+	</delete>
+	
+	<update id="replyCntUpdate">
+		UPDATE tbl_board SET
+		<if test="type=='plus'">
+			replycnt=replycnt+1
+		</if>
+		<if test="type=='minus'">
+			replycnt=replycnt-1
+		</if>
 		WHERE bno=#{bno}
 	</update>
 </mapper>

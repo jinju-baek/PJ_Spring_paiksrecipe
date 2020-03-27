@@ -37,4 +37,12 @@ public class ReplyController {
 	
 		rService.insert(rDto);
 	}
+	
+	@ResponseBody
+	@PostMapping("/delete")
+	public void delete(int rno, int bno) {
+		log.info("★★★★★★★★★★★★★★★ POST : Reply delete DB");
+		
+		rService.delete(rno, bno);
+	}
 }

@@ -39,7 +39,17 @@
 		<c:forEach items="${list}" var="reply">
 			<div class="view_reply_wrap">
 				<div class="view_reply_title">
-					<div>${reply.writer}</div>
+					<div>
+						<div>${reply.writer}</div>
+						<c:if test="${name == reply.writer}">
+							<div class="reply_update_btn_wrap">
+								<button type="button" class="reply_update_btn">수정</button>
+							</div>
+							<div class="reply_delete_btn_wrap">
+								<button type="button" class="reply_delete_btn" data_num="${reply.rno}">삭제</button>
+							</div>
+						</c:if>
+					</div>
 					<div>
 						<div>
 							<fmt:formatDate value="${reply.regdate}" pattern="yyyy-MM-dd HH:mm:ss" />	
