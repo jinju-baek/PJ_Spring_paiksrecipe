@@ -276,6 +276,9 @@
 </body>
 <script type="text/javascript">
 	$(function(){		
+		// setInterval() : 자바스크립트 내장 함수로 3000000마다 refreshReply를 실행
+		setInterval(refreshReply, 180000);
+		
 		listReply();
 		
 		$('.btn_delete').click(function(){
@@ -367,6 +370,10 @@
 		
 		// 게시글 댓글수 수정!
 		$('.view_info_replycnt').text($('.replyListCnt').val());
+	}
+	
+	function refreshReply(){
+		listReply();
 	}
 </script>
 </html>
