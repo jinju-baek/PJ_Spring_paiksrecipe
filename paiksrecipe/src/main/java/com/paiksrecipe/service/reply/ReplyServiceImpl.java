@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.paiksrecipe.domain.ReplyDTO;
 import com.paiksrecipe.persistence.ReplyDAO;
@@ -25,7 +26,8 @@ public class ReplyServiceImpl implements ReplyService{
 	public List<ReplyDTO> list(int bno) {
 		return rDao.list(bno);
 	}
-
+	
+	@Transactional
 	@Override
 	public void insert(ReplyDTO rDto) {
 		// 비즈니스 로직

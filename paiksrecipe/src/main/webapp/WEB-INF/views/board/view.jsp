@@ -310,7 +310,11 @@
 		/* 
 			댓글 등록시 type, content, writer, bno 필요 
 			jstl안의 값 고칠 때 에러뜨면 오류가 아니라 버그임 
-			serialize() : 값을 직렬화하여 하나씩 순서대로 보냄  
+		*/	
+		/*
+			serialize() : 값을 직렬화하여 쿼리스트링을 자동으로 만들어서 하나씩 순서대로 보냄  
+			원래는 json(data: {"bno": bno, "type" : type, "writer" : name, "content": content}) -> (키밸류페어) 이나 
+			쿼리스트링(url: '${path}/reply/insert?bno='+bno+'&type='+type+'&writer='+name+'&content='+content)으로 써야함
 		*/
 
 		$('.reply_bno').val('${one.bno}');
