@@ -307,7 +307,7 @@ strong{
 					</tr>
 				</c:if>
 			</table>
-			<div class="write_btn_wrap"><a href="${path}/board/register" class="write_btn">글쓰기</a></div>
+			<div class="write_btn_wrap"><a href="${path}/board/write" class="write_btn">글쓰기</a></div>
 			<div class="page_btn_wrap"> 
 
 				<c:if test="${map.pager.curBlock > 1}">
