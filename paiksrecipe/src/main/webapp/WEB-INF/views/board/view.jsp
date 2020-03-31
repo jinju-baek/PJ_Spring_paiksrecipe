@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>PAIKSRECIPE : 자유게시판</title>
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/common.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
 <style type="text/css">
 .board_view_wrap {
 	width: 768px;

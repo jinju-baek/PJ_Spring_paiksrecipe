@@ -86,4 +86,14 @@ public class BoardContorller {
 		return "redirect:/board/list";
 	}
 	
+	@GetMapping("/register")
+	public String register(HttpSession session, Model model) {
+		log.info("★★★★★★★★★★★★★★★ GET: BOARD DELETE ACTION");
+		
+		model.addAttribute("userid", (String)session.getAttribute("userid"));
+		model.addAttribute("name", (String)session.getAttribute("name"));
+		
+		return "/board/boardregister";
+	}
+	
 }

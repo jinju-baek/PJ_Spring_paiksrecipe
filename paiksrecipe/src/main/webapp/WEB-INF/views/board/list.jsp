@@ -180,8 +180,7 @@ th, td{
 	outline: none;
 	border-radius: 2px;
 	line-height: 35px;
-	cursor: pointer;
-
+	text-align: center;
 }
 .page_btn_wrap{
 	display: flex;
@@ -308,9 +307,9 @@ strong{
 					</tr>
 				</c:if>
 			</table>
-			<div class="write_btn_wrap"><button type="button" class="write_btn">글쓰기</button></div>
+			<div class="write_btn_wrap"><a href="${path}/board/register" class="write_btn">글쓰기</a></div>
 			<div class="page_btn_wrap"> 
-			
+
 				<c:if test="${map.pager.curBlock > 1}">
 					<a class="page_num" href="${path}/board/list?curPage=${map.pager.blockBegin-10}&sort_option=${map.sort_option}&keyword=${map.keyword}"><i class="fas fa-angle-left"></i></a>
 					<a class="page_num" href="${path}/board/list?curPage=1&sort_option=${map.sort_option}&keyword=${map.keyword}">1</a>
