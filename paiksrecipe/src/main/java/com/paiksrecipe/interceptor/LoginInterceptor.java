@@ -25,14 +25,39 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		// Session 객체 생성
 		HttpSession session = request.getSession();
 		
+		// 이전 페이지의 url을 get
+		// referer : 바로 직전에 머물렀던 url 주소로, http header에 존재
+		String referer = request.getHeader("referer");
+		log.info("★★★★★★★★★★★★★★★ 이전 url : " + referer);
+		
 		// Login NO
 		if(session.getAttribute("userid") == null) { 
 			log.info("★★★★★★★★★★★★★★★ NOLOGIN :<");
-			// 이전 페이지의 url을 get
-			// referer : 바로 직전에 머물렀던 url 주소로, http header에 존재
-			String referer = request.getHeader("referer");
-			log.info("★★★★★★★★★★★★★★★ 이전 url : " + referer);
+		
+			// 
+			String uri = request.getRequestURI();
+			log.info("★★★★★★★★★★★★★★★ 목적지 : " + uri);
 			
+			if(referer == null) {
+				// URL로 바로 접근한 경우(외부, referer이 없는 경우)
+				referer = "http://localhost:8081/paiksrecipe/";
+			} else {
+				// 내부에서 접근한 경우(referer이 있는 경우)
+				// 게시글 등록, 수정(로그인이 필요한 view단)
+				int index = referer.lastIndexOf("/");
+				int len = referer.length();
+				log.info("★★★★★★★★★★★★★★★ 인덱스 : " + index);
+				log.info("★★★★★★★★★★★★★★★ 길이 : " + len);
+				String mapWord = referer.substring(index, len);
+				log.info("★★★★★★★★★★★★★★★ 수정된 URL : " + mapWord);
+				log.info("★★★★★★★★★★★★★★★ 이전 URL : " + referer);
+				
+				if(mapWord.equals("/write")) {
+					response.sendRedirect(request.getContextPath() + "/board/list");
+					return false; // 이동 x
+				}
+			}
+						
 			// url만 신경씀, GET or POST 여부는 중요하지 않음
 			// 회원수정페이지 : GET:/member/update
 			// 회원수정DB작업 : POST:/member/update
@@ -46,11 +71,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			// 전신(부모)인 FlashMap을 활용 (redirectAttribute랑 똑같다고 생각하면 됨)
 			FlashMap fMap = RequestContextUtils.getOutputFlashMap(request);
 			fMap.put("message", "nologin");
+			fMap.put("uri", uri);
 			
-			// url로 직접 접근시 referer에 null값이 들어오므로 값을 직접 입력
-			if(referer == null) {
-				referer = "http://localhost:8081/paiksrecipe/";
-			}
 			RequestContextUtils.saveOutputFlashMap(referer, request, response);
 			response.sendRedirect(referer);
 			

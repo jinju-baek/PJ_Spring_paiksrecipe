@@ -136,6 +136,7 @@ table {
 	$(function(){
 		
 	});
+	
 	$(document).on('click', '.cancel_btn', function(){
 		var referer = '${header.referer}';
 		
@@ -143,6 +144,20 @@ table {
 			location.href = '${header.referer}';
 		} else {
 			location.href = '${path}/board/list'
+		}
+	});
+	
+	$(document).on('click', '.submit_btn', function(){
+		var title = $('.register_title_input').val();
+		
+		if(title == '' || title.length == 0){
+			// 에러메세지 '제목을 입력해주세요'
+			alert('제목을 입력해주세요');
+			return false;
+		} else {
+			// 서버로 전송
+			oEditors.getById["board_content"].exec("UPDATE_CONTENTS_FIELD", []);
+			$('#frm_board').submit();
 		}
 	});
 </script>

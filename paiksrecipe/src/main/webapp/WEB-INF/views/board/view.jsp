@@ -104,8 +104,8 @@
 	border: 1px solid #B22230;
 	background-color: #B22230;
 	color: white;
-	border-radius: 5px;
 	text-align: center;
+	border-radius: 5px;
 }
 
 .view_reply_header {
@@ -254,13 +254,13 @@
 		</div>
 		<div class="view_info_btn_wrap">
 			<div>
-				<a href="${header.referer}">목록</a> 
+				<a href="${header.referer}" class="list_btn">목록</a> 
 				<a href="#">답글</a>
 			</div>
 			<c:if test="${name == one.writer}">
 				<div>
 					<a href="#">수정</a> 
-					<a href="#" class="btn_delete">삭제</a>
+					<a href="#" class="delete_btn">삭제</a>
 				</div>
 			</c:if>
 		</div>
@@ -280,7 +280,7 @@
 		
 		listReply();
 		
-		$('.btn_delete').click(function(){
+		$('.delete_btn').click(function(){
 			$('.basic_modal_wrap').css('display', 'flex');
 		});
 		
@@ -350,6 +350,14 @@
 				listReply();
 			}
 		});
+	});
+	
+	$(document).on('click', '.list_btn', function(){
+		var referer = '${header.referer}'
+		
+ 		if(referer.indexOf('board/list') == -1){
+			$(this).prop('href', '${path}/board/list')
+		}
 	});
 	
 	// 댓글 목록 출력 함수

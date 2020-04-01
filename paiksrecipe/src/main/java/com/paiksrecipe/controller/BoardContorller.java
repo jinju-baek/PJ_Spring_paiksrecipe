@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -87,13 +88,23 @@ public class BoardContorller {
 	}
 	
 	@GetMapping("/write")
-	public String register(HttpSession session, Model model) {
-		log.info("★★★★★★★★★★★★★★★ GET: BOARD INSERT PAGE");
+	public String write(HttpSession session, Model model) {
+		log.info("★★★★★★★★★★★★★★★ GET: BOARD WRITE PAGE");
 		
 		model.addAttribute("userid", (String)session.getAttribute("userid"));
 		model.addAttribute("name", (String)session.getAttribute("name"));
 		
-		return "/board/register";
+		return "board/register";
+	}
+	
+	@PostMapping("/write")
+	public String write(BoardDTO bDto) {
+		log.info("★★★★★★★★★★★★★★★ POST: BOARD WRITE ACTION");
+
+		log.info(bDto.toString());
+		
+		bService.write(bDto);
+		return "redirect:/board/list";
 	}
 	
 }

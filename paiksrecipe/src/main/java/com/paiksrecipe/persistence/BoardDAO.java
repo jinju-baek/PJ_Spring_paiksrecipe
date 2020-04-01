@@ -22,4 +22,9 @@ public interface BoardDAO {
 	
 	// 상세게시글 삭제
 	public void delBoard(@Param("bno") int bno);
+
+	// 게시글 등록
+	public void write(BoardDTO bDto);
+	
+	
 }

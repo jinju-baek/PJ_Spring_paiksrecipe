@@ -636,9 +636,10 @@ div.header_content {
 	</header>
 </body>
 <script type="text/javascript">
+	var message = '${message}';
+	var uri = '${uri}';	
+	
 	$(document).ready(function() {
-		
-		var message = '${message}';
 		if(message == 'nologin'){
 			$('.modal_wrap').css('display', 'flex');
 			$('#login_id').focus();
@@ -701,6 +702,7 @@ div.header_content {
 		$('.pw_eye').html('<i class="fas fa-eye-slash"></i>')
 					.css('color', '#666');
 		$('.modal_error_next_box').css('visibility', 'hidden');
+		uri = '';
 	});
 
 	// 값을 가져오는 방법
@@ -747,6 +749,7 @@ div.header_content {
 		var id = $('#login_id').val();
 		var pw = $('#login_pw').val();
 
+
 		// 유효성체크 (id, pw) null 체크
 		if (id != '' && pw != '' && id.length != 0 && pw.length != 0) {
 			$.ajax({
@@ -760,7 +763,12 @@ div.header_content {
 											.text('아이디 또는 비밀번호를 확인해주세요.');
 					} else if (data == 1) {
 						console.log('로그인 성공');
-						location.reload(); // 새로고침
+						
+						if(uri == ''){
+							location.reload(); // 새로고침							
+						} else {
+							location.href = uri;
+						}
 					} else if (data == 2) {
 						$('.modal_error_next_box').css('visibility', 'visible')
 											.text('이메일 인증 후에 이용하실 수 있습니다.');
