@@ -99,6 +99,7 @@ SELECT * FROM tbl_member;
 
 
 
+
 -- 자유게시판
 -- QnA게시판
 -- 고객게시판
@@ -116,20 +117,20 @@ CREATE SEQUENCE seq_board
 -- 게시판 Table 생성
 DROP TABLE tbl_board CASCADE CONSTRAINTS;
 CREATE TABLE tbl_board(
-    bno number(10, 0),
-    type CHAR(4) NOT NULL,
-    title VARCHAR2(200) NOT NULL,
-    content VARCHAR2(4000) NOT NULL,
-    writer VARCHAR2(50) NOT NULL,
-    viewcnt NUMBER DEFAULT 0,
-    replycnt NUMBER DEFAULT 0,
-    goodcnt NUMBER DEFAULT 0,
-    regdate DATE DEFAULT SYSDATE,
-    updatedate DATE DEFAULT SYSDATE,
-    show CHAR(1) DEFAULT 'y',
-    ref NUMBER NOT NULL,
-    re_step NUMBER NOT NULL,
-    re_level NUMBER NOT NULL
+    bno number(10, 0), -- 게시글 번호
+    type CHAR(4) NOT NULL, -- 게시판 유형
+    title VARCHAR2(200) NOT NULL, -- 게시글 제목
+    content VARCHAR2(4000) NOT NULL, -- 게시글 내용
+    writer VARCHAR2(50) NOT NULL, -- 게시글 작성자
+    viewcnt NUMBER DEFAULT 0, -- 조회수
+    replycnt NUMBER DEFAULT 0, -- 댓글수
+    goodcnt NUMBER DEFAULT 0, -- 좋아요
+    regdate DATE DEFAULT SYSDATE, -- 작성일자
+    updatedate DATE DEFAULT SYSDATE, -- 수정일자
+    show CHAR(1) DEFAULT 'y', -- 화면표시여부
+    ref NUMBER DEFAULT 1, -- 답변 그룹 번호
+    re_step NUMBER DEFAULT 1, -- 답변 출력 순번
+    re_level NUMBER DEFAULT 0 -- 답변 단계(계층형)
 );
 
 -- 게시판 테이블 PK Key 추가
@@ -138,40 +139,47 @@ PRIMARY KEY(bno);
 
 SELECT * FROM tbl_board;
 
--- 게시판 총 15건 추가 ref=1 re_step=1 re_level=0, type=free, writer=가입한 유저
-INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '배고프다', '밥먹고싶다', '테스트', 1, 1, 0);
-INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '빈츠먹을래', '냠냠', '테스트', 1, 1, 0);
-INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '제리', '보고싶다', '테스트', 1, 1, 0);
-INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '마스크답답', '하다', '테스트', 1, 1, 0);
-INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '집에가고싶다', '금요일됐으면ㅠ', '징구', 1, 1, 0);
-INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '파이썬', '어떻게해요', '징구', 1, 1, 0);
-INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '파이썬 DB연동 에러 좀 봐주세요', '여기서 에러뜨는뎅', '테스트', 1, 1, 0);
-INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '스프링 에러떴어요', 'ㅜㅜ', '징구', 1, 1, 0);
-INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '취직하기싫다', '해야겠지', '징구', 1, 1, 0);
-INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '자바설치', '어떻게해요', '징구', 1, 1, 0);
-INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '이거 에러', '봐주세요', '테스트', 1, 1, 0);
-INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '멍멍멍', '멍멍멍어멍멍!!@!', '테스트', 1, 1, 0);
-INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '왈!', '와뢍뢍롸아ㅗㄹ왈!!!', '테스트', 1, 1, 0);
-INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '졸리다졸려', '졸려~~~~~~~~~~~~~', '테스트', 1, 1, 0);
-INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '갈비찜먹고싶당', '갈비찌뮤', '징구', 1, 1, 0);
-INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
-VALUES (seq_board.NEXTVAL, 'free', '냠냠냠냠', '냠냠냠냠존맛', '징구', 1, 1, 0);
+SELECT * FROM tbl_board
+ORDER BY bno DESC;
 
+-- 게시판 총 15건 추가 ref=1 re_step=1 re_level=0, type=free, writer=가입한 유저
+INSERT INTO tbl_board(bno, type, title, content, writer)
+VALUES (seq_board.NEXTVAL, 'free', '배고프다', '밥먹고싶다', '테스트');
+INSERT INTO tbl_board(bno, type, title, content, writer)
+VALUES (seq_board.NEXTVAL, 'free', '빈츠먹을래', '냠냠', '테스트');
+INSERT INTO tbl_board(bno, type, title, content, writer)
+VALUES (seq_board.NEXTVAL, 'free', '제리', '보고싶다', '테스트');
+INSERT INTO tbl_board(bno, type, title, content, writer)
+VALUES (seq_board.NEXTVAL, 'free', '마스크답답', '하다', '테스트');
+INSERT INTO tbl_board(bno, type, title, content, writer)
+VALUES (seq_board.NEXTVAL, 'free', '집에가고싶다', '금요일됐으면ㅠ', '테스트');
+INSERT INTO tbl_board(bno, type, title, content, writer)
+VALUES (seq_board.NEXTVAL, 'free', '파이썬', '어떻게해요', '테스트');
+INSERT INTO tbl_board(bno, type, title, content, writer)
+VALUES (seq_board.NEXTVAL, 'free', '파이썬 DB연동 에러 좀 봐주세요', '여기서 에러뜨는뎅', '테스트');
+INSERT INTO tbl_board(bno, type, title, content, writer)
+VALUES (seq_board.NEXTVAL, 'free', '스프링 에러떴어요', 'ㅜㅜ', '테스트');
+INSERT INTO tbl_board(bno, type, title, content, writer)
+VALUES (seq_board.NEXTVAL, 'free', '취직하기싫다', '해야겠지', '테스트');
+INSERT INTO tbl_board(bno, type, title, content, writer)
+VALUES (seq_board.NEXTVAL, 'free', '자바설치', '어떻게해요', '테스트');
+INSERT INTO tbl_board(bno, type, title, content, writer)
+VALUES (seq_board.NEXTVAL, 'free', '이거 에러', '봐주세요', '테스트');
+INSERT INTO tbl_board(bno, type, title, content, writer)
+VALUES (seq_board.NEXTVAL, 'free', '멍멍멍', '멍멍멍어멍멍!!@!', '테스트');
+INSERT INTO tbl_board(bno, type, title, content, writer)
+VALUES (seq_board.NEXTVAL, 'free', '왈!', '와뢍뢍롸아ㅗㄹ왈!!!', '테스트');
+INSERT INTO tbl_board(bno, type, title, content, writer)
+VALUES (seq_board.NEXTVAL, 'free', '졸리다졸려', '졸려~~~~~~~~~~~~~', '테스트');
+INSERT INTO tbl_board(bno, type, title, content, writer)
+VALUES (seq_board.NEXTVAL, 'free', '갈비찜먹고싶당', '갈비찌뮤', '테스트');
+INSERT INTO tbl_board(bno, type, title, content, writer)
+VALUES (seq_board.NEXTVAL, 'free', '냠냠냠냠', '냠냠냠냠존맛', '테스트');
+
+COMMIT;
+
+-- 검색 title LIKE %keyword%
+-- 목록 title LIKE %%
 
 
 
@@ -199,9 +207,7 @@ CREATE TABLE tbl_reply(
 ALTER TABLE tbl_reply ADD CONSTRAINT pk_reply
 PRIMARY KEY(rno);
 
-INSERT INTO tbl_reply(rno, type, content, writer, bno)
-VALUES (seq_reply.NEXTVAL, 'free', '멍', '테스트', '368');
-
-SELECT * FROM tbl_reply;
+INSERT INTO tbl_Reply(rno, type, content, writer, bno)
+VALUES (seq_reply.NEXTVAL, 'free', '새로고침!!!', '징구', '16');
 
 COMMIT;
