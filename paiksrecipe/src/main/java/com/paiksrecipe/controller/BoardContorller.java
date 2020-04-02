@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,4 +108,19 @@ public class BoardContorller {
 		return "redirect:/board/list";
 	}
 	
+	@GetMapping("/update")
+	public String update(int bno, Model model) {
+		log.info("★★★★★★★★★★★★★★★ GET: BOARD UPDATE VIEW PAGE");
+
+		// 수정을 원하는 게시글의 정보를(1줄) 원함
+		model.addAttribute("one", bService.view(bno));
+		return "board/register";
+	}
+	
+	@PostMapping("/update")
+	public String update(BoardDTO bDto) {
+		
+		bService.update(bDto);
+		return "redirect:/board/view/" + bDto.getBno();
+	}
 }

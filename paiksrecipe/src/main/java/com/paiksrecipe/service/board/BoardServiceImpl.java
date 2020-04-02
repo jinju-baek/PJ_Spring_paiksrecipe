@@ -86,5 +86,12 @@ public class BoardServiceImpl implements BoardService {
 	public void write(BoardDTO bDto) {
 		bDao.write(bDto);
 	}
+	
+	// 게시글 수정
+	@Override
+	public void update(BoardDTO bDto) {
+		bDao.update(bDto);
+		
+	}
 
 }

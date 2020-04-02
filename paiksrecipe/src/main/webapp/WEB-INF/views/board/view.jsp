@@ -89,6 +89,15 @@
 .view_content {
 	padding: 20px;
 }
+.view_date {
+	display: flex;
+	justify-content: flex-end;
+	font-size: 11px;
+	padding: 3px;
+}
+.view_updatedate {
+	border-bottom: 0.5px solid black;
+}
 
 .view_info_btn_wrap {
 	display: flex;
@@ -228,17 +237,6 @@
 				<div class="view_info">
 					<div class="view_info_writer">${one.writer}</div>
 					<div>
-						<c:choose>
-						<%-- JSTL 주석은 이렇게 써야 에러 안뜸--%>
-							<c:when test="${today == regdate}">
-								<fmt:formatDate value="${one.regdate}" pattern="HH:mm:ss" />		
-							</c:when>
-							<c:otherwise>
-								<fmt:formatDate value="${one.regdate}" pattern="yyyy-MM-dd" />
-							</c:otherwise>
-						</c:choose>
-					</div>
-					<div>
 						<i class="far fa-eye"></i> ${one.viewcnt}
 					</div>
 					<div>
@@ -248,6 +246,13 @@
 						<i class="fas fa-comment-dots"></i> <span class="view_info_replycnt">${one.replycnt}</span>
 					</div>
 				</div>
+			</div>
+			<div class="view_date">
+					<%-- JSTL 주석은 이렇게 써야 에러 안뜸--%>
+					<span class="view_regdate"><fmt:formatDate value="${one.regdate}" pattern="yyyy-MM-dd HH:mm:ss" /> 작성</span>&nbsp;		
+					<c:if test="${one.regdate != one.updatedate}">
+						<span class="view_updatedate"><fmt:formatDate value="${one.updatedate}" pattern="yyyy-MM-dd HH:mm:ss" /> 수정됨</span>
+					</c:if>
 			</div>
 			<div class="view_content">${one.content}</div>
 			<button type="button" class="thumbs_up"><i class="far fa-thumbs-up"></i>추천</button>
@@ -259,7 +264,7 @@
 			</div>
 			<c:if test="${name == one.writer}">
 				<div>
-					<a href="#">수정</a> 
+					<a href="${path}/board/update?bno=${one.bno}">수정</a> 
 					<a href="#" class="delete_btn">삭제</a>
 				</div>
 			</c:if>

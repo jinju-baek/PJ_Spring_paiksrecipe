@@ -15,7 +15,7 @@
 	width: 768px;
 	margin: 130px auto 0;
 }
-h2{
+.board_title{
 	font-size: 40px;
 }
 .board_menu_wrap>a{
@@ -119,7 +119,7 @@ option{
 	width: 50px;
 }
 
-.board_title{
+.board_list_title{
 	width: 430px;
 }
 
@@ -227,7 +227,7 @@ strong{
 	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today"/><!-- 접속날짜를 변환 -->
 	<div class="wrap">
 		<div class="board_title_wrap">
-			<h2>자유게시판</h2>
+			<h2 class="board_title">자유게시판</h2>
 		</div>
 		<div class="search_wrap">
 
@@ -267,17 +267,18 @@ strong{
 			<table class="board">
 				<tr class="board_first">
 					<th class="board_bno">NO</th>
-					<th class="board_title">제목</th>
+					<th class="board_list_title">제목</th>
 					<th class="board_writer">작성자</th>
 					<th class="board_regdate">작성일</th>
 					<th class="board_viewcnt">조회수</th>
 					<th class="board_goodcnt">추천</th>
 				</tr>
 				<c:forEach items="${map.list}" var="list">
-				<fmt:formatDate value="${list.updatedate}" pattern="yyyy-MM-dd" var="regdate"/>
+				<fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd" var="regdate"/>
+				<fmt:formatDate value="${list.updatedate}" pattern="yyyy-MM-dd" var="updatedate"/><!-- 접속날짜를 변환 -->
 					<tr class="board_list">
 						<td class="board_bno">${list.bno}</td>
-						<td class="board_title">
+						<td class="board_list_title">
 							<a href="${path}/board/view/${list.bno}">${list.title}  [${list.replycnt}]  </a>
 							<div><i class="fas fa-paperclip"></i></div>
 							<c:if test="${today == regdate}">
@@ -288,7 +289,7 @@ strong{
 						<td class="board_regdate">
 							<c:choose>
 							<%-- JSTL 주석은 이렇게 써야 에러 안뜸--%>
-								<c:when test="${today == regdate}">
+								<c:when test="${today == updatedate}">
 									<fmt:formatDate value="${list.updatedate}" pattern="HH:mm:ss" />		
 								</c:when>
 								<c:otherwise>

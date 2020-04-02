@@ -51,10 +51,15 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 				String mapWord = referer.substring(index, len);
 				log.info("★★★★★★★★★★★★★★★ 수정된 URL : " + mapWord);
 				log.info("★★★★★★★★★★★★★★★ 이전 URL : " + referer);
+				log.info("★★★★★★★★★★★★★ : " + mapWord.indexOf("/update"));
+				
 				
 				if(mapWord.equals("/write")) {
 					response.sendRedirect(request.getContextPath() + "/board/list");
 					return false; // 이동 x
+				}else if(mapWord.indexOf("/update") == 0) {
+					response.sendRedirect(request.getContextPath() + "/board/list");
+					return false;
 				}
 			}
 						

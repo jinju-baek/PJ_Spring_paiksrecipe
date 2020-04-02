@@ -12,7 +12,10 @@
 	width: 770px;
 	margin: 130px auto;
 }
-
+.board_title{
+	font-size: 40px;
+	margin-bottom: 10px;
+}
 table {
 	border-collapse: separate;
 	border-spacing: 0 10px;
@@ -93,6 +96,16 @@ table {
 </head>
 <body>
 	<div class="boardregister_wrap">
+		<div class="board_title_wrap">
+			<c:choose>
+				<c:when test="${empty one}">
+					<h2 class="board_title">게시글 작성</h2>
+				</c:when>
+				<c:otherwise>
+					<h2 class="board_title">게시글 수정</h2>
+				</c:otherwise>
+			</c:choose>
+		</div>
 		<form:form id="frm_board">
 			<table>
 				<tr>
@@ -100,7 +113,7 @@ table {
 				</tr>
 				<tr>
 					<td class="register_table_content content_type">
-						<select name="type">
+						<select name="type" class="board_type">
 							<option value="free">자유게시판</option>
 							<option value="cook">요리게시판</option>
 							<option value="qna">Q&A게시판</option>
@@ -110,13 +123,13 @@ table {
 				</tr>
 				<tr>
 					<td class="register_table_content content_title">
-						<input class="register_title_input" type="text" name="title" placeholder="제목을 입력하세요.">
+						<input class="register_title_input" type="text" name="title" placeholder="제목을 입력하세요." value="${one.title}">
 					</td>
 				</tr>
 				<tr>
 					<td class="register_table_content textarea_wrap">
 						<script type="text/javascript" src="${path}/resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-						<textarea class="register_content_textarea" id="board_content" name="content" style="min-width: 766px"></textarea>
+						<textarea class="register_content_textarea" id="board_content" name="content" style="min-width: 766px">${one.content}</textarea>
 					</td>
 				</tr>
 				<tr>
@@ -126,7 +139,14 @@ table {
 			
 			<div class="boardregister_btn_wrap">
 				<button type="button" class="cancel_btn">취소</button>
-				<button type="button" class="submit_btn">확인</button>
+				<c:choose>
+					<c:when test="${empty one}">
+						<button type="button" class="submit_btn">글쓰기</button>
+					</c:when>
+					<c:otherwise>
+						<button type="button" class="submit_btn">수정</button>
+					</c:otherwise>
+				</c:choose>
 			</div>	
 		</form:form>
 	</div>
@@ -134,7 +154,15 @@ table {
 </body>
 <script type="text/javascript">
 	$(function(){
-		
+		// register -> 게시글 등록과 게시글 수정
+		// ${one}에 값이 있으면 수정페이지 로딩
+		if('${one}' != ''){
+			// 수정페이지로 디자인 변경
+			
+			// SelectBox 값으로 Selected
+			$('.board_type').val('${one.type}').attr('selected', 'selected');
+			
+		}
 	});
 	
 	$(document).on('click', '.cancel_btn', function(){
@@ -149,10 +177,12 @@ table {
 	
 	$(document).on('click', '.submit_btn', function(){
 		var title = $('.register_title_input').val();
+		var content = $('.register_content_textarea').val();
 		
 		if(title == '' || title.length == 0){
 			// 에러메세지 '제목을 입력해주세요'
 			alert('제목을 입력해주세요');
+			$('.register_title_input').focus();
 			return false;
 		} else {
 			// 서버로 전송
