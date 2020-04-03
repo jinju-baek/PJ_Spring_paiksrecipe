@@ -96,7 +96,7 @@
 	padding: 3px;
 }
 .view_updatedate {
-	border-bottom: 0.5px solid black;
+	text-decoration: underline;
 }
 
 .view_info_btn_wrap {
