@@ -53,10 +53,15 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			
 			if(nextUrl.equals("/board/update") || nextUrl.equals("/board/delete")) {
 				log.info("★★★★★★★★★★★★★★★ 상세게시글 여부 : " + prevUrl.indexOf("board/view"));
-				if(prevUrl.indexOf("board/view") == -1) {
-					log.info("★★★★★★★★★★★★★★★ WARNING>> 비정상적인 접근 :(");
-					response.sendRedirect(finalUrl);
-					return false;
+				// 1. 상세게시글 (board/view) -> 수정게시글 페이지(board/update) bno 전송(title x)
+				// 2. 수정게시글 페이지(board/update) -> 수정DB작업(board/update) bDto 전송(title o)
+				// 둘다 비정상접근으로 인식하므로 2번 경우만 제외
+				if(request.getParameter("title") == null) {
+					if(prevUrl.indexOf("board/view") == -1) {
+						log.info("★★★★★★★★★★★★★★★ WARNING>> 비정상적인 접근 :(");
+						response.sendRedirect(finalUrl);
+						return false;
+					}
 				}
 			}
 		}
