@@ -254,7 +254,7 @@
 						<span class="view_updatedate"><fmt:formatDate value="${one.updatedate}" pattern="yyyy-MM-dd HH:mm:ss" /> 수정됨</span>
 					</c:if>
 			</div>
-			<div class="view_content">${one.content}</div>
+			<div class="view_content">${one.view_content}</div>
 			<button type="button" class="thumbs_up"><i class="far fa-thumbs-up"></i>추천</button>
 		</div>
 		<div class="view_info_btn_wrap">

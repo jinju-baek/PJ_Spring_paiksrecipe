@@ -18,7 +18,7 @@ public interface BoardDAO {
 	public void increaseViewCnt(@Param("bno") int bno);
 	
 	// 상세게시글 출력
-	public BoardDTO view(int num);
+	public BoardDTO view(int bno);
 	
 	// 상세게시글 삭제
 	public void delBoard(@Param("bno") int bno);

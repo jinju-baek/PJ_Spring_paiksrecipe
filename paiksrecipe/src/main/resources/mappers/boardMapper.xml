@@ -24,8 +24,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="write">
-		INSERT INTO tbl_board(bno, type, title, content, writer)
-		VALUES(seq_board.NEXTVAL, #{type}, #{title}, #{content}, #{writer})
+		INSERT INTO tbl_board(bno, type, title, view_content, search_content, writer)
+		VALUES(seq_board.NEXTVAL, #{type}, #{title}, #{view_content}, #{search_content}, #{writer})
 		
 		<selectKey keyProperty="bno" resultType="Integer" order="AFTER">
 			SELECT seq_board.CURRVAL FROM dual
@@ -60,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				WHERE b.writer = m.name 
 					  AND b.show = 'y'
 					  AND (title LIKE #{map.keyword}
-					  		OR content LIKE #{map.keyword}
+					  		OR search_content LIKE #{map.keyword}
 					  		OR name LIKE #{map.keyword})
 			</otherwise>
 		</choose>
@@ -85,7 +85,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="update">
 		UPDATE tbl_board
-		SET type=#{type}, title=#{title}, content=#{content}, updatedate=sysdate
+		SET type=#{type}, title=#{title}, view_content=#{view_content}, search_content=#{search_content}, updatedate=sysdate
 		WHERE bno=#{bno}
 	</update>
 	
