@@ -120,7 +120,8 @@ CREATE TABLE tbl_board(
     bno number(10, 0), -- 게시글 번호
     type CHAR(4) NOT NULL, -- 게시판 유형
     title VARCHAR2(200) NOT NULL, -- 게시글 제목
-    content VARCHAR2(4000) NOT NULL, -- 게시글 내용
+    view_content VARCHAR2(4000) NOT NULL, -- 게시글 내용
+    search_content VARCHAR2(4000) NOT NULL, -- 게시글 내용
     writer VARCHAR2(50) NOT NULL, -- 게시글 작성자
     viewcnt NUMBER DEFAULT 0, -- 조회수
     replycnt NUMBER DEFAULT 0, -- 댓글수
