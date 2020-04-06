@@ -103,9 +103,9 @@ public class BoardContorller {
 		log.info("★★★★★★★★★★★★★★★ POST: BOARD WRITE ACTION");
 
 		log.info(bDto.toString());
-		
 		bService.write(bDto);
-		return "redirect:/board/list";
+		
+		return "redirect:/board/view/" + bDto.getBno();
 	}
 	
 	@GetMapping("/update")
