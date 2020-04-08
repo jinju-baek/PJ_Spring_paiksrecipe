@@ -27,6 +27,7 @@ table {
 	border: 1px solid #ebebeb;
 }
 
+
 .register_table_content>select {
 	width: 100%;
 	height: 21px;
@@ -37,11 +38,15 @@ table {
 	padding: 0;
 }
 
-.content_file {
+.input_wrap {
 	border: 2px dashed #ebebeb;
 	text-align: center;
 	height: 100px;
 	color: #c5c5c5;
+}
+
+.board_div>p {
+	padding: 38px;
 }
 
 .register_title_input {
@@ -131,11 +136,14 @@ table {
 						<script type="text/javascript" src="${path}/resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 						<textarea class="register_content_textarea" id="board_content" name="view_content" style="min-width: 766px">${one.view_content}</textarea>
 					</td>
-				</tr>
-				<tr>
-					<td class="register_table_content content_file"><i class="fas fa-paperclip"></i> 첨부파일을 드래그 해주세요</td>
-				</tr>
+				</tr>				
 			</table>
+			<div class="input_wrap form-group">
+				<div class="board_div fileDrop">
+					<p><i class="fas fa-paperclip"></i> 첨부파일을 드래그 해주세요</p>
+				</div>
+				<ul class="mailbox-attachments clearfix uploadedList"></ul>
+			</div>
 			
 			<div class="boardregister_btn_wrap">
 				<button type="button" class="cancel_btn">취소</button>
@@ -210,5 +218,42 @@ table {
 		 sSkinURI: "${path}/resources/smarteditor/SmartEditor2Skin.html",
 		 fCreator: "createSEditor2"
 	});
+	
+	// 1. 웹브라우저에 drag&drop시 파일이 열리는 문제(기본 효과)
+	// -> 기본 효과 막음
+	$('.fileDrop').on('dragenter dragover', function(e){
+		e.preventDefault();
+	});
+	
+	// 2. 사용자가 파일을 drop했을 때
+	$('.fileDrop').on('drop', function(e){
+		e.preventDefault();
+		
+		var files = e.originalEvent.dataTransfer.files; // 드래그에 전달된 파일
+		var file = files[0]; // 그 중 하나만 꺼내옴
+		
+		var formData = new FormData(); // 폼 객체 생성
+		formData.append('file', file); // 폼에 파일 1개 추가
+		
+		// 서버에 파일 업로드
+		$.ajax({
+			// 멀티파트 : 타입의 한 종류로 원래는 텍스트만 보낼 수 있지만 멀티파트로하면 이미지 등을 포함한 파일을 전송 가능
+			url: '${path}/upload/uploadAjax',
+			data: formData,
+			datatype: "text", // 서버에서 받을 때 데이터 타입
+			// 에이젝스는 쿼리스트링으로 만들어서 보내는데(default) 
+			// 데이터의 길이가 길 경우 url에 다 담지 못함
+			// ->false할 경우 쿼리스트링 방식 사용x 
+			processData: false, 
+			contentType: false, // 보낼 때 데이터 타입 false할 경우 멀티파트로 받을 수 있음
+			type: 'POST', // 첨부파일은 GET으로 전송 불가
+			success: function(data){
+				console.log(data);
+				// data : 업로드한 파일 정보와 http 상태 코드
+				printFiles(data) // 첨부파일 출력 메서드 호출
+			}
+		});
+	});
+	
 </script>
 </html>
