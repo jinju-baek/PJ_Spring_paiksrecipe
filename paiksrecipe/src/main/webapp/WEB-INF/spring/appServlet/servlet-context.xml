@@ -67,6 +67,7 @@
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
 	<!-- 파일 업로드 관련 설정 -->
+	<!-- 컨트롤러 단에서 쓰기위해 알아서 멀티파트로 변환 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 파일 업로드 최대 용량(byte) -->
 		<!-- value : 사이즈값(10485760Byte = 10MB) -->
@@ -74,7 +75,7 @@
 	</beans:bean>
 		
 	<!-- 파일 업로드를 위한 디렉토리 설정 -->
-	<!-- String uploadPath=new String("d:/upload"); -->
+	<!-- String uploadPath=new String("c:/developer/upload"); -->
 	<beans:bean id="uploadPath" class="java.lang.String">
 		<beans:constructor-arg value="c:/developer/upload" />
 	</beans:bean>
