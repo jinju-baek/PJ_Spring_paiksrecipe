@@ -235,7 +235,6 @@ table {
 	
 	$(document).on('click', '.submit_btn', function(){
 		var title = $('.register_title_input').val();
-		var content = $('.register_content_textarea').val();
 		
 		if(title == '' || title.length == 0){
 			// 에러메세지 '제목을 입력해주세요'
@@ -254,6 +253,28 @@ table {
 			// append : form태그의 맨 마지막에 추가
 			$('#frm_board').append('<textarea id="search_content" name="search_content"></textarea>');
 			$('#search_content').val(search_content);			
+			
+			// 첨부파일 목록[배열]도 추가
+			var str = '';
+			// uploadedList 내부의 .file 태그 각각 반복
+			// each : 선택자수만큼 반복 (foreach랑 같은 기능)
+			$('.uploadedList .file').each(function(i){
+				console.log(i);
+				// hidden 태그 구성
+				str += "<input type='hidden' name='files[" + i + "]' value='" + $(this).val()+"'>";
+			});
+			
+			// 로컬 드라이브에 저장돼있는 해당게시글
+			// 첨부파일 삭제
+			/* if(deleteFileList.length > 0) {
+				$.post('${path}/upload/deleteAllFile', {files:deleteFileList}, function(){});
+			} */
+			
+			// 폼에 hidden 태그들을 붙임
+			$('#frm_board').append(str);
+			
+			// 서버로 전송
+			$('#frm_board').submit();
 			
 			// 서버로 전송
 			$('#frm_board').submit();

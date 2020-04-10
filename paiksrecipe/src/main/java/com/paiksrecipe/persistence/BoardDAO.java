@@ -28,6 +28,9 @@ public interface BoardDAO {
 
 	// 게시글 수정
 	public void update(BoardDTO bDto);
+
+	// 첨부파일 등록
+	public void addAttach(@Param("fullName") String fullName);
 	
 	
 }
