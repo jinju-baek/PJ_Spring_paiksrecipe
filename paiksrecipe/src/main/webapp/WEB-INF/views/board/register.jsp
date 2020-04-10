@@ -119,6 +119,16 @@ table {
     color: white;
 }
 
+.s_img {
+	width: 50px;
+    height: 50px;
+    margin: 10px;
+}
+
+.delBtn > .fa-times{
+	cursor: pointer;
+}
+
 </style>
 </head>
 <body>
@@ -288,6 +298,29 @@ table {
 				printFiles(data) // 첨부파일 출력 메서드 호출
 			}
 		});
+	});
+	
+	$('.uploadedList').on('click', '.delBtn', function(event){
+		var bno = '${one.bno}';
+		var that = $(this);
+		
+		if(bno == '') { // 게시글 등록
+			$.ajax({
+				url: '${path}/upload/deleteFile',
+				type: 'POST',
+				data: {fileName: $(this).attr('data-src')},
+				success: function(data) {
+					if(data == 'deleted') {
+						// parents 부모들 중에서 찾음
+						that.parents('li').remove();
+					}
+				}, error: function(){
+					alert('System Error');
+				}	
+			});
+		} else { // 게시글 수정
+			
+		}
 	});
 	
 	// 파일 정보 처리

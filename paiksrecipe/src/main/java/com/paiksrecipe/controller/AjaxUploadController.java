@@ -1,5 +1,6 @@
 package com.paiksrecipe.controller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -89,5 +91,36 @@ public class AjaxUploadController {
 				in.close(); // 스트림 닫기
 		}
 		return entity;
+	}
+	
+	@ResponseBody
+	@PostMapping("/upload/deleteFile")
+	public ResponseEntity<String> deleteFile(String fileName) {
+		log.info("fileName : " + fileName);
+		// fileName = /2020/04/10/s_ca6412fe-c76a-469f-87c4-c8fb032c39de_005_004.png
+		// 확장자 검사
+		String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+		// formatName = jpg
+		MediaType mType = MediaUtils.getMediaType(formatName);
+		if(mType != null) { // 이미지 파일이면 원본이미지 삭제
+			String front = fileName.substring(0, 12);
+			// front = /2020/04/10/
+			String end = fileName.substring(14);
+			// end = ca6412fe-c76a-469f-87c4-c8fb032c39de_005_004.png
+			// File.separatorChar : 유닉스 / 윈도우즈 \
+			new File(uploadPath + (front + end).replace('/', File.separatorChar)).delete();
+			// new File(c://developer/upload + /2020/04/10/ + ca6412fe-c76a-469f-87c4-c8fb032c39de_005_004.png)
+			// replace >> c:\\developer\ upload + \2020\04\10\ + ca6412fe-c76a-469f-87c4-c8fb032c39de_005_004.png
+			// delete >> c:\\developer\ upload + \2020\04\10\ + ca6412fe-c76a-469f-87c4-c8fb032c39de_005_004.png
+			// 원본이미지만 삭제
+		}
+		// 원본 파일 삭제(이미지이면 썸네일 삭제)
+		new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
+		// new File(c://developer/upload/2020/04/10/s_ca6412fe-c76a-469f-87c4-c8fb032c39de_005_004.png)
+		// replace >> c:\\developer\ upload\2020\04\10\s_ca6412fe-c76a-469f-87c4-c8fb032c39de_005_004.png)
+		// delete >> c:\\developer\ upload\2020\04\10\s_ca6412fe-c76a-469f-87c4-c8fb032c39de_005_004.png)
+		
+		// ResponseEntity : request를 처리하고 response할 때 response설정을 미세하게 변경할 때 사용
+		return new ResponseEntity<String>("deleted", HttpStatus.OK);
 	}
 }
