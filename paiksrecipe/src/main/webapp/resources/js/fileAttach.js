@@ -79,3 +79,31 @@ function checkImageType(fileName) {
 	return fileName.match(pattern); // 규칙에 맞으면 true
 }
 
+//첨부파일 리스트를 출력하는 함수
+function listAttach(path, bno){
+	var listCnt = 0;
+	$.ajax({
+		type : 'post',
+		url : path + '/board/getAttach?bno=' + bno,
+		async: false,
+		success : function(list){
+			//list : json
+			//console.log(list);
+			listCnt = list.length;
+			
+			/*console.log(list.length);*/
+			/*
+			jQuery each()는 반복문
+			i와 e는 index와 element로
+			json에서 {0: "apple.png"}일 때
+			index는 0, element는 apple.png가 됨
+			*/
+			$(list).each(function(i, e){
+				/*console.log(list)*/
+				printFiles(e, path); // 첨부파일 출력 메서드 호출
+			
+			});
+		}
+	});
+	return listCnt;
+}

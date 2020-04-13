@@ -32,5 +32,7 @@ public interface BoardDAO {
 	// 첨부파일 등록
 	public void addAttach(@Param("fullName") String fullName);
 	
+	// 첨부파일 목록
+	public List<String> getAttach(@Param("bno") int bno);
 	
 }

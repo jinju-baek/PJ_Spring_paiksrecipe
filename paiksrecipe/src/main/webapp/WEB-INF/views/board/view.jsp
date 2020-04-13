@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>PAIKSRECIPE : 자유게시판</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
 <style type="text/css">
 .board_view_wrap {
@@ -102,7 +103,7 @@
 .view_info_btn_wrap {
 	display: flex;
 	justify-content: space-between;
-	margin: 10px 10px 40px;
+	margin: 20px 10px 40px;
 }
 
 .view_info_btn_wrap>div>a {
@@ -220,6 +221,39 @@
 	outline: none;
 	cursor: pointer;
 }
+
+
+.uploadedList > li {
+    border-radius: 2px;
+    margin-right: 5px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.mailbox-attachments {
+	display: flex;
+	margin: 10px;
+}
+
+.mailbox-attachment-icon {
+    padding: 5px 5px 0px;
+}
+
+.mailbox-attachment-info {
+    padding: 5px 10px;
+    background: #303740;
+    color: white;
+}
+
+.s_img {
+	width: 50px;
+    height: 50px;
+    margin: 10px;
+}
+
+.delBtn > .fa-times{
+	cursor: pointer;
+}
+
 </style>
 </head>
 <body>
@@ -257,6 +291,7 @@
 			<div class="view_content">${one.view_content}</div>
 			<button type="button" class="thumbs_up"><i class="far fa-thumbs-up"></i>추천</button>
 		</div>
+		<ul class="mailbox-attachments clearfix uploadedList"></ul>
 		<div class="view_info_btn_wrap">
 			<div>
 				<a href="${header.referer}" class="list_btn">목록</a> 
@@ -278,8 +313,33 @@
 	</div>
 	<%@ include file="../include/footer.jsp"%>
 </body>
+<script id="fileTemplate" type="text/x-handlebars-template">
+	<li>
+		<div class="mailbox-attachment-icon has-img">
+			<center><img src="{{imgSrc}}" alt="Attachment" class="s_img"></center>
+		</div>
+		<div class="mailbox-attachment-info">
+			<a href="{{originalFileUrl}}" class="mailbox-attachment-name">
+				<i class="fa fa-paperclip"></i> {{originalFileName}}
+			</a>
+		</div>
+	</li>
+</script>
+<script src="${path}/resources/js/fileAttach.js"></script>
 <script type="text/javascript">
+	//Handlebars 파일템플릿 컴파일
+	var fileTemplate = Handlebars.compile($("#fileTemplate").html());
+
 	$(function(){		
+		// 첨부파일 목록 불러오기
+		var listCnt = listAttach('${path}', '${one.bno}');
+		
+		// 첨부파일 0건일 때 '첨부파일 없음' 출력
+		console.log('FILE CNT: ' + listCnt);
+		if(listCnt == 0) {
+			var text = '<span class="no_attach">첨부파일이 없습니다.</span>';
+			$('#uploadedList').html(text);
+		}
 		// setInterval() : 자바스크립트 내장 함수로 3000000마다 refreshReply를 실행
 		setInterval(refreshReply, 180000);
 		

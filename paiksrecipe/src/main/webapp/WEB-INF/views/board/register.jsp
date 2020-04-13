@@ -194,17 +194,17 @@ table {
 </body>
 <script id="fileTemplate" type="text/x-handlebars-template">
 	<li>
-	<div class="mailbox-attachment-icon has-img">
-		<center><img src="{{imgSrc}}" alt="Attachment" class="s_img"></center>
-	</div>
-	<div class="mailbox-attachment-info">
-		<a href="{{originalFileUrl}}" class="mailbox-attachment-name">
-			<i class="fa fa-paperclip"></i> {{originalFileName}}
-		</a>
-		<span class="btn btn-default btn-xs pull-right delBtn" data-src="{{basicFileName}}">
-			<i class="fas fa-times"></i>
-		</span>
-	</div>
+		<div class="mailbox-attachment-icon has-img">
+			<center><img src="{{imgSrc}}" alt="Attachment" class="s_img"></center>
+		</div>
+		<div class="mailbox-attachment-info">
+			<a href="{{originalFileUrl}}" class="mailbox-attachment-name">
+				<i class="fa fa-paperclip"></i> {{originalFileName}}
+			</a>
+			<span class="btn btn-default btn-xs pull-right delBtn" data-src="{{basicFileName}}">
+				<i class="fas fa-times"></i>
+			</span>
+		</div>
 	</li>
 </script>
 <script src="${path}/resources/js/fileAttach.js"></script>

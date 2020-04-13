@@ -105,7 +105,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void update(BoardDTO bDto) {
 		bDao.update(bDto);
-		
+	}
+
+	@Override
+	public List<String> getAttach(int bno) {
+		return bDao.getAttach(bno);
 	}
 
 }

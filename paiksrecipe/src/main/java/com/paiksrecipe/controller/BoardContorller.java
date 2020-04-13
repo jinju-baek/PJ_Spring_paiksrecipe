@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.paiksrecipe.domain.BoardDTO;
 import com.paiksrecipe.service.board.BoardService;
@@ -122,5 +123,14 @@ public class BoardContorller {
 		
 		bService.update(bDto);
 		return "redirect:/board/view/" + bDto.getBno();
+	}
+	
+	@PostMapping("/getAttach")
+	@ResponseBody
+	public List<String> getAttach(int bno) {
+		log.info("★★★★★★★★★★★★★★★ POST: BOARD GETATTACH ACTION");
+		log.info("★★★★★★★★★★★★★★★ bno: " + bno);
+		
+		return bService.getAttach(bno);
 	}
 }
