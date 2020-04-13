@@ -126,6 +126,7 @@ CREATE TABLE tbl_board(
     viewcnt NUMBER DEFAULT 0, -- 조회수
     replycnt NUMBER DEFAULT 0, -- 댓글수
     goodcnt NUMBER DEFAULT 0, -- 좋아요
+    filecnt NUMBER DEFAULT 0,
     regdate DATE DEFAULT SYSDATE, -- 작성일자
     updatedate DATE DEFAULT SYSDATE, -- 수정일자
     show CHAR(1) DEFAULT 'y', -- 화면표시여부
@@ -133,7 +134,6 @@ CREATE TABLE tbl_board(
     re_step NUMBER DEFAULT 1, -- 답변 출력 순번
     re_level NUMBER DEFAULT 0 -- 답변 단계(계층형)
 );
-
 -- 게시판 테이블 PK Key 추가
 ALTER TABLE tbl_board ADD CONSTRAINT pk_board
 PRIMARY KEY(bno);
