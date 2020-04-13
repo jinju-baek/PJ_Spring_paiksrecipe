@@ -104,6 +104,14 @@ public class BoardContorller {
 		log.info("★★★★★★★★★★★★★★★ POST: BOARD WRITE ACTION");
 
 		log.info(bDto.toString());
+		
+		if(bDto.getFiles() == null) { // 첨부파일 NO
+			bDto.setFileCnt(0);
+		} else { // 첨부파일 YES
+			log.info("★★★★★★★★★★★★★★★ 첨부파일 수: " + bDto.getFiles().length);
+			bDto.setFileCnt(bDto.getFiles().length);
+		}
+	
 		bService.write(bDto);
 		
 		return "redirect:/board/view/" + bDto.getBno();

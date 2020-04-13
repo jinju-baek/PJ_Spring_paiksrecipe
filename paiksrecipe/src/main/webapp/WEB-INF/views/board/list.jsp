@@ -280,7 +280,9 @@ strong{
 						<td class="board_bno">${list.bno}</td>
 						<td class="board_list_title">
 							<a href="${path}/board/view/${list.bno}">${list.title}  [${list.replycnt}]  </a>
-							<div><i class="fas fa-paperclip"></i></div>
+							<c:if test="${list.fileCnt != 0}">
+								<div><i class="fas fa-paperclip"></i></div>
+							</c:if>
 							<c:if test="${today == regdate}">
 								<div class="new_img"></div>
 							</c:if>

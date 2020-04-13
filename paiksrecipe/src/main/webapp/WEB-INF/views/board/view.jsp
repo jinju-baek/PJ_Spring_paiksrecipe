@@ -103,7 +103,7 @@
 .view_info_btn_wrap {
 	display: flex;
 	justify-content: space-between;
-	margin: 20px 10px 40px;
+	margin: 20px 10px;
 }
 
 .view_info_btn_wrap>div>a {
@@ -231,7 +231,7 @@
 
 .mailbox-attachments {
 	display: flex;
-	margin: 10px;
+	margin: 10px 10px 20px;
 }
 
 .mailbox-attachment-icon {
@@ -291,7 +291,6 @@
 			<div class="view_content">${one.view_content}</div>
 			<button type="button" class="thumbs_up"><i class="far fa-thumbs-up"></i>추천</button>
 		</div>
-		<ul class="mailbox-attachments clearfix uploadedList"></ul>
 		<div class="view_info_btn_wrap">
 			<div>
 				<a href="${header.referer}" class="list_btn">목록</a> 
@@ -304,6 +303,7 @@
 				</div>
 			</c:if>
 		</div>
+		<ul class="mailbox-attachments clearfix uploadedList"></ul>
 		
 		<!-- 댓글창 -->
 		<!-- 여기서 forEach문을 쓸 경우 댓글 수정 삭제시 
