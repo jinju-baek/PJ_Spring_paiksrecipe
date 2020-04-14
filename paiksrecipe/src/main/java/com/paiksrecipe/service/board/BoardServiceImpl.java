@@ -113,8 +113,19 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 게시글 수정
 	@Override
-	public void update(BoardDTO bDto) {
-		bDao.update(bDto);
+	public void updateBoard(BoardDTO bDto) {
+		// 1. 게시글 내용 수정
+		bDao.updateBoard(bDto);
+		
+		// 2. 해당 게시글 관련 첨부파일 모두 DB에서 삭제(tbl_attach)
+		bDao.deleteAttach(bDto.getBno());
+		
+		// 3. 수정시 존재하는 첨부파일 모두 DB에 등록
+		String[] files = bDto.getFiles();
+		if(files == null) return;		
+		for(String fullName: files) { 
+			bDao.updateAttach(fullName, bDto.getBno());
+		}
 	}
 
 	@Override

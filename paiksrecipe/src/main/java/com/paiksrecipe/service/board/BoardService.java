@@ -27,8 +27,9 @@ public interface BoardService {
 	public void write(BoardDTO bDto);
 	
 	// 게시글 수정
- 	public void update(BoardDTO bDto);
+ 	public void updateBoard(BoardDTO bDto);
 
  	// 해당 게시글 첨부파일 목록 출력
 	public List<String> getAttach(int bno);
+
 }

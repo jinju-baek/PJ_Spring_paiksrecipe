@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,8 +127,16 @@ public class BoardContorller {
 	
 	@PostMapping("/update")
 	public String update(BoardDTO bDto) {
+		log.info("★★★★★★★★★★★★★★★ POST: BOARD UPDATE VIEW PAGE");
 		
-		bService.update(bDto);
+		if(bDto.getFiles() == null) { // 첨부파일 NO
+			bDto.setFileCnt(0);
+		} else {
+			log.info("첨부파일 수 : " + bDto.getFiles().length);
+			bDto.setFileCnt(bDto.getFiles().length);
+		}
+		
+		bService.updateBoard(bDto); 
 		return "redirect:/board/view/" + bDto.getBno();
 	}
 	

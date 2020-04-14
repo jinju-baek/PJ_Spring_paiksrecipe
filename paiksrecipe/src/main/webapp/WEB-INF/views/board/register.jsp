@@ -210,8 +210,12 @@ table {
 <script src="${path}/resources/js/fileAttach.js"></script>
 <script type="text/javascript">
 	
-	//Handlebars 파일템플릿 컴파일
+	// Handlebars 파일템플릿 컴파일
 	var fileTemplate = Handlebars.compile($("#fileTemplate").html());
+	
+	// 수정시 로컬에서 삭제할 기존 첨부파일 목록
+	var deleteFileList = new Array();
+	
 	$(function(){
 		// register -> 게시글 등록과 게시글 수정
 		// ${one}에 값이 있으면 수정페이지 로딩
@@ -221,6 +225,7 @@ table {
 			// SelectBox 값으로 Selected
 			$('.board_type').val('${one.type}').attr('selected', 'selected');
 			
+			listAttach('${path}', '${one.bno}');
 		}
 	});
 	
@@ -265,11 +270,10 @@ table {
 				str += "<input type='hidden' name='files[" + i + "]' value='" + $(this).val()+"'>";
 			});
 			
-			// 로컬 드라이브에 저장돼있는 해당게시글
-			// 첨부파일 삭제
-			/* if(deleteFileList.length > 0) {
+			// 삭제 첨부파일 목록에 있는 첨부파일들 Local에서 삭제
+			if(deleteFileList.length > 0) {
 				$.post('${path}/upload/deleteAllFile', {files:deleteFileList}, function(){});
-			} */
+			}
 			
 			// 폼에 hidden 태그들을 붙임
 			$('#frm_board').append(str);
@@ -341,7 +345,14 @@ table {
 				}	
 			});
 		} else { // 게시글 수정
+			var arr_size = deleteFileList.length;
+			deleteFileList[arr_size] = $(this).attr('data-src');
+			$(this).parents('li').next('input').remove();
+			$(this).parents('li').remove();
 			
+			for(var i = 0; i < deleteFileList.length; i++)
+				console.log(deleteFileList[i]);
+		
 		}
 	});
 	

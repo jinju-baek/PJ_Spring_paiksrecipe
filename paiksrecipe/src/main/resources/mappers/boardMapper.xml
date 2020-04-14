@@ -82,9 +82,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE bno=#{bno}
 	</update>
 	
-	<update id="update">
+	<update id="updateBoard">
 		UPDATE tbl_board
-		SET type=#{type}, title=#{title}, view_content=#{view_content}, search_content=#{search_content}, updatedate=sysdate
+		SET type=#{type}, title=#{title}, filecnt=#{fileCnt}, view_content=#{view_content}, search_content=#{search_content}, updatedate=sysdate
 		WHERE bno=#{bno}
 	</update>
 	
@@ -106,4 +106,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM tbl_attach
 		WHERE bno = #{bno}
 	</delete>
+	
+	<!-- 첨부파일 수정(등록) -->
+	<insert id="updateAttach">
+		INSERT INTO tbl_attach(fullName, bno)
+		VALUES(#{fullName}, #{bno})
+	</insert>
 </mapper>
