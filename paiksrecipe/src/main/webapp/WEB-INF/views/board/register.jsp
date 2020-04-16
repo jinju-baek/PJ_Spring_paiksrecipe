@@ -281,8 +281,6 @@ table {
 			// 서버로 전송
 			$('#frm_board').submit();
 			
-			// 서버로 전송
-			$('#frm_board').submit();
 		}
 	});
 	
