@@ -294,11 +294,18 @@ table {
 	$('.fileDrop').on('drop', function(e){
 		e.preventDefault();
 		
-		var files = e.originalEvent.dataTransfer.files; // 드래그에 전달된 파일
+		var files = e.originalEvent.dataTransfer.files; // 드래그에 전달된 파일들 중
 		var file = files[0]; // 그 중 하나만 꺼내옴
 		
+		// 비즈니스로직 : 
+		// 사용자가 첨부파일을 드래그앤드롭하는 순간
+		// AJAX를 활용하여 LOCAL DRIVE에 저장
+		
 		var formData = new FormData(); // 폼 객체 생성
-		formData.append('file', file); // 폼에 파일 1개 추가
+		formData.append('file', file); // 뒤에 폼에 파일 1개 추가
+		
+		// 사용자가 드래그앤드롭한 첨부파일 1개를 
+		// formData에 'file'이라는 이름표를 붙여 저장
 		
 		// 서버에 파일 업로드
 		$.ajax({
@@ -315,7 +322,7 @@ table {
 			// ->false할 경우 쿼리스트링 방식 사용x 
 			processData: false, 
 			contentType: false, // 보낼 때 데이터 타입 false할 경우 멀티파트로 보낼 수 있음
-			type: 'POST', // 첨부파일은 GET으로 전송 불가
+			type: 'POST', // 첨부파일은 GET으로 전송 불가(URL로 보내기 때문에 제한적)
 			success: function(data){
 				console.log(data);
 				// data : 업로드한 파일 정보와 http 상태 코드

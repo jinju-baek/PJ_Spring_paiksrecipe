@@ -50,8 +50,6 @@ function printFiles(data, path) {
 	if(fileInfo.fullName.substr(12,2) === "s_") {
 		// 마지막에 추가된 첨부파일 템플릿 선택자
 		var that = $(".uploadedList li").last();
-		// lightbox 속성 추가
-		that.find(".mailbox-attachment-name").attr("data-lightbox", "uploadImages");
 		// 파일 아이콘에서 이미지 아이콘으로 변경
 		that.find(".fa-paperclip").attr("class", "fa fa-camera");
 	}

@@ -43,6 +43,7 @@ public class AjaxUploadController {
 	@ResponseBody
 	@RequestMapping(value="/upload/uploadAjax", produces="text/plain;charset=utf-8")
 	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
+														// file = 사용자가 드래그앤드롭한 첨부파일
 		// uploadPath : 파일경로 
 		// file.getOriginalFilename() : 순수파일이름
 		// file.getBytes() : 파일크기(byte)

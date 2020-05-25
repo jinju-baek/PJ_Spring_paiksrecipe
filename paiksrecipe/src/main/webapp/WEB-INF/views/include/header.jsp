@@ -466,7 +466,7 @@ div.header_content {
 			<div class="login_wrap">
 				<div class="form_wrap">
 					<!-- type submit을 주면 enter키를 눌렀을 때 알아서 전달 -->
-					<form class="frm_login" name="from_login" onsubmit="return false;">
+					<form class="frm_login" name="form_login" onsubmit="return false;">
 						<div class="label">
 							<div>
 								아이디<br>

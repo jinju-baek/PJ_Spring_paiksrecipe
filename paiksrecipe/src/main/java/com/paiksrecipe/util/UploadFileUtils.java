@@ -63,10 +63,19 @@ public class UploadFileUtils {
 	// 동적으로 매개변수의 갯수가 바뀔 때 주로 사용
 	private static void makeDir(String uploadPath, String... paths) {
 		// 디렉토리가 존재하면 skip
-		if (new File(paths[paths.length - 1]).exists()) {
+		// path[3-1].exists() => paths[2] = \2020\05\20
+		// '\2020\04\08' 디렉토리 경로가 있으면 여기서 메서드 종료
+		if (new File(paths[paths.length - 1]).exists()) { // exists() = 디렉토리 존재 유무 (유=true)
 			return;
 		}
+		
+		// 첫번째 반복 \2020
+		// 두번째 반복 \2020\05
+		// 세번째 반복 \2020\05\20
 		for (String path : paths) {
+			// ex) 1번째 반복 c:\\developer/upload\2020
+			// ex) 2번째 반복 c:\\developer/upload\2020\05
+			// ex) 3번째 반복 c:\\developer/upload\2020\05\20
 			File dirPath = new File(uploadPath + path);
 			if (!dirPath.exists()) {
 				dirPath.mkdir(); // 디렉토리 생성
