@@ -1,6 +1,8 @@
 package com.paiksrecipe.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.paiksrecipe.domain.DailyDTO;
+import com.paiksrecipe.service.daily.DailyService;
 import com.paiksrecipe.service.index.IndexService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +29,9 @@ public class IndexController {
 	@Autowired
 	IndexService iService;
 	// iService에 indexServiceImpl Beans가 들어가있는것
+	
+	@Autowired
+	DailyService dService;
 	
 	@RequestMapping("/")
 	public String indexView(Model model, HttpSession session) {
@@ -52,6 +59,11 @@ public class IndexController {
 		 * session.setAttribute("userid", "logintest"); session.setAttribute("name",
 		 * "테스트");
 		 */
+		List<DailyDTO> list = dService.dailyRead();
+		for(DailyDTO dailyDTO : list) {
+			log.info(dailyDTO.toString());
+		}
+		model.addAttribute("DailyList", dService.dailyRead());
 		
 		return "index";
 	}

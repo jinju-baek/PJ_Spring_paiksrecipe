@@ -7,4 +7,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO tbl_daily(dno, content, writer)
 		VALUES(seq_daily.NEXTVAL, #{content}, #{writer})
 	</insert>
+	
+	<select id="dailyRead" resultType="DailyDTO">
+		SELECT * FROM tbl_daily
+		WHERE TO_CHAR(regdate, 'YYMMDD')=TO_CHAR(SYSDATE, 'YYMMDD')
+	</select>
 </mapper>

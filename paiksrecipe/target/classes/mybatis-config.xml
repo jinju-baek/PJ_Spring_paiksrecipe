@@ -7,5 +7,6 @@
 		<typeAlias type="com.paiksrecipe.domain.BoardDTO" alias="BoardDTO"></typeAlias>
 		<typeAlias type="com.paiksrecipe.domain.ReplyDTO" alias="ReplyDTO"></typeAlias>
 		<typeAlias type="com.paiksrecipe.domain.AttachDTO" alias="AttachDTO"></typeAlias>
+		<typeAlias type="com.paiksrecipe.domain.DailyDTO" alias="DailyDTO"></typeAlias>
 	</typeAliases>
 </configuration>

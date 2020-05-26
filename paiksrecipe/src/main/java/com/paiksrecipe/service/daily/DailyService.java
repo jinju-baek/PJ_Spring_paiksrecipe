@@ -1,5 +1,7 @@
 package com.paiksrecipe.service.daily;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +29,11 @@ public class DailyService {
 	public void dailyCreate(DailyDTO dDto) {
 		dDao.dailyCreate(dDto);
 	}
-	public void dailyRead() {
-		
+	public List<DailyDTO> dailyRead() {
+		// 비즈니스 로직
+		// DB에 가서 오늘 출석글만 LIST로 담아와서 
+		// Controller단으로 전달 -> return으로 전달
+		return dDao.dailyRead();
 	}
 	public void dailyUpdate() {
 		
