@@ -232,3 +232,31 @@ ALTER TABLE tbl_attach
 ADD CONSTRAINT fk_attach_bno
 FOREIGN KEY(bno) REFERENCES tbl_board(bno)
 ON DELETE CASCADE;
+
+
+
+
+DROP TABLE tbl_daily;
+CREATE TABLE tbl_daily(
+    dno NUMBER,
+    content VARCHAR2(4000) NOT NULL,
+    writer VARCHAR2(50) NOT NULL,
+    regdate DATE DEFAULT SYSDATE
+);
+
+ALTER TABLE tbl_daily
+ADD CONSTRAINT pk_daily_dno
+PRIMARY KEY(dno);
+
+INSERT INTO tbl_daily(dno, content, writer)
+VALUES(seq_daily.NEXTVAL, '1빠', '징구');
+INSERT INTO tbl_daily(dno, content, writer)
+VALUES(seq_daily.NEXTVAL, '2빠', '칭구');
+INSERT INTO tbl_daily(dno, content, writer)
+VALUES(seq_daily.NEXTVAL, '3빠', '칭긔');
+INSERT INTO tbl_daily(dno, content, writer)
+VALUES(seq_daily.NEXTVAL, '4빠', '백종원');
+INSERT INTO tbl_daily(dno, content, writer)
+VALUES(seq_daily.NEXTVAL, '5빠', '안냐세요');
+INSERT INTO tbl_daily(dno, content, writer)
+VALUES(seq_daily.NEXTVAL, '6빠', '체리링');
