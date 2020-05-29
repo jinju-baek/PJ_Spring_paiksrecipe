@@ -27,6 +27,7 @@
 	
 	<context:component-scan base-package="com.paiksrecipe.controller" />
 	<context:component-scan base-package="com.paiksrecipe.service" />
+	<context:component-scan base-package="com.paiksrecipe.aop" />
 	
 	<!-- Google Mail Send -->
 	<beans:bean id="mailSender"	class="org.springframework.mail.javamail.JavaMailSenderImpl">
